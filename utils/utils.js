@@ -10,3 +10,5 @@ export const formatDate = date => {
     locale: es
   });
 };
+export const deathRate = (cases, death) =>
+    (death / cases) * 100;
