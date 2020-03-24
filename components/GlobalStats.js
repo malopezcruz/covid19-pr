@@ -3,12 +3,27 @@ import useStats from "../utils/useStats";
 import { formatNumber, formatDate } from "../utils/utils";
 
 export default function GlobalStats() {
-  const stats = useStats("https://covid19.mathdro.id/api");
-
+  const [stats, isError] = useStats("https://covid19.mathdro.id/api");
+  console.log(stats);
+  console.log(isError);
   const globalDeathRate = (globalCases, globalDeath) =>
     (globalDeath / globalCases) * 100;
 
-  if (!stats) return <p>Loading...</p>;
+  if (isError)
+    return (
+      <div
+        className="bg-red-100 border-l-4 border-red-800 text-red-700 p-4 mt-4 mb-12"
+        role="alert"
+      >
+        <p className="font-bold text-2xl">Ups! Algo pasó...</p>
+        <p className="text-lg">
+          No se pudo recuperar los data <strong>Global</strong> en este momento.
+          Vuelve más tarde.
+        </p>
+      </div>
+    );
+
+  if (!stats) return <div className="text-center">Loading...</div>;
 
   return (
     <div className="mb-8">

@@ -3,14 +3,27 @@ import useStats from "../utils/useStats";
 import { formatNumber, formatDate } from "../utils/utils";
 
 export default function PRStats() {
-  const stats = useStats(
+  const [stats, isError] = useStats(
     "https://covid19.mathdro.id/api/countries/US/confirmed"
   );
 
   const globalDeathRate = (globalCases, globalDeath) =>
     (globalDeath / globalCases) * 100;
 
-  if (!stats) return <p>Loading...</p>;
+  if (isError)
+    return (
+      <div
+        className="bg-red-100 border-l-4 border-red-800 text-red-700 p-4 mt-4 mb-12"
+        role="alert"
+      >
+        <p className="font-bold text-2xl">Ups! Algo pasó...</p>
+        <p className="text-lg">
+          No se pudo recuperar los datos de <strong>Puerto Rico</strong> en este
+          momento. Vuelve más tarde.
+        </p>
+      </div>
+    );
+  if (!stats) return <div className="text-center">Loading...</div>;
 
   const findPuertoRico = stats.find(o => o.provinceState === "Puerto Rico");
   const { confirmed, deaths, recovered, lastUpdate } = findPuertoRico;

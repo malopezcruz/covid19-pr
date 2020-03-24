@@ -1,15 +1,21 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function useStats(url) {
   const [stats, setStats] = useState();
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(url);
-      setStats(res.data);
+      try {
+        const res = await axios.get(url);
+        setStats(res.data);
+      } catch (error) {
+        console.log(error);
+        setIsError(true);
+      }
     };
     fetchData();
   }, [url]);
-  return stats;
+  return [stats, isError];
 }
