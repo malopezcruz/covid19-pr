@@ -39,8 +39,8 @@ const IndexPage = () => {
       <Head>
         <meta
           name='google-site-verification'
-          content='tVO7fJFTfafW2qp0wTREla4nh8WqI8OfkiKQJKkUCm0'
-          key='google-verification'
+          content='lTpqBCergZq6yQ5wE84edCzI-GBbt3jH0Dm9obawfxY'
+          key='google'
         />
       </Head>
 
