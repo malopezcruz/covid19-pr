@@ -3,7 +3,7 @@ import useStats from "../utils/useStats";
 import { formatNumber, formatDate } from "../utils/utils";
 
 export default function GlobalStats() {
-  const stats = useStats("http://covid19.mathdro.id/api");
+  const stats = useStats("https://covid19.mathdro.id/api");
 
   const globalDeathRate = (globalCases, globalDeath) =>
     (globalDeath / globalCases) * 100;
