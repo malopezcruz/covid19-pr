@@ -2,6 +2,7 @@ import React from 'react';
 import useStats from '../utils/useStats';
 import ErrorMessage from './ErrorMessage';
 import { formatNumber, formatDate, deathRate } from '../utils/utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function PRStats() {
   const [stats, isError] = useStats(
@@ -10,7 +11,12 @@ export default function PRStats() {
 
   if (isError) return <ErrorMessage category='Puerto Rico' />;
 
-  if (!stats) return <div className='text-center'>Loading...</div>;
+  if (!stats)
+    return (
+      <div className='text-center'>
+        <FontAwesomeIcon icon='spinner' spin />
+      </div>
+    );
 
   const findPuertoRico = stats.find(o => o.provinceState === 'Puerto Rico');
   const { confirmed, deaths, recovered, lastUpdate } = findPuertoRico;
@@ -39,7 +45,7 @@ export default function PRStats() {
           <h3 className='uppercase'>Tasa de letalidad</h3>
         </div>
       </div>
-      <div className='uppercase text-xs text-center text-gray-600'>
+      <div className='uppercase text-xs text-center text-gray-700'>
         <span>Última actualización: </span>
         <span>{formatDate(lastUpdate)}</span>
       </div>

@@ -8,6 +8,8 @@ import {
   registerPageView
 } from '../utils/googleAnalytics';
 import '../styles/index.css';
+import '../utils/AddFontAwesome.js';
+
 import Footer from '../components/Footer';
 
 const IndexPage = () => {

@@ -11,7 +11,6 @@ export default function useStats(url) {
         const res = await axios.get(url);
         setStats(res.data);
       } catch (error) {
-        console.log(error);
         setIsError(true);
       }
     };
