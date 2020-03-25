@@ -5,14 +5,19 @@ export default function ExtLink({ link, label }) {
   return (
     <>
       <a
-        className='text-green-400'
+        className='text-green-400 text-base'
         href={link}
         rel='noreferrer noopenner'
         target='_blank'
       >
         {label}
         <span className='sr-only'>(abre en una nueva pestaña)</span>
-        <FontAwesomeIcon icon='link' className='ml-1' />
+        <FontAwesomeIcon
+          icon='link'
+          fixedWidth
+          width='16'
+          className='ml-1 text-base inline'
+        />
       </a>
     </>
   );

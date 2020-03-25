@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Footer() {
   return (
-    <div className='bg-gray-900 min-w-100 p-8 font-light'>
+    <div className='bg-gray-900 tracking-wide min-w-100 p-8 font-light'>
       <div className='container grid gri-cols-1 md:grid-cols-3 md:gap-4 text-gray-400 pt-6'>
         <div className='px-4 mb-6'>
           <h4 className='text-xl mb-2'>Información oficial de Puerto Rico</h4>
@@ -47,8 +47,7 @@ export default function Footer() {
             <ExtLink
               link='https://github.com/mathdroid/covid-19-api'
               label='Covid-19 API'
-            />{' '}
-            de <ExtLink link="'https://mathdro.id/" label='mathdro' />
+            />
           </p>
         </div>
         <div className='md:col-span-3 text-center'>
@@ -58,7 +57,12 @@ export default function Footer() {
             rel='noreferrer noopenner'
             target='_blank'
           >
-            <FontAwesomeIcon icon={['fab', 'github']} />
+            <FontAwesomeIcon
+              icon={['fab', 'github']}
+              fixedWidth
+              width='32'
+              className='inline'
+            />
           </a>
         </div>
       </div>

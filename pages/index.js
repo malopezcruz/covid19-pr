@@ -3,14 +3,13 @@ import Head from 'next/head';
 import GlobalStats from '../components/GlobalStats';
 import PRStats from '../components/PRStats';
 import USStats from '../components/USStats';
+import Footer from '../components/Footer';
 import {
   initializeGoogleAnalytics,
   registerPageView
 } from '../utils/googleAnalytics';
 import '../styles/index.css';
 import '../utils/addFontAwesome.js';
-
-import Footer from '../components/Footer';
 
 const IndexPage = () => {
   useEffect(() => {
