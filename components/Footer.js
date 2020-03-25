@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Footer() {
   return (
-    <div className='bg-gray-900 tracking-wide p-8 font-light'>
-      <div className='container grid gri-cols-1 md:grid-cols-3 md:gap-4 text-gray-400 pt-6'>
-        <div className='px-4 mb-6'>
+    <div className='bg-gray-900 tracking-wide py-8 font-light'>
+      <div className='w-full max-w-screen-xl px-4 mx-auto grid gri-cols-1 md:grid-cols-3 md:gap-6 text-gray-400 pt-6'>
+        <div className='mb-6'>
           <h4 className='text-xl mb-2 font-medium'>
             Información oficial de Puerto Rico
           </h4>
@@ -25,7 +25,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div className='px-4 mb-6'>
+        <div className='mb-6'>
           <h4 className='text-xl mb-2 font-medium'>Datos actualizados</h4>
           <ul className='flex flex-col'>
             <li className='ml-4 mb-2'>
@@ -42,7 +42,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div className='px-4 mb-6'>
+        <div className='mb-6'>
           <h4 className='text-xl mb-2 font-medium'>Fuente</h4>
           <p className='ml-4 mb-2'>
             La información aquí presentada está tomada del repositorio{' '}

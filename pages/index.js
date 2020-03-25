@@ -59,6 +59,22 @@ const IndexPage = () => {
           crossOrigin=''
           key='woff'
         />
+        <link
+          rel='preload'
+          as='font'
+          href='fonts/lato-v16-latin-900.woff2'
+          type='font/woff2'
+          crossOrigin=''
+          key='woff2'
+        />
+        <link
+          rel='preload'
+          as='font'
+          href='fonts/lato-v16-latin-900.woff'
+          type='font/woff'
+          crossOrigin=''
+          key='woff'
+        />
       </Head>
 
       <div className='min-h-screen flex flex-col pt-6'>
