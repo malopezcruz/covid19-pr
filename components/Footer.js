@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Footer() {
   return (
-    <div className='bg-gray-900 tracking-wide min-w-100 p-8 font-light'>
-      <div className='container grid gri-cols-1 md:grid-cols-3 md:gap-4 text-gray-400 pt-6'>
+    <div className='bg-gray-900 tracking-wide p-8 font-light'>
+      <div className='container -mx-4 grid gri-cols-1 md:grid-cols-3 md:gap-4 text-gray-400 pt-6'>
         <div className='px-4 mb-6'>
           <h4 className='text-xl mb-2'>Información oficial de Puerto Rico</h4>
           <ul className='flex flex-col'>

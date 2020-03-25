@@ -12,8 +12,8 @@ export default function GlobalStats() {
 
   if (!stats)
     return (
-      <div className='text-center'>
-        <FontAwesomeIcon icon='spinner' spin fixedWidth width="16"/>
+      <div className='flex justify-center content-center'>
+        <FontAwesomeIcon icon='spinner' spin fixedWidth width='16' />
       </div>
     );
 
