@@ -5,9 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Footer() {
   return (
     <div className='bg-gray-900 tracking-wide p-8 font-light'>
-      <div className='container -mx-4 grid gri-cols-1 md:grid-cols-3 md:gap-4 text-gray-400 pt-6'>
+      <div className='container grid gri-cols-1 md:grid-cols-3 md:gap-4 text-gray-400 pt-6'>
         <div className='px-4 mb-6'>
-          <h4 className='text-xl mb-2'>Información oficial de Puerto Rico</h4>
+          <h4 className='text-xl mb-2 font-medium'>
+            Información oficial de Puerto Rico
+          </h4>
           <ul className='flex flex-col'>
             <li className='ml-4 mb-2'>
               <ExtLink
@@ -24,7 +26,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className='px-4 mb-6'>
-          <h4 className='text-xl mb-2'>Datos actualizados</h4>
+          <h4 className='text-xl mb-2 font-medium'>Datos actualizados</h4>
           <ul className='flex flex-col'>
             <li className='ml-4 mb-2'>
               <ExtLink
@@ -41,13 +43,18 @@ export default function Footer() {
           </ul>
         </div>
         <div className='px-4 mb-6'>
-          <h4 className='text-xl mb-2'>Fuente</h4>
-          <p className='ml-4'>
+          <h4 className='text-xl mb-2 font-medium'>Fuente</h4>
+          <p className='ml-4 mb-2'>
             La información aquí presentada está tomada del repositorio{' '}
             <ExtLink
               link='https://github.com/mathdroid/covid-19-api'
               label='Covid-19 API'
             />
+            . Su fuente son los datos que provee CSSE en JHU.
+          </p>
+          <p className='ml-4'>
+            <span className='font-medium'>Nota:</span> Haremos disponibles los
+            datos de personas recuperadas cuando estén disponibles.
           </p>
         </div>
         <div className='md:col-span-3 text-center'>

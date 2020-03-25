@@ -44,10 +44,33 @@ const IndexPage = () => {
           key='google'
         />
       </Head>
+      <Head>
+        <link rel='shortcut icon' href='/public/favicon.ico' key='favicon' />
+      </Head>
+      <Head>
+        <link
+          rel='preload'
+          as='font'
+          href='../public/fonts/lato-v16-latin-regular.woff2'
+          type='font/woff2'
+          crossorigin=''
+          key='woff2'
+        />
+      </Head>
+      <Head>
+        <link
+          rel='preload'
+          as='font'
+          href='../public/fonts/lato-v16-latin-regular.woff'
+          type='font/woff'
+          crossorigin=''
+          key='woff'
+        />
+      </Head>
 
       <div className='min-h-screen flex flex-col pt-6'>
         <div className='container flex-grow'>
-          <h1 className='text-6xl text-center font-black mb-4'>COVID-19</h1>
+          <h1 className='text-5xl text-center font-black mb-4'>COVID-19</h1>
           <GlobalStats />
           <div className='grid mb-8 lg:mb-16 lg:grid-cols-2 lg:gap-10'>
             <PRStats />

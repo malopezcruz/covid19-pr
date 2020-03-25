@@ -33,10 +33,14 @@ export default function PRStats() {
           <span className='text-4xl font-bold'>{formatNumber(deaths)}</span>
           <h3 className='uppercase'>Muertes</h3>
         </div>
-        <div className='py-8 px-2  bg-gray-300 text-center rounded-lg'>
-          <span className='text-4xl font-bold'>{formatNumber(recovered)}</span>
-          <h3 className='uppercase'>Recuperados</h3>
-        </div>
+        {recovered > 0 && (
+          <div className='py-8 px-2  bg-gray-300 text-center rounded-lg'>
+            <span className='text-4xl font-bold'>
+              {formatNumber(recovered)}
+            </span>
+            <h3 className='uppercase'>Recuperados</h3>
+          </div>
+        )}
         <div className='py-8 px-2  bg-gray-300 text-center rounded-lg'>
           <span className='text-4xl font-bold'>{`${deathRate(
             confirmed,

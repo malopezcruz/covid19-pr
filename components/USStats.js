@@ -33,12 +33,14 @@ export default function GlobalStats() {
           </span>
           <h3 className='uppercase'>Muertes</h3>
         </div>
-        <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
-          <span className='text-4xl font-bold'>
-            {formatNumber(stats.recovered.value)}
-          </span>
-          <h3 className='uppercase'>Recuperados</h3>
-        </div>
+        {stats.recovered.value > 0 && (
+          <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
+            <span className='text-4xl font-bold'>
+              {formatNumber(stats.recovered.value)}
+            </span>
+            <h3 className='uppercase'>Recuperados</h3>
+          </div>
+        )}
         <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
           <span className='text-4xl font-bold'>{`${deathRate(
             stats.confirmed.value,
