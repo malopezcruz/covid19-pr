@@ -24,7 +24,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className='px-4 mb-6'>
-          <h4 className='text-xl mb-2'>Otras presentaciones de Datos</h4>
+          <h4 className='text-xl mb-2'>Datos actualizados</h4>
           <ul className='flex flex-col'>
             <li className='ml-4 mb-2'>
               <ExtLink
