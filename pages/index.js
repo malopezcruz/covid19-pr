@@ -23,21 +23,18 @@ const IndexPage = () => {
   return (
     <>
       <Head>
+        <meta charSet='utf-8' className='next-head' />
         <title>Puerto Rico | COVID-19</title>
         <meta
           name='viewport'
           content='initial-scale=1.0, width=device-width'
           key='viewport'
         />
-      </Head>
-      <Head>
         <meta
           name='Description'
           content='Datos sobre la epidemia de COVID-19 en Puerto Rico y el mundo'
           key='description'
         />
-      </Head>
-      <Head>
         <meta
           name='google-site-verification'
           content='lTpqBCergZq6yQ5wE84edCzI-GBbt3jH0Dm9obawfxY'
@@ -45,25 +42,21 @@ const IndexPage = () => {
         />
       </Head>
       <Head>
-        <link rel='shortcut icon' href='/public/favicon.ico' key='favicon' />
-      </Head>
-      <Head>
+        <link rel='shortcut icon' href='favicon.ico' key='favicon' />
         <link
           rel='preload'
           as='font'
-          href='../public/fonts/lato-v16-latin-regular.woff2'
+          href='fonts/lato-v16-latin-regular.woff2'
           type='font/woff2'
-          crossorigin=''
+          crossOrigin=''
           key='woff2'
         />
-      </Head>
-      <Head>
         <link
           rel='preload'
           as='font'
-          href='../public/fonts/lato-v16-latin-regular.woff'
+          href='fonts/lato-v16-latin-regular.woff'
           type='font/woff'
-          crossorigin=''
+          crossOrigin=''
           key='woff'
         />
       </Head>
