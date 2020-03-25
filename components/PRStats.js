@@ -18,7 +18,7 @@ export default function PRStats() {
   return (
     <div className='mb-8'>
       <h2 className='font-black text-4xl text-center mb-8'>Puerto Rico</h2>
-      <div className='mb-6 grid grid-cols-2 gap-4 md:grid-cols-4'>
+      <div className='mb-6 grid grid-cols-2 gap-4'>
         <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
           <span className='text-4xl font-bold'>{formatNumber(confirmed)}</span>
           <h3 className='uppercase'>Confirmados</h3>

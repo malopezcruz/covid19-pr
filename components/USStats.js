@@ -4,16 +4,18 @@ import ErrorMessage from './ErrorMessage';
 import { formatNumber, formatDate, deathRate } from '../utils/utils';
 
 export default function GlobalStats() {
-  const [stats, isError] = useStats('https://covid19.mathdro.id/api');
-
-  if (isError) return <ErrorMessage category='Global' />;
+  const [stats, isError] = useStats(
+    'https://covid19.mathdro.id/api/countries/US'
+  );
+  console.log(stats);
+  if (isError) return <ErrorMessage category='Estados Unidos' />;
 
   if (!stats) return <div className='text-center'>Loading...</div>;
 
   return (
-    <div className='mb-8 md:mb-16'>
-      <h2 className='font-black text-4xl text-center mb-8'>Global</h2>
-      <div className='mb-6 grid grid-cols-2 gap-4 md:grid-cols-4'>
+    <div className='mb-8'>
+      <h2 className='font-black text-4xl text-center mb-8'>Estados Unidos</h2>
+      <div className='mb-6 grid grid-cols-2 gap-4'>
         <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
           <span className='text-4xl font-bold'>
             {formatNumber(stats.confirmed.value)}

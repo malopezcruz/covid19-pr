@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import GlobalStats from '../components/GlobalStats';
 import PRStats from '../components/PRStats';
+import USStats from '../components/USStats';
 import {
   initializeGoogleAnalytics,
   registerPageView
 } from '../utils/googleAnalytics';
 import '../styles/index.css';
-// import Footer from "../components/Footer";
-// import CountrySelector from '../components/CountrySelector'
+import Footer from '../components/Footer';
 
 const IndexPage = () => {
   useEffect(() => {
@@ -44,14 +44,16 @@ const IndexPage = () => {
         />
       </Head>
 
-      <div className='container'>
-        <main className='pt-8'>
+      <div className='min-h-screen flex flex-col pt-6'>
+        <div className='container flex-grow'>
           <h1 className='text-6xl text-center font-black mb-4'>COVID-19</h1>
           <GlobalStats />
-          <PRStats />
-          {/* <CountrySelector /> */}
-        </main>
-        {/* <Footer /> */}
+          <div className='grid mb-8 lg:mb-16 lg:grid-cols-2 lg:gap-10'>
+            <PRStats />
+            <USStats />
+          </div>
+        </div>
+        <Footer />
       </div>
     </>
   );
