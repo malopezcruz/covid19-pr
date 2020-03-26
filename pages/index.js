@@ -77,8 +77,8 @@ const IndexPage = () => {
         />
       </Head>
 
-      <div className='min-h-screen flex flex-col pt-6'>
-        <div className='container flex-grow'>
+      <div className='flex flex-col min-h-screen'>
+        <div className='container flex-grow mt-6'>
           <h1 className='text-5xl text-center font-black mb-4'>COVID-19</h1>
           <GlobalStats />
           <div className='grid mb-8 lg:mb-16 lg:grid-cols-2 lg:gap-10'>

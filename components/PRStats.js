@@ -13,7 +13,7 @@ export default function PRStats() {
 
   if (!stats)
     return (
-      <div className='flex justify-center content-center'>
+      <div className='p-16 flex justify-center content-center'>
         <FontAwesomeIcon icon='spinner' spin fixedWidth width='16' />
       </div>
     );

@@ -8,7 +8,7 @@ class MyDocument extends Document {
     return (
       <Html lang='es'>
         <Head />
-        <body>
+        <body className='h-full'>
           <Main />
           <NextScript />
         </body>

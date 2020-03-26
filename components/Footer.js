@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Footer() {
   return (
-    <div className='bg-gray-900 tracking-wide py-8 font-light'>
+    <footer className='bg-gray-900 tracking-wide py-8 font-light'>
       <div className='w-full max-w-screen-xl px-4 mx-auto grid gri-cols-1 md:grid-cols-3 md:gap-6 text-gray-400 pt-6'>
         <div className='mb-6'>
           <h4 className='text-xl mb-2 font-medium'>
@@ -73,6 +73,6 @@ export default function Footer() {
           </a>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }

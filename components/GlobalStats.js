@@ -11,13 +11,13 @@ export default function GlobalStats() {
 
   if (!stats)
     return (
-      <div className='flex justify-center content-center'>
+      <div className='p-16 flex justify-center content-center'>
         <FontAwesomeIcon icon='spinner' spin width='16' />
       </div>
     );
 
   return (
-    <div className='mb-8 md:mb-16'>
+    <div className='md:min-h-250 mb-8 md:mb-16'>
       <h2 className='font-black text-4xl text-center mb-8'>Global</h2>
       <div className='mb-6 grid grid-cols-2 gap-4 md:grid-cols-4'>
         <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
