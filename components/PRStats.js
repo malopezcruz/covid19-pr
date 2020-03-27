@@ -5,11 +5,11 @@ import { formatNumber, formatDate, deathRate } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function PRStats() {
-  const [stats, isError] = useStats(
+  const [stats, isError1] = useStats(
     'https://covid19.mathdro.id/api/countries/US/confirmed'
   );
 
-  if (isError) return <ErrorMessage category='Puerto Rico' />;
+  if (isError1) return <ErrorMessage category='Puerto Rico' />;
 
   if (!stats)
     return (
@@ -22,9 +22,13 @@ export default function PRStats() {
   const { confirmed, deaths, recovered, lastUpdate } = findPuertoRico;
 
   return (
-    <div className='mb-8'>
+    <div className='mb-12 md:mb-16'>
       <h2 className='font-black text-4xl text-center mb-8'>Puerto Rico</h2>
-      <div className='mb-6 grid grid-cols-2 gap-4'>
+      <div
+        className={`mb-6 grid grid-cols-2 lg:${
+          recovered === 0 ? 'grid-cols-3' : 'grid-cols-4'
+        } gap-4`}
+      >
         <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
           <span className='text-4xl font-bold'>{formatNumber(confirmed)}</span>
           <h3 className='uppercase'>Confirmados</h3>
@@ -51,7 +55,24 @@ export default function PRStats() {
       </div>
       <div className='uppercase text-xs text-center text-gray-700'>
         <span>Última actualización: </span>
-        <span>{formatDate(lastUpdate)}</span>
+        <span>
+          <strong>{formatDate(lastUpdate)}</strong>.
+        </span>
+        <p className='normal-case'>
+          {' '}
+          La información aparecerá actualizada aproximadamente dos horas luego
+          de que el Departamento de Salud publique los{' '}
+          <a
+            href='http://www.salud.gov.pr/Pages/coronavirus.aspx'
+            className='underline'
+            rel='noreferrer noopenner'
+            target='_blank'
+          >
+            {' '}
+            datos oficiales{' '}
+          </a>
+          , todos los días a las 7:00 AM.
+        </p>
       </div>
     </div>
   );

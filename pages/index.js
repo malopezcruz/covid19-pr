@@ -3,6 +3,7 @@ import Head from 'next/head';
 import GlobalStats from '../components/GlobalStats';
 import PRStats from '../components/PRStats';
 import USStats from '../components/USStats';
+import PRStatsTest from '../components/PRStatsTest';
 import Footer from '../components/Footer';
 import {
   initializeGoogleAnalytics,
@@ -78,13 +79,16 @@ const IndexPage = () => {
       </Head>
 
       <div className='flex flex-col min-h-screen'>
-        <div className='container flex-grow mt-6'>
-          <h1 className='text-5xl text-center font-black mb-4'>COVID-19</h1>
-          <GlobalStats />
-          <div className='grid mb-8 lg:mb-16 lg:grid-cols-2 lg:gap-10'>
+        <div className='w-full max-w-screen-lg px-4 mx-auto flex-grow mt-6'>
+          <h1 className='text-2xl lg:text-3xl text-left font-black mb-4'>
+            COVID-19
+          </h1>
+          <div className='mt-8 mb-12 lg:mt-16 lg:mb-16 px-4 py-6 md:px-8 md:py-12 border border-gray-400 rounded-lg shadow-md'>
             <PRStats />
-            <USStats />
+            <PRStatsTest />
           </div>
+          <GlobalStats />
+          <USStats />
         </div>
         <Footer />
       </div>

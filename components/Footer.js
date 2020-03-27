@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Footer() {
   return (
     <footer className='bg-gray-900 tracking-wide py-8 font-light'>
-      <div className='w-full max-w-screen-xl px-4 mx-auto grid gri-cols-1 md:grid-cols-3 md:gap-6 text-gray-400 pt-6'>
+      <div className='w-full max-w-screen-lg px-4 lg:px-0 mx-auto grid gri-cols-1 md:grid-cols-3 md:gap-6 text-gray-400 pt-6'>
         <div className='mb-6'>
           <h4 className='text-xl mb-2 font-medium'>
             Información oficial de Puerto Rico
@@ -45,12 +45,16 @@ export default function Footer() {
         <div className='mb-6'>
           <h4 className='text-xl mb-2 font-medium'>Fuente</h4>
           <p className='ml-4 mb-2'>
-            La información aquí presentada está tomada del repositorio{' '}
+            La información aquí presentada está tomada de{' '}
             <ExtLink
               link='https://github.com/mathdroid/covid-19-api'
               label='Covid-19 API'
+            />{' '}
+            y{' '}
+            <ExtLink
+              link='https://covidtracking.com/api/'
+              label='The COVID Tracking Project'
             />
-            . Su fuente son los datos que provee CSSE en JHU.
           </p>
           <p className='ml-4'>
             <span className='font-medium'>Nota:</span> Haremos disponibles los
