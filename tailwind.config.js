@@ -9,6 +9,9 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Lato', ...defaultTheme.fontFamily.sans]
+      },
+      screens: {
+        'dark-mode': { raw: '(prefers-color-scheme: dark)' }
       }
     }
   },

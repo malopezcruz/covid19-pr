@@ -19,7 +19,7 @@ export default function GlobalStats() {
   return (
     <div className='mb-8 md:mb-16'>
       <h2 className='font-black text-4xl text-center mb-8'>Global</h2>
-      <div className='mb-6 grid grid-cols-2 gap-4 md:grid-cols-4'>
+      <div className='mb-6 grid grid-cols-2 gap-3 small:gap-4 md:grid-cols-4'>
         <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
           <span className='text-4xl font-bold'>
             {formatNumber(stats.confirmed.value)}
@@ -47,7 +47,7 @@ export default function GlobalStats() {
         </div>
       </div>
       <div className='uppercase text-xs text-center text-gray-700'>
-        <span>Última actualización: </span>
+        <span>Última verificación: </span>
         <span>
           <strong>{formatDate(stats.lastUpdate)}</strong>.
         </span>

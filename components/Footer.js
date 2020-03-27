@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Footer() {
   return (
     <footer className='bg-gray-900 tracking-wide py-8 font-light'>
-      <div className='w-full max-w-screen-lg px-4 lg:px-0 mx-auto grid gri-cols-1 md:grid-cols-3 md:gap-6 text-gray-400 pt-6'>
+      <div className='w-full max-w-screen-lg px-4 lg:px-0 mx-auto grid gri-cols-1 md:grid-cols-3 md:gap-6 text-gray-200 pt-6'>
         <div className='mb-6'>
           <h4 className='text-xl mb-2 font-medium'>
             Información oficial de Puerto Rico
@@ -67,6 +67,7 @@ export default function Footer() {
             className='text-gray-400 text-2xl'
             rel='noreferrer noopenner'
             target='_blank'
+            aria-label='Github'
           >
             <FontAwesomeIcon
               icon={['fab', 'github']}

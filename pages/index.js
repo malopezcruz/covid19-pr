@@ -79,11 +79,13 @@ const IndexPage = () => {
       </Head>
 
       <div className='flex flex-col min-h-screen'>
-        <div className='w-full max-w-screen-lg px-4 mx-auto flex-grow mt-6'>
-          <h1 className='text-2xl lg:text-3xl text-left font-black mb-4'>
+        <div className='bg-gray-900 p-4'>
+          <h1 className='w-full max-w-screen-lg px-4 mx-auto text-2xl text-gray-200 lg:text-3xl text-left font-black'>
             COVID-19
           </h1>
-          <div className='mt-8 mb-12 lg:mt-16 lg:mb-16 px-4 py-6 md:px-8 md:py-12 border border-gray-400 rounded-lg shadow-md'>
+        </div>
+        <div className='w-full max-w-screen-lg px-4 mx-auto flex-grow mt-6'>
+          <div className='mt-4 mb-12 lg:mt-12 lg:mb-16 px-4 py-6 md:px-8 md:py-12 border border-gray-400 rounded-lg shadow-md'>
             <PRStats />
             <PRStatsTest />
           </div>

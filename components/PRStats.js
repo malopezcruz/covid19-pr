@@ -24,21 +24,28 @@ export default function PRStats() {
   return (
     <div className='mb-12 md:mb-16'>
       <h2 className='font-black text-4xl text-center mb-8'>Puerto Rico</h2>
-      <div
-        className={`mb-6 grid grid-cols-2 lg:${
-          recovered === 0 ? 'grid-cols-3' : 'grid-cols-4'
-        } gap-4`}
-      >
-        <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
-          <span className='text-4xl font-bold'>{formatNumber(confirmed)}</span>
-          <h3 className='uppercase'>Confirmados</h3>
+      <div className={`mb-6 grid grid-cols-2 gap-3 small:gap-4`}>
+        <div
+          className={`py-8 px-2 ${recovered === 0 &&
+            'row-span-2'} flex justify-center items-center bg-gray-300 text-center rounded-lg`}
+        >
+          <div>
+            <span
+              className={`${
+                recovered === 0 ? 'text-5xl' : 'text-4xl'
+              } font-bold`}
+            >
+              {formatNumber(confirmed)}
+            </span>
+            <h3 className='uppercase'>Confirmados</h3>
+          </div>
         </div>
-        <div className='py-8 px-2  bg-gray-300 text-center rounded-lg'>
+        <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
           <span className='text-4xl font-bold'>{formatNumber(deaths)}</span>
           <h3 className='uppercase'>Muertes</h3>
         </div>
         {recovered > 0 && (
-          <div className='py-8 px-2  bg-gray-300 text-center rounded-lg'>
+          <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
             <span className='text-4xl font-bold'>
               {formatNumber(recovered)}
             </span>
@@ -54,24 +61,24 @@ export default function PRStats() {
         </div>
       </div>
       <div className='uppercase text-xs text-center text-gray-700'>
-        <span>Última actualización: </span>
+        <span>Última verificación: </span>
         <span>
           <strong>{formatDate(lastUpdate)}</strong>.
         </span>
         <p className='normal-case'>
-          {' '}
-          La información aparecerá actualizada aproximadamente dos horas luego
-          de que el Departamento de Salud publique los{' '}
-          <a
-            href='http://www.salud.gov.pr/Pages/coronavirus.aspx'
-            className='underline'
-            rel='noreferrer noopenner'
-            target='_blank'
-          >
-            {' '}
-            datos oficiales{' '}
-          </a>
-          , todos los días a las 7:00 AM.
+          <span>👉</span> La información aparecerá actualizada aproximadamente
+          dos horas después al{' '}
+          <strong>
+            <a
+              href='http://www.salud.gov.pr/Pages/coronavirus.aspx'
+              className='underline'
+              rel='noreferrer noopenner'
+              target='_blank'
+            >
+              informe diaro
+            </a>
+          </strong>{' '}
+          del Departamento de Salud (7:00 AM).
         </p>
       </div>
     </div>
