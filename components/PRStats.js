@@ -3,18 +3,14 @@ import useStats from '../utils/useStats';
 import ErrorMessage from './ErrorMessage';
 import DataBox from '../components/DataBox';
 
-import { formatNumber, formatDate, deathRate } from '../utils/utils';
+import { formatNumber, deathRate } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function PRStats() {
-  // const [stats, isError] = useStats(
-  //   'https://covid19.mathdro.id/api/countries/US/confirmed'
-  // );
   const [stats, isError] = useStats(
     `https://wrapapi.com/use/malopezcruz/covid19pr1/salud/latest?wrapAPIKey=${process.env.API_KEY}`
   );
 
-  console.log(stats);
   if (isError) return <ErrorMessage category='Puerto Rico' />;
 
   if (!stats)
