@@ -6,20 +6,18 @@ import DataBox from '../components/DataBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function PRStatsTest() {
-  const [testData, testDataError] = useStats(
-    'https://covidtracking.com/api/states'
-  );
+  const [stats, isError] = useStats('https://covidtracking.com/api/states');
 
-  if (testDataError) return <ErrorMessage category='Pruebas Realizadas' />;
+  if (isError) return <ErrorMessage category='Pruebas Realizadas' />;
 
-  if (!testData)
+  if (!stats)
     return (
       <div className='p-16 flex justify-center content-center'>
         <FontAwesomeIcon icon='spinner' spin fixedWidth width='16' />
       </div>
     );
 
-  const findTestData = testData.find(o => o.state === 'PR');
+  const findTestData = stats.find(o => o.state === 'PR');
   const {
     positive,
     negative,
@@ -45,7 +43,8 @@ function PRStatsTest() {
           Última verificación: <strong>{formatDate(dateChecked)}</strong>.
         </p>
         <p>
-          Última actualización: <strong>{formatDate(dateModified)}</strong>.
+          Última actualización disponible:{' '}
+          <strong>{formatDate(dateModified)}</strong>.
         </p>
         <p className='normal-case'>
           <span>👉 </span>

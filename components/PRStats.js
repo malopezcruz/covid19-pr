@@ -1,15 +1,21 @@
 import React from 'react';
 import useStats from '../utils/useStats';
 import ErrorMessage from './ErrorMessage';
+import DataBox from '../components/DataBox';
+
 import { formatNumber, formatDate, deathRate } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function PRStats() {
-  const [stats, isError1] = useStats(
-    'https://covid19.mathdro.id/api/countries/US/confirmed'
+  // const [stats, isError] = useStats(
+  //   'https://covid19.mathdro.id/api/countries/US/confirmed'
+  // );
+  const [stats, isError] = useStats(
+    `https://wrapapi.com/use/malopezcruz/covid19pr1/salud/latest?wrapAPIKey=${process.env.API_KEY}`
   );
 
-  if (isError1) return <ErrorMessage category='Puerto Rico' />;
+  console.log(stats);
+  if (isError) return <ErrorMessage category='Puerto Rico' />;
 
   if (!stats)
     return (
@@ -18,69 +24,52 @@ export default function PRStats() {
       </div>
     );
 
-  const findPuertoRico = stats.find(o => o.provinceState === 'Puerto Rico');
-  const { confirmed, deaths, recovered, lastUpdate } = findPuertoRico;
+  const [totalTest, confirmed, negative, pending, deaths] = stats.data.stats;
 
   return (
-    <div className='mb-12 md:mb-16'>
-      <h2 className='font-black text-4xl text-center mb-8'>Puerto Rico</h2>
-      <div className={`mb-6 grid grid-cols-2 gap-3 small:gap-4`}>
-        <div
-          className={`py-8 px-2 ${recovered === 0 &&
-            'row-span-2'} flex justify-center items-center bg-gray-300 text-center rounded-lg`}
-        >
-          <div>
-            <span
-              className={`${
-                recovered === 0 ? 'text-5xl' : 'text-4xl'
-              } font-bold`}
-            >
-              {formatNumber(confirmed)}
-            </span>
-            <h3 className='uppercase'>Confirmados</h3>
+    <>
+      <div className='mb-12 md:mb-16'>
+        <h2 className='font-black text-4xl text-center mb-8'>Puerto Rico</h2>
+        <div className={`mb-6 grid grid-cols-2 gap-3 small:gap-4`}>
+          <div
+            className={`py-8 px-2
+            row-span-2 flex justify-center items-center bg-gray-300 text-center rounded-lg`}
+          >
+            <div>
+              <span className='text-5xl font-bold'>
+                {formatNumber(confirmed)}
+              </span>
+              <h3 className='uppercase'>Confirmados</h3>
+            </div>
           </div>
-        </div>
-        <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
-          <span className='text-4xl font-bold'>{formatNumber(deaths)}</span>
-          <h3 className='uppercase'>Muertes</h3>
-        </div>
-        {recovered > 0 && (
           <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
-            <span className='text-4xl font-bold'>
-              {formatNumber(recovered)}
-            </span>
-            <h3 className='uppercase'>Recuperados</h3>
+            <span className='text-4xl font-bold'>{formatNumber(deaths)}</span>
+            <h3 className='uppercase'>Muertes</h3>
           </div>
-        )}
-        <div className='py-8 px-2  bg-gray-300 text-center rounded-lg'>
-          <span className='text-4xl font-bold'>{`${deathRate(
-            confirmed,
-            deaths
-          ).toFixed(2)}%`}</span>
-          <h3 className='uppercase'>Tasa de letalidad</h3>
+          <div className='py-8 px-2  bg-gray-300 text-center rounded-lg'>
+            <span className='text-4xl font-bold'>{`${deathRate(
+              parseInt(confirmed),
+              parseInt(deaths)
+            ).toFixed(2)}%`}</span>
+            <h3 className='uppercase'>Tasa de letalidad</h3>
+          </div>
         </div>
       </div>
-      <div className='uppercase text-xs text-center text-gray-700'>
-        <span>Última verificación: </span>
-        <span>
-          <strong>{formatDate(lastUpdate)}</strong>.
-        </span>
-        <p className='normal-case'>
-          <span>👉</span> La información aparecerá actualizada aproximadamente
-          dos horas después al{' '}
-          <strong>
-            <a
-              href='http://www.salud.gov.pr/Pages/coronavirus.aspx'
-              className='underline'
-              rel='noreferrer noopenner'
-              target='_blank'
-            >
-              informe diaro
-            </a>
-          </strong>{' '}
-          del Departamento de Salud (7:00 AM).
-        </p>
+      <div className='mb-8'>
+        <h2 className='font-black text-2xl text-center mb-8'>
+          Pruebas realizadas
+        </h2>
+        <div className='mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3 small:gap-4'>
+          <DataBox number={formatNumber(confirmed)} label='Positivos' />
+          <DataBox number={formatNumber(negative)} label='Negativos' />
+          <DataBox number={formatNumber(pending)} label='Pendientes' />
+          <DataBox number={formatNumber(totalTest)} label='Total' />
+        </div>
+        <div className='uppercase text-xs text-center text-gray-700'>
+          <span>👉 </span>
+          <span>{stats.data.updated}</span>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

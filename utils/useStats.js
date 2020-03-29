@@ -6,6 +6,7 @@ export default function useStats(url) {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
+    setIsError(false);
     const fetchData = async () => {
       try {
         const res = await axios.get(url);
