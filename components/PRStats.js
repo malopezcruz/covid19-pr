@@ -3,7 +3,7 @@ import useStats from '../utils/useStats';
 import ErrorMessage from './ErrorMessage';
 import DataBox from '../components/DataBox';
 
-import { formatNumber, formatDate, deathRate } from '../utils/utils';
+import { formatNumber, deathRate } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function PRStats() {
@@ -14,7 +14,6 @@ export default function PRStats() {
     `https://wrapapi.com/use/malopezcruz/covid19pr1/salud/latest?wrapAPIKey=${process.env.API_KEY}`
   );
 
-  console.log(stats);
   if (isError) return <ErrorMessage category='Puerto Rico' />;
 
   if (!stats)
@@ -24,7 +23,18 @@ export default function PRStats() {
       </div>
     );
 
-  const [totalTest, confirmed, negative, pending, deaths] = stats.data.stats;
+  const totalTest = stats.data.stats[1];
+  const confirmed = stats.data.stats[2];
+  const negative = stats.data.stats[3];
+  const pending = stats.data.stats[4];
+  const deaths = stats.data.stats[5];
+
+  // const inconclusive =
+  //   parseInt(totalTest.replace(/(\d+),(\d+) (\*)/, '$1$2')) -
+  //   (parseInt(confirmed.replace(/,/, '')) +
+  //     parseInt(negative.replace(/,/, '')) +
+  //     parseInt(pending.replace(/,/, '')));
+  // console.log(inconclusive);
 
   return (
     <>
@@ -67,7 +77,10 @@ export default function PRStats() {
         </div>
         <div className='uppercase text-xs text-center text-gray-700'>
           <span>👉 </span>
-          <span>{stats.data.updated}</span>
+          <span>{stats.data.updated}</span>{' '}
+          <span className='block'>
+            * Pruebas inconclusas: <strong>2</strong>.
+          </span>
         </div>
       </div>
     </>

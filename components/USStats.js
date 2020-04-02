@@ -22,27 +22,27 @@ export default function GlobalStats() {
       <h2 className='font-black text-4xl text-center mb-8'>Estados Unidos</h2>
       <div className='mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3 small:gap-4'>
         <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
-          <span className='text-4xl font-bold'>
+          <span className='text-3xl md:text-4xl font-bold'>
             {formatNumber(stats.confirmed.value)}
           </span>
           <h3 className='uppercase'>Confirmados</h3>
         </div>
         <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
-          <span className='text-4xl font-bold'>
+          <span className='text-3xl md:text-4xl font-bold'>
             {formatNumber(stats.deaths.value)}
           </span>
           <h3 className='uppercase'>Muertes</h3>
         </div>
         {stats.recovered.value > 0 && (
           <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
-            <span className='text-4xl font-bold'>
+            <span className='text-3xl md:text-4xl font-bold'>
               {formatNumber(stats.recovered.value)}
             </span>
             <h3 className='uppercase'>Recuperados</h3>
           </div>
         )}
         <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
-          <span className='text-4xl font-bold'>{`${deathRate(
+          <span className='text-3xl md:text-4xl font-bold'>{`${deathRate(
             stats.confirmed.value,
             stats.deaths.value
           ).toFixed(2)}%`}</span>

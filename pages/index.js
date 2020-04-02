@@ -87,10 +87,10 @@ const IndexPage = () => {
           </h1>
         </div>
         <div className='w-full max-w-screen-lg px-4 mx-auto flex-grow mt-6'>
-          <CategoryBox>
-            <PRStats />
-            {/* <PRStatsTest /> */}
-          </CategoryBox>
+          {/* <CategoryBox>
+            <PRStats /> */}
+          {/* <PRStatsTest /> */}
+          {/* </CategoryBox> */}
           <GlobalStats />
           <USStats />
           {/* <GetUSLocations /> */}
