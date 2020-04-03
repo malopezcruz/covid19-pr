@@ -1,8 +1,7 @@
 import React from 'react';
-import useStats from '../utils/useStats';
 import ErrorMessage from './ErrorMessage';
 import DataBox from '../components/DataBox';
-
+import useStats from '../utils/useStats';
 import { formatNumber, deathRate } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -20,7 +19,11 @@ export default function PRStats() {
       </div>
     );
 
-  const [totalTest, confirmed, negative, pending, deaths] = stats.data.stats;
+  const totalTest = stats.data.stats[1];
+  const confirmed = stats.data.stats[2];
+  const negative = stats.data.stats[3];
+  const pending = stats.data.stats[4];
+  const deaths = stats.data.stats[5];
 
   return (
     <>
@@ -63,7 +66,12 @@ export default function PRStats() {
         </div>
         <div className='uppercase text-xs text-center text-gray-700'>
           <span>👉 </span>
-          <span>{stats.data.updated}</span>
+          <span>
+            <strong>{stats.data.updated}</strong>
+          </span>{' '}
+          <span className='block'>
+            * Pruebas inconclusas: <strong>4</strong>
+          </span>
         </div>
       </div>
     </>

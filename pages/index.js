@@ -11,6 +11,7 @@ import {
 } from '../utils/googleAnalytics';
 import '../styles/index.css';
 import '../utils/addFontAwesome.js';
+// import GetUSLocations from '../components/GetUSLocations';
 
 const IndexPage = () => {
   useEffect(() => {
