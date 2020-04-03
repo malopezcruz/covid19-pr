@@ -1,41 +1,31 @@
 import React from 'react';
-import useStats from '../utils/useStats';
 import ErrorMessage from './ErrorMessage';
 import DataBox from '../components/DataBox';
-
+import useSWR from 'swr';
+import fetch from '../utils/fetch';
 import { formatNumber, deathRate } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function PRStats() {
-  // const [stats, isError] = useStats(
-  //   'https://covid19.mathdro.id/api/countries/US/confirmed'
-  // );
-  const [stats, isError] = useStats(
-    `https://wrapapi.com/use/malopezcruz/covid19pr1/salud/latest?wrapAPIKey=${process.env.API_KEY}`
+  const { data, error } = useSWR(
+    `https://wrapapi.com/use/malopezcruz/covid19pr1/salud/latest?wrapAPIKey=${process.env.API_KEY}`,
+    fetch
   );
 
-  console.log(stats);
-  if (isError) return <ErrorMessage category='Puerto Rico' />;
+  if (error) return <ErrorMessage category='Puerto Rico' />;
 
-  if (!stats)
+  if (!data)
     return (
       <div className='p-16 flex justify-center content-center'>
         <FontAwesomeIcon icon='spinner' spin fixedWidth width='16' />
       </div>
     );
 
-  const totalTest = stats.data.stats[1];
-  const confirmed = stats.data.stats[2];
-  const negative = stats.data.stats[3];
-  const pending = stats.data.stats[4];
-  const deaths = stats.data.stats[5];
-
-  // const inconclusive =
-  //   parseInt(totalTest.replace(/(\d+),(\d+) (\*)/, '$1$2')) -
-  //   (parseInt(confirmed.replace(/,/, '')) +
-  //     parseInt(negative.replace(/,/, '')) +
-  //     parseInt(pending.replace(/,/, '')));
-  // console.log(inconclusive);
+  const totalTest = data.data.stats[1];
+  const confirmed = data.data.stats[2];
+  const negative = data.data.stats[3];
+  const pending = data.data.stats[4];
+  const deaths = data.data.stats[5];
 
   return (
     <>
@@ -78,7 +68,7 @@ export default function PRStats() {
         </div>
         <div className='uppercase text-xs text-center text-gray-700'>
           <span>👉 </span>
-          <span>{stats.data.updated}</span>{' '}
+          <span>{data.data.updated}</span>{' '}
           <span className='block'>
             * Pruebas inconclusas: <strong>2</strong>.
           </span>
