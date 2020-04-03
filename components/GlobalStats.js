@@ -1,17 +1,15 @@
 import React from 'react';
 import ErrorMessage from './ErrorMessage';
-import useRequest from '../utils/useRequest';
+import useStats from '../utils/useStats';
 import { formatNumber, formatDate, deathRate } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function GlobalStats() {
-  const { data, error } = useRequest({
-    url: `https://covid19.mathdro.id/api`
-  });
+  const [stats, isError] = useStats('https://covid19.mathdro.id/api');
 
-  if (error) return <ErrorMessage category='Global' />;
+  if (isError) return <ErrorMessage category='Global' />;
 
-  if (!data)
+  if (!stats)
     return (
       <div className='p-16 flex justify-center content-center'>
         <FontAwesomeIcon icon='spinner' spin width='16' />
@@ -24,26 +22,26 @@ export default function GlobalStats() {
       <div className='mb-6 grid grid-cols-2 gap-3 small:gap-4 md:grid-cols-4'>
         <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
           <span className='text-3xl md:text-4xl font-bold'>
-            {formatNumber(data.confirmed.value)}
+            {formatNumber(stats.confirmed.value)}
           </span>
           <h3 className='uppercase'>Confirmados</h3>
         </div>
         <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
           <span className='text-3xl md:text-4xl font-bold'>
-            {formatNumber(data.deaths.value)}
+            {formatNumber(stats.deaths.value)}
           </span>
           <h3 className='uppercase'>Muertes</h3>
         </div>
         <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
           <span className='text-3xl md:text-4xl font-bold'>
-            {formatNumber(data.recovered.value)}
+            {formatNumber(stats.recovered.value)}
           </span>
           <h3 className='uppercase'>Recuperados</h3>
         </div>
         <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
           <span className='text-3xl md:text-4xl font-bold'>{`${deathRate(
-            data.confirmed.value,
-            data.deaths.value
+            stats.confirmed.value,
+            stats.deaths.value
           ).toFixed(2)}%`}</span>
           <h3 className='uppercase'>Tasa de letalidad</h3>
         </div>
@@ -51,7 +49,7 @@ export default function GlobalStats() {
       <div className='uppercase text-xs text-center text-gray-700'>
         <span>Última verificación: </span>
         <span>
-          <strong>{formatDate(data.lastUpdate)}</strong>.
+          <strong>{formatDate(stats.lastUpdate)}</strong>.
         </span>
       </div>
     </div>

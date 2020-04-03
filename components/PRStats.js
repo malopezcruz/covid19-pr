@@ -1,38 +1,29 @@
 import React from 'react';
 import ErrorMessage from './ErrorMessage';
 import DataBox from '../components/DataBox';
-import useSWR from 'swr';
-import fetch from 'isomorphic-unfetch';
-// import useRequest from '../utils/useRequest';
+import useStats from '../utils/useStats';
 import { formatNumber, deathRate } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const fetcher = async function(...args) {
-  const res = await fetch(...args);
-  return res.json();
-};
+export default function PRStats() {
+  const [stats, isError] = useStats(
+    `https://wrapapi.com/use/malopezcruz/covid19pr1/salud/latest?wrapAPIKey=${process.env.API_KEY}`
+  );
 
-export default function PRStats({ initialData, url }) {
-  // const { data, error } = useRequest({
-  //   url: `https://wrapapi.com/use/malopezcruz/covid19pr1/salud/latest?wrapAPIKey=${process.env.API_KEY}`
-  // });
+  if (isError) return <ErrorMessage category='Puerto Rico' />;
 
-  const { data, error } = useSWR(url, fetcher, { initialData });
-  console.log(data);
-  if (error) return <ErrorMessage category='Puerto Rico' />;
-
-  if (!data)
+  if (!stats)
     return (
       <div className='p-16 flex justify-center content-center'>
         <FontAwesomeIcon icon='spinner' spin fixedWidth width='16' />
       </div>
     );
 
-  const totalTest = data.data.stats[1];
-  const confirmed = data.data.stats[2];
-  const negative = data.data.stats[3];
-  const pending = data.data.stats[4];
-  const deaths = data.data.stats[5];
+  const totalTest = stats.data.stats[1];
+  const confirmed = stats.data.stats[2];
+  const negative = stats.data.stats[3];
+  const pending = stats.data.stats[4];
+  const deaths = stats.data.stats[5];
 
   return (
     <>
@@ -75,18 +66,14 @@ export default function PRStats({ initialData, url }) {
         </div>
         <div className='uppercase text-xs text-center text-gray-700'>
           <span>👉 </span>
-          <span>{data.data.updated}</span>{' '}
+          <span>
+            <strong>{stats.data.updated}</strong>
+          </span>{' '}
           <span className='block'>
-            * Pruebas inconclusas: <strong>2</strong>.
+            * Pruebas inconclusas: <strong>4</strong>
           </span>
         </div>
       </div>
     </>
   );
 }
-
-PRStats.getInitialProps = async () => {
-  const url = `https://wrapapi.com/use/malopezcruz/covid19pr1/salud/latest?wrapAPIKey=${process.env.API_KEY}`;
-  const initialData = await fetcher(url);
-  return { initialData, url };
-};

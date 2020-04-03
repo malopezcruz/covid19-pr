@@ -89,8 +89,8 @@ const IndexPage = () => {
           <CategoryBox>
             <PRStats />
           </CategoryBox>
-          {/* <GlobalStats />
-          <USStats /> */}
+          <GlobalStats />
+          <USStats />
           {/* <GetUSLocations /> */}
         </div>
         <Footer />
