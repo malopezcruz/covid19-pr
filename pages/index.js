@@ -3,7 +3,6 @@ import Head from 'next/head';
 import GlobalStats from '../components/GlobalStats';
 import PRStats from '../components/PRStats';
 import USStats from '../components/USStats';
-// import PRStatsTest from '../components/PRStatsTest';
 import CategoryBox from '../components/CategoryBox';
 import Footer from '../components/Footer';
 import {
@@ -12,7 +11,7 @@ import {
 } from '../utils/googleAnalytics';
 import '../styles/index.css';
 import '../utils/addFontAwesome.js';
-import GetUSLocations from '../components/GetUSLocations';
+// import GetUSLocations from '../components/GetUSLocations';
 
 const IndexPage = () => {
   useEffect(() => {
@@ -87,10 +86,9 @@ const IndexPage = () => {
           </h1>
         </div>
         <div className='w-full max-w-screen-lg px-4 mx-auto flex-grow mt-6'>
-          {/* <CategoryBox>
-            <PRStats /> */}
-          {/* <PRStatsTest /> */}
-          {/* </CategoryBox> */}
+          <CategoryBox>
+            <PRStats />
+          </CategoryBox>
           <GlobalStats />
           <USStats />
           {/* <GetUSLocations /> */}

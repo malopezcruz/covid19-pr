@@ -14,6 +14,7 @@ export default function PRStats() {
     `https://wrapapi.com/use/malopezcruz/covid19pr1/salud/latest?wrapAPIKey=${process.env.API_KEY}`
   );
 
+  console.log(stats);
   if (isError) return <ErrorMessage category='Puerto Rico' />;
 
   if (!stats)
