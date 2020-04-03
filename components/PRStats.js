@@ -2,16 +2,23 @@ import React from 'react';
 import ErrorMessage from './ErrorMessage';
 import DataBox from '../components/DataBox';
 import useSWR from 'swr';
-import fetch from '../utils/fetch';
+import fetch from 'isomorphic-unfetch';
+// import useRequest from '../utils/useRequest';
 import { formatNumber, deathRate } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function PRStats() {
-  const { data, error } = useSWR(
-    `https://wrapapi.com/use/malopezcruz/covid19pr1/salud/latest?wrapAPIKey=${process.env.API_KEY}`,
-    fetch
-  );
+const fetcher = async function(...args) {
+  const res = await fetch(...args);
+  return res.json();
+};
 
+export default function PRStats({ initialData, url }) {
+  // const { data, error } = useRequest({
+  //   url: `https://wrapapi.com/use/malopezcruz/covid19pr1/salud/latest?wrapAPIKey=${process.env.API_KEY}`
+  // });
+
+  const { data, error } = useSWR(url, fetcher, { initialData });
+  console.log(data);
   if (error) return <ErrorMessage category='Puerto Rico' />;
 
   if (!data)
@@ -77,3 +84,9 @@ export default function PRStats() {
     </>
   );
 }
+
+PRStats.getInitialProps = async () => {
+  const url = `https://wrapapi.com/use/malopezcruz/covid19pr1/salud/latest?wrapAPIKey=${process.env.API_KEY}`;
+  const initialData = await fetcher(url);
+  return { initialData, url };
+};

@@ -1,12 +1,13 @@
 import React from 'react';
 import ErrorMessage from './ErrorMessage';
-import useSWR from 'swr';
-import fetch from '../utils/fetch';
+import useRequest from '../utils/useRequest';
 import { formatNumber, formatDate, deathRate } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function GlobalStats() {
-  const { data, error } = useSWR('https://covid19.mathdro.id/api', fetch);
+  const { data, error } = useRequest({
+    url: `https://covid19.mathdro.id/api`
+  });
 
   if (error) return <ErrorMessage category='Global' />;
 
