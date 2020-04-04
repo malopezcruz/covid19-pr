@@ -19,11 +19,7 @@ export default function PRStats() {
       </div>
     );
 
-  const totalTest = stats.data.stats[1];
-  const confirmed = stats.data.stats[2];
-  const negative = stats.data.stats[3];
-  const pending = stats.data.stats[4];
-  const deaths = stats.data.stats[5];
+  const [, totalTest, confirmed, negative, pending, deaths] = stats.data.stats;
 
   return (
     <>
