@@ -52,8 +52,8 @@ export default function Footer() {
             />{' '}
             y{' '}
             <ExtLink
-              link='https://covidtracking.com/api/'
-              label='The COVID Tracking Project'
+              link='http://www.salud.gov.pr/Pages/coronavirus.aspx'
+              label='Departamento de Salud'
             />
           </p>
           <p className='ml-4'>

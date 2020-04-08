@@ -7,7 +7,7 @@ import CategoryBox from '../components/CategoryBox';
 import Footer from '../components/Footer';
 import {
   initializeGoogleAnalytics,
-  registerPageView
+  registerPageView,
 } from '../utils/googleAnalytics';
 import '../styles/index.css';
 import '../utils/addFontAwesome.js';
@@ -81,7 +81,7 @@ const IndexPage = () => {
 
       <div className='flex flex-col min-h-screen'>
         <div className='bg-gray-900 p-4'>
-          <h1 className='w-full max-w-screen-lg px-4 mx-auto text-2xl text-gray-200 lg:text-3xl text-left font-black'>
+          <h1 className='w-full max-w-screen-lg px-0 md:px-4 mx-auto text-2xl text-gray-200 lg:text-3xl text-left font-black'>
             COVID-19
           </h1>
         </div>

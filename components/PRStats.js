@@ -66,7 +66,7 @@ export default function PRStats() {
             <strong>{stats.data.updated}</strong>
           </span>{' '}
           <span className='block'>
-            * Pruebas inconclusas: <strong>4</strong>
+            * Pruebas inconclusas: <strong>6</strong>
           </span>
         </div>
       </div>

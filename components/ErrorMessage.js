@@ -9,7 +9,7 @@ export default function ErrorMessage({ category }) {
       <p className='font-bold text-2xl'>Ups! Algo pasó...</p>
       <p className='text-lg'>
         No se pudo recuperar los datos de la categoría{' '}
-        <strong>{category}</strong> en este estemomento. Vuelve más tarde.
+        <strong>{category}</strong> en este momento. Vuelve más tarde.
       </p>
     </div>
   );
