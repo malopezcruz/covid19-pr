@@ -2,7 +2,7 @@ import React from 'react';
 import ErrorMessage from './ErrorMessage';
 import DataBox from '../components/DataBox';
 import useStats from '../utils/useStats';
-import { formatNumber, deathRate } from '../utils/utils';
+import { formatNumber, deathRate, parseInput } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function PRStats() {
@@ -43,8 +43,8 @@ export default function PRStats() {
           </div>
           <div className='py-8 px-2  bg-gray-300 text-center rounded-lg'>
             <span className='text-4xl font-bold'>{`${deathRate(
-              parseInt(confirmed),
-              parseInt(deaths)
+              parseInput(confirmed),
+              parseInput(deaths)
             ).toFixed(2)}%`}</span>
             <h3 className='uppercase'>Tasa de letalidad</h3>
           </div>
