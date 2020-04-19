@@ -3,7 +3,9 @@ import Head from 'next/head';
 import GlobalStats from '../components/GlobalStats';
 import PRStats from '../components/PRStats';
 import USStats from '../components/USStats';
+import PRStatsExtra from '../components/PRStatsExtra';
 import CategoryBox from '../components/CategoryBox';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Footer from '../components/Footer';
 import {
   initializeGoogleAnalytics,
@@ -11,7 +13,6 @@ import {
 } from '../utils/googleAnalytics';
 import '../styles/index.css';
 import '../utils/addFontAwesome.js';
-// import GetUSLocations from '../components/GetUSLocations';
 
 const IndexPage = () => {
   useEffect(() => {
@@ -81,7 +82,13 @@ const IndexPage = () => {
 
       <div className='flex flex-col min-h-screen'>
         <div className='bg-gray-900 p-4'>
-          <h1 className='w-full max-w-screen-lg px-0 md:px-4 mx-auto text-2xl text-gray-200 lg:text-3xl text-left font-black'>
+          <h1 className='w-full align-middle max-w-screen-lg px-0 md:px-4 mx-auto text-2xl text-gray-200 lg:text-3xl text-left font-black'>
+            <FontAwesomeIcon
+              icon='virus'
+              width='30'
+              fixedWidth
+              className='inline -mt-1 mr-2'
+            />
             COVID-19
           </h1>
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import ErrorMessage from './ErrorMessage';
 import DataBox from '../components/DataBox';
 import useStats from '../utils/useStats';
+import PRStatsExtra from './PRStatsExtra';
 import { formatNumber, deathRate, parseInput } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -50,7 +51,7 @@ export default function PRStats() {
           </div>
         </div>
       </div>
-      <div className='mb-8'>
+      <div className='mb-12 md:mb-16'>
         <h2 className='font-black text-2xl text-center mb-8'>
           Pruebas realizadas
         </h2>
@@ -66,10 +67,11 @@ export default function PRStats() {
             <strong>{stats.data.updated}</strong>
           </span>{' '}
           <span className='block'>
-            * Pruebas inconclusas: <strong>6</strong>
+            * Pruebas inconclusas: <strong>8</strong>
           </span>
         </div>
       </div>
+      <PRStatsExtra />
     </>
   );
 }

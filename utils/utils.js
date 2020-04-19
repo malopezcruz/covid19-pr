@@ -13,6 +13,8 @@ export const formatDate = (date) => {
 
 export const deathRate = (cases, death) => (death / cases) * 100;
 
+export const percentage = (num, dem) => (num / dem) * 100;
+
 export const parseInput = (input) => {
   let num = input.replace(/,/g, '');
   return num * 1;

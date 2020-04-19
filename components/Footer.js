@@ -13,6 +13,12 @@ export default function Footer() {
           <ul className='flex flex-col'>
             <li className='ml-4 mb-2'>
               <ExtLink
+                link='https://bioseguridad.maps.arcgis.com/apps/opsdashboard/index.html#/3bfb64c9a91944bc8c41edd8ff27e6df'
+                label='Dashboard Puerto Rico COVID-19'
+              />
+            </li>
+            <li className='ml-4 mb-2'>
+              <ExtLink
                 link='https://estadisticas.pr/en/covid-19'
                 label='Instituto de Estadísticas de Puerto Rico'
               />
@@ -47,14 +53,15 @@ export default function Footer() {
           <p className='ml-4 mb-2'>
             La información aquí presentada está tomada de{' '}
             <ExtLink
-              link='https://github.com/mathdroid/covid-19-api'
+              link='https://github.com/ChrisMichaelPerezSantiago/covid19'
               label='Covid-19 API'
             />{' '}
             y{' '}
             <ExtLink
               link='http://www.salud.gov.pr/Pages/coronavirus.aspx'
               label='Departamento de Salud'
-            />
+            />{' '}
+            .
           </p>
           <p className='ml-4'>
             <span className='font-medium'>Nota:</span> Haremos disponibles los
