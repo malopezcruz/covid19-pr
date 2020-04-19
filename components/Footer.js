@@ -49,24 +49,21 @@ export default function Footer() {
           </ul>
         </div>
         <div className='mb-6'>
-          <h4 className='text-xl mb-2 font-medium'>Fuente</h4>
-          <p className='ml-4 mb-2'>
-            La información aquí presentada está tomada de{' '}
-            <ExtLink
-              link='https://github.com/ChrisMichaelPerezSantiago/covid19'
-              label='Covid-19 API'
-            />{' '}
-            y{' '}
-            <ExtLink
-              link='http://www.salud.gov.pr/Pages/coronavirus.aspx'
-              label='Departamento de Salud'
-            />{' '}
-            .
-          </p>
-          <p className='ml-4'>
-            <span className='font-medium'>Nota:</span> Haremos disponibles los
-            datos de personas recuperadas cuando estén disponibles.
-          </p>
+          <h4 className='text-xl mb-2 font-medium'>Fuentes</h4>
+          <ul className='flex flex-col'>
+            <li className='ml-4 mb-2'>
+              <ExtLink
+                link='https://github.com/ChrisMichaelPerezSantiago/covid19'
+                label='Covid-19 API'
+              />
+            </li>
+            <li className='ml-4 mb-2'>
+              <ExtLink
+                link='http://www.salud.gov.pr/Pages/coronavirus.aspx'
+                label='Departamento de Salud'
+              />
+            </li>
+          </ul>
         </div>
         <div className='md:col-span-3 text-center'>
           <a
