@@ -3,7 +3,6 @@ import Head from 'next/head';
 import GlobalStats from '../components/GlobalStats';
 import PRStats from '../components/PRStats';
 import USStats from '../components/USStats';
-import PRStatsExtra from '../components/PRStatsExtra';
 import CategoryBox from '../components/CategoryBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Footer from '../components/Footer';

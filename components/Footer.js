@@ -49,18 +49,12 @@ export default function Footer() {
           </ul>
         </div>
         <div className='mb-6'>
-          <h4 className='text-xl mb-2 font-medium'>Fuentes</h4>
+          <h4 className='text-xl mb-2 font-medium'>Fuente</h4>
           <ul className='flex flex-col'>
             <li className='ml-4 mb-2'>
               <ExtLink
                 link='https://github.com/ChrisMichaelPerezSantiago/covid19'
                 label='Covid-19 API'
-              />
-            </li>
-            <li className='ml-4 mb-2'>
-              <ExtLink
-                link='http://www.salud.gov.pr/Pages/coronavirus.aspx'
-                label='Departamento de Salud'
               />
             </li>
           </ul>
