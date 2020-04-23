@@ -2,7 +2,12 @@ import React from 'react';
 import ErrorMessage from './ErrorMessage';
 import DataBox from '../components/DataBox';
 import useStats from '../utils/useStats';
-import { formatNumber, deathRate, percentage } from '../utils/utils';
+import {
+  formatNumber,
+  deathRate,
+  percentage,
+  formatDate,
+} from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function PRStats() {
@@ -26,9 +31,9 @@ export default function PRStats() {
     T_Casos_Inconcluso,
     T_Muertes_Combinadas,
     T_Casos,
-    T_Camas_Adult_Disp,
+    T_Camas_Adulto,
     T_Paciente_Adult,
-    T_Camas_Ped_Disp,
+    T_Camas_Ped,
     T_Paciente_Ped,
     T_Camas_Adult_Int_Occ,
     T_Camas_Ped_Int_Occ,
@@ -40,11 +45,18 @@ export default function PRStats() {
     T_Vent_Ped_Occ,
     T_Vent_Adult,
     T_Vent_Ped,
+    EditDate,
   } = stats.data[0].table[0].attributes;
   return (
     <>
       <div className='mb-12 md:mb-16'>
-        <h2 className='font-black text-4xl text-center mb-8'>Puerto Rico</h2>
+        <div className='text-center mb-12'>
+          <h2 className='font-black text-4xl '>Puerto Rico</h2>
+          <p>
+            Última actualización: <strong>{formatDate(EditDate)}</strong>
+          </p>
+        </div>
+
         <div className={`mb-6 grid grid-cols-2 gap-3 small:gap-4`}>
           <div
             className={`py-8 px-2
@@ -84,9 +96,6 @@ export default function PRStats() {
         </div>
         <div className='uppercase text-xs text-center text-gray-700'>
           <span>👉 </span>
-          {/* <span>
-            <strong>{stats.data.updated}</strong>
-          </span>{' '} */}
           <span>
             * Pruebas inconclusas: <strong>{T_Casos_Inconcluso}</strong>
           </span>
@@ -111,15 +120,13 @@ export default function PRStats() {
         </h2>
         <div className='mb-6 grid grid-cols-2 lg:grid-cols-5 gap-3 small:gap-4'>
           <DataBox
-            number={`${percentage(T_Paciente_Adult, T_Camas_Adult_Disp).toFixed(
+            number={`${percentage(T_Paciente_Adult, T_Camas_Adulto).toFixed(
               0
             )}%`}
             label='Adultos'
           />
           <DataBox
-            number={`${percentage(T_Paciente_Ped, T_Camas_Ped_Disp).toFixed(
-              0
-            )}%`}
+            number={`${percentage(T_Paciente_Ped, T_Camas_Ped).toFixed(0)}%`}
             label='Pediátrico'
           />
           <DataBox
