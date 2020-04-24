@@ -63,26 +63,32 @@ export default function PRStats() {
         </div>
 
         <div className={`mb-6 grid grid-cols-2 gap-3 small:gap-4`}>
-          <div
-            className={`py-8 px-2
+          {T_Casos_Unicos !== null && (
+            <div
+              className={`py-8 px-2
             row-span-3 flex justify-center items-center bg-gray-300 text-center rounded-lg`}
-          >
-            <div>
-              <span className='text-5xl font-bold'>
-                {formatNumber(T_Casos_Unicos)}
-              </span>
-              <h3 className='uppercase'>Casos Únicos</h3>
+            >
+              <div>
+                <span className='text-5xl font-bold'>
+                  {formatNumber(T_Casos_Unicos)}
+                </span>
+                <h3 className='uppercase'>Casos Únicos</h3>
+              </div>
             </div>
-          </div>
-          <DataBox
-            number={formatNumber(T_Molecular_Pos)}
-            label='Prueba Molecular'
-          />
-          <DataBox
-            number={formatNumber(T_Serologicos_Pos)}
-            label='Prueba Serológica'
-          />
-          {T_Casos_Nuev_Ult_Inf && (
+          )}
+          {T_Molecular_Pos !== null && (
+            <DataBox
+              number={formatNumber(T_Molecular_Pos)}
+              label='Prueba Molecular'
+            />
+          )}
+          {T_Serologicos_Pos !== null && (
+            <DataBox
+              number={formatNumber(T_Serologicos_Pos)}
+              label='Prueba Serológica'
+            />
+          )}
+          {T_Casos_Nuev_Ult_Inf !== null && (
             <DataBox
               number={formatNumber(T_Casos_Nuev_Ult_Inf)}
               label='Casos Nuevos'
@@ -91,13 +97,20 @@ export default function PRStats() {
         </div>
       </div>
       <div className='mb-12 md:mb-16 grid grid-cols-2 gap-3 small:gap-4'>
-        <DataBox number={formatNumber(T_Muertes_Combinadas)} label='Muertes' />
-        <DataBox
-          number={`${deathRate(T_Casos_Unicos, T_Muertes_Combinadas).toFixed(
-            2
-          )}%`}
-          label='Tasa de Letalidad'
-        />
+        {T_Muertes_Combinadas !== null && (
+          <DataBox
+            number={formatNumber(T_Muertes_Combinadas)}
+            label='Muertes'
+          />
+        )}
+        {T_Casos_Unicos !== null && (
+          <DataBox
+            number={`${deathRate(T_Casos_Unicos, T_Muertes_Combinadas).toFixed(
+              2
+            )}%`}
+            label='Tasa de Letalidad'
+          />
+        )}
       </div>
       {(T_Casos_Pos ||
         T_Casos_Neg ||
@@ -127,49 +140,66 @@ export default function PRStats() {
           Porcentaje de ocupación de ventiladores
         </h2>
         <div className='mb-12 md:mb-16 grid grid-cols-2 gap-3 small:gap-4'>
-          <DataBox
-            number={`${percentage(T_Vent_Adult_Occ, T_Vent_Adult).toFixed(0)}%`}
-            label='Adultos'
-          />
-          <DataBox
-            number={`${percentage(T_Vent_Ped_Occ, T_Vent_Ped).toFixed(0)}%`}
-            label='Pediátrico'
-          />
+          {(T_Vent_Adult || T_Vent_Adult_Occ) !== null && (
+            <DataBox
+              number={`${percentage(T_Vent_Adult_Occ, T_Vent_Adult).toFixed(
+                0
+              )}%`}
+              label='Adultos'
+            />
+          )}
+          {(T_Vent_Ped || T_Vent_Ped_Occ) !== null && (
+            <DataBox
+              number={`${percentage(T_Vent_Ped_Occ, T_Vent_Ped).toFixed(0)}%`}
+              label='Pediátrico'
+            />
+          )}
         </div>
         <h2 className='font-black text-2xl text-center mb-8'>
           Porcentaje de ocupación de camas de hospital
         </h2>
         <div className='mb-6 grid grid-cols-2 lg:grid-cols-5 gap-3 small:gap-4'>
-          <DataBox
-            number={`${percentage(T_Paciente_Adult, T_Camas_Adulto).toFixed(
-              0
-            )}%`}
-            label='Adultos'
-          />
-          <DataBox
-            number={`${percentage(T_Paciente_Ped, T_Camas_Ped).toFixed(0)}%`}
-            label='Pediátrico'
-          />
-          <DataBox
-            number={`${percentage(
-              T_Camas_Adult_Int_Occ,
-              T_Camas_Int_Adult
-            ).toFixed(0)}%`}
-            label='Intensivo Adultos'
-          />
-          <DataBox
-            number={`${percentage(T_Camas_Ped_Int_Occ, T_Camas_Int_Ped).toFixed(
-              0
-            )}%`}
-            label='Intensivo Pediátrico'
-          />
-          <DataBox
-            number={`${percentage(
-              T_Cuartos_PSINeg_Occ,
-              T_Cuartos_PSiNeg
-            ).toFixed(0)}%`}
-            label='Presión Negativa'
-          />
+          {(T_Camas_Adulto || T_Paciente_Adult) !== null && (
+            <DataBox
+              number={`${percentage(T_Paciente_Adult, T_Camas_Adulto).toFixed(
+                0
+              )}%`}
+              label='Adultos'
+            />
+          )}
+          {(T_Paciente_Ped || T_Camas_Ped) !== null && (
+            <DataBox
+              number={`${percentage(T_Paciente_Ped, T_Camas_Ped).toFixed(0)}%`}
+              label='Pediátrico'
+            />
+          )}
+          {(T_Camas_Adult_Int_Occ || T_Camas_Int_Adult) !== null && (
+            <DataBox
+              number={`${percentage(
+                T_Camas_Adult_Int_Occ,
+                T_Camas_Int_Adult
+              ).toFixed(0)}%`}
+              label='Intensivo Adultos'
+            />
+          )}
+          {(T_Camas_Ped_Int_Occ || T_Camas_Int_Ped) !== null && (
+            <DataBox
+              number={`${percentage(
+                T_Camas_Ped_Int_Occ,
+                T_Camas_Int_Ped
+              ).toFixed(0)}%`}
+              label='Intensivo Pediátrico'
+            />
+          )}
+          {(T_Cuartos_PSINeg_Occ || T_Cuartos_PSiNeg) !== null && (
+            <DataBox
+              number={`${percentage(
+                T_Cuartos_PSINeg_Occ,
+                T_Cuartos_PSiNeg
+              ).toFixed(0)}%`}
+              label='Presión Negativa'
+            />
+          )}
         </div>
       </div>
     </>
