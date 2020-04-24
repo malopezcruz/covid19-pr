@@ -48,7 +48,9 @@ export default function PRStats() {
     T_Serologicos_Pos,
     T_Molecular_Pos,
     CreationDate,
+    T_Casos_Nuev_Ult_Inf,
   } = stats.data[0].table[0].attributes;
+
   console.log('Creation', formatDate(CreationDate));
   return (
     <>
@@ -63,7 +65,7 @@ export default function PRStats() {
         <div className={`mb-6 grid grid-cols-2 gap-3 small:gap-4`}>
           <div
             className={`py-8 px-2
-            row-span-2 flex justify-center items-center bg-gray-300 text-center rounded-lg`}
+            row-span-3 flex justify-center items-center bg-gray-300 text-center rounded-lg`}
           >
             <div>
               <span className='text-5xl font-bold'>
@@ -80,6 +82,12 @@ export default function PRStats() {
             number={formatNumber(T_Serologicos_Pos)}
             label='Prueba Serológica'
           />
+          {T_Casos_Nuev_Ult_Inf && (
+            <DataBox
+              number={formatNumber(T_Casos_Nuev_Ult_Inf)}
+              label='Casos Nuevos'
+            />
+          )}
         </div>
       </div>
 
@@ -94,23 +102,29 @@ export default function PRStats() {
         />
       </div>
 
-      <div className='mb-12 md:mb-16'>
-        <h2 className='font-black text-2xl text-center mb-8'>
-          Pruebas realizadas
-        </h2>
-        <div className='mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3 small:gap-4'>
-          <DataBox number={formatNumber(T_Casos_Pos)} label='Positivos' />
-          <DataBox number={formatNumber(T_Casos_Neg)} label='Negativos' />
-          <DataBox number={formatNumber(T_Casos_Pend)} label='Pendientes' />
-          <DataBox number={`${formatNumber(T_Casos)} *`} label='Total' />
+      {(T_Casos_Pos ||
+        T_Casos_Neg ||
+        T_Casos_Pend ||
+        T_Casos ||
+        T_Casos_Inconcluso) !== null && (
+        <div className='mb-12 md:mb-16'>
+          <h2 className='font-black text-2xl text-center mb-8'>
+            Pruebas realizadas
+          </h2>
+          <div className='mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3 small:gap-4'>
+            <DataBox number={formatNumber(T_Casos_Pos)} label='Positivos' />
+            <DataBox number={formatNumber(T_Casos_Neg)} label='Negativos' />
+            <DataBox number={formatNumber(T_Casos_Pend)} label='Pendientes' />
+            <DataBox number={`${formatNumber(T_Casos)} *`} label='Total' />
+          </div>
+          <div className='uppercase text-xs text-center text-gray-700'>
+            <span>👉 </span>
+            <span>
+              * Pruebas inconclusas: <strong>{T_Casos_Inconcluso}</strong>
+            </span>
+          </div>
         </div>
-        <div className='uppercase text-xs text-center text-gray-700'>
-          <span>👉 </span>
-          <span>
-            * Pruebas inconclusas: <strong>{T_Casos_Inconcluso}</strong>
-          </span>
-        </div>
-      </div>
+      )}
       <div className='mb-2'>
         <h2 className='font-black text-2xl text-center mb-8'>
           Porcentaje de ocupación de ventiladores
