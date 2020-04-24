@@ -11,9 +11,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function PRStats() {
-  const [stats, isError] = useStats(
-    `https://covid19-server.chrismichael.now.sh/api/v1/PRExtraData`
-  );
+  const [stats, isError] = useStats(`https://covid19api.io/api/v1/PRExtraData`);
 
   if (isError) return <ErrorMessage category='Puerto Rico' />;
 
@@ -46,10 +44,13 @@ export default function PRStats() {
     T_Vent_Adult,
     T_Vent_Ped,
     EditDate,
+    T_Casos_Unicos,
+    T_Serologicos_Pos,
+    T_Molecular_Pos,
   } = stats.data[0].table[0].attributes;
   return (
     <>
-      <div className='mb-12 md:mb-16'>
+      <div className='mb-4 md:mb-8'>
         <div className='text-center mb-12'>
           <h2 className='font-black text-4xl '>Puerto Rico</h2>
           <p>
@@ -64,26 +65,33 @@ export default function PRStats() {
           >
             <div>
               <span className='text-5xl font-bold'>
-                {formatNumber(T_Casos_Pos)}
+                {formatNumber(T_Casos_Unicos)}
               </span>
-              <h3 className='uppercase'>Confirmados</h3>
+              <h3 className='uppercase'>Casos Únicos</h3>
             </div>
           </div>
-          <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
-            <span className='text-4xl font-bold'>
-              {formatNumber(T_Muertes_Combinadas)}
-            </span>
-            <h3 className='uppercase'>Muertes</h3>
-          </div>
-          <div className='py-8 px-2  bg-gray-300 text-center rounded-lg'>
-            <span className='text-4xl font-bold'>{`${deathRate(
-              T_Casos_Pos,
-              T_Muertes_Combinadas
-            ).toFixed(2)}%`}</span>
-            <h3 className='uppercase'>Tasa de letalidad</h3>
-          </div>
+          <DataBox
+            number={formatNumber(T_Molecular_Pos)}
+            label='Prueba Molecular'
+          />
+          <DataBox
+            number={formatNumber(T_Serologicos_Pos)}
+            label='Prueba Serológica'
+          />
         </div>
       </div>
+
+      {/* Aquí */}
+      <div className='mb-12 md:mb-16 grid grid-cols-2 gap-3 small:gap-4'>
+        <DataBox number={formatNumber(T_Muertes_Combinadas)} label='Muertes' />
+        <DataBox
+          number={`${deathRate(T_Casos_Unicos, T_Muertes_Combinadas).toFixed(
+            2
+          )}%`}
+          label='Tasa de Letalidad'
+        />
+      </div>
+
       <div className='mb-12 md:mb-16'>
         <h2 className='font-black text-2xl text-center mb-8'>
           Pruebas realizadas
