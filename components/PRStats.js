@@ -9,10 +9,11 @@ import {
   formatDate,
 } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ResponsiveBar } from '@nivo/bar';
+import { ResponsivePie } from '@nivo/pie';
 
 export default function PRStats() {
   const [stats, isError] = useStats(`https://covid19api.io/api/v1/PRExtraData`);
-
   if (isError) return <ErrorMessage category='Puerto Rico' />;
 
   if (!stats)
@@ -43,15 +44,238 @@ export default function PRStats() {
     T_Vent_Ped_Occ,
     T_Vent_Adult,
     T_Vent_Ped,
+    T_Vent_Ped_Disp,
+    T_Vent_Adult_Disp,
     EditDate,
     T_Casos_Unicos,
     T_Serologicos_Pos,
     T_Molecular_Pos,
-    CreationDate,
     T_Casos_Nuev_Ult_Inf,
+    T_Vent_Covid,
+    T_Pacientes_Int_Covid,
+    T_Hospitalizados,
   } = stats.data[0].table[0].attributes;
 
-  console.log('Creation', formatDate(CreationDate));
+  const hospitalProps = {
+    data: [
+      {
+        hospitalizaciones: 'Hospitalizaciones',
+        Total: T_Hospitalizados,
+      },
+      {
+        hospitalizaciones: 'Ventiladores',
+        Total: T_Vent_Covid,
+      },
+      {
+        hospitalizaciones: 'Intensivo',
+        Total: T_Pacientes_Int_Covid,
+      },
+    ],
+    margin: { top: 0, right: 30, bottom: 60, left: 30 },
+    colors: { scheme: 'pastel2' },
+    indexBy: 'hospitalizaciones',
+    keys: ['Total'],
+    labelTextColor: 'inherit:darker(1.4)',
+    labelSkipWidth: 16,
+    labelSkipHeight: 16,
+    animate: true,
+  };
+
+  const ventPedProps = {
+    data: [
+      {
+        id: 'Disponibles',
+        label: `Disponibles (${percentage(T_Vent_Ped_Disp, T_Vent_Ped).toFixed(
+          0
+        )}%)`,
+        value: T_Vent_Ped_Disp,
+        color: 'red',
+      },
+      {
+        id: 'Ocupados',
+        label: `Ocupados (${percentage(T_Vent_Ped_Occ, T_Vent_Ped).toFixed(
+          0
+        )}%)`,
+        value: T_Vent_Ped_Occ,
+        color: 'blue',
+      },
+    ],
+    margin: { top: 20, right: 40, bottom: 40, left: 40 },
+    innerRadius: 0.5,
+    padAngle: 0.7,
+    cornerRadius: 3,
+    colors: {
+      scheme: 'pastel2',
+      borderWidth: 1,
+      borderColor: { from: 'color', modifiers: [['darker', 0.2]] },
+      radialLabelsSkipAngle: 10,
+      radialLabelsTextXOffset: 6,
+      radialLabelsTextColor: '#333333',
+      radialLabelsLinkOffset: 0,
+      radialLabelsLinkDiagonalLength: 16,
+      radialLabelsLinkHorizontalLength: 24,
+      radialLabelsLinkStrokeWidth: 1,
+      radialLabelsLinkColor: { from: 'color' },
+      slicesLabelsSkipAngle: 10,
+      slicesLabelsTextColor: '#333333',
+      animate: true,
+      motionStiffness: 90,
+      motionDamping: 15,
+      defs: [
+        {
+          id: 'dots',
+          type: 'patternDots',
+          background: 'inherit',
+          color: 'rgba(255, 255, 255, 0.3)',
+          size: 4,
+          padding: 1,
+          stagger: true,
+        },
+        {
+          id: 'lines',
+          type: 'patternLines',
+          background: 'inherit',
+          color: 'rgba(255, 255, 255, 0.3)',
+          rotation: -45,
+          lineWidth: 6,
+          spacing: 10,
+        },
+      ],
+    },
+    fill: [
+      {
+        match: {
+          id: 'ocupados',
+        },
+        id: 'dots',
+      },
+      {
+        match: {
+          id: 'disponibles',
+        },
+        id: 'dots',
+      },
+    ],
+    // legends: [
+    //   {
+    //     anchor: 'bottom',
+    //     direction: 'row',
+    //     translateY: 56,
+    //     itemWidth: 100,
+    //     itemHeight: 18,
+    //     itemTextColor: '#999',
+    //     symbolSize: 18,
+    //     symbolShape: 'circle',
+    //     effects: [
+    //       {
+    //         on: 'hover',
+    //         style: {
+    //           itemTextColor: '#000',
+    //         },
+    //       },
+    //     ],
+    //   },
+    // ],
+  };
+
+  const ventAdultProps = {
+    data: [
+      {
+        id: 'Disponibles',
+        label: `Disponibles (${percentage(
+          T_Vent_Adult_Disp,
+          T_Vent_Adult
+        ).toFixed(0)}%)`,
+        value: T_Vent_Adult_Disp,
+        color: 'red',
+      },
+      {
+        id: 'Ocupados',
+        label: `Ocupados (${percentage(T_Vent_Adult_Occ, T_Vent_Adult).toFixed(
+          0
+        )}%)`,
+        value: T_Vent_Adult_Occ,
+        color: 'blue',
+      },
+    ],
+    margin: { top: 20, right: 40, bottom: 40, left: 40 },
+    innerRadius: 0.5,
+    padAngle: 0.7,
+    cornerRadius: 3,
+    colors: {
+      scheme: 'pastel2',
+      borderWidth: 1,
+      borderColor: { from: 'color', modifiers: [['darker', 0.2]] },
+      radialLabelsSkipAngle: 10,
+      radialLabelsTextXOffset: 6,
+      radialLabelsTextColor: '#333333',
+      radialLabelsLinkOffset: 0,
+      radialLabelsLinkDiagonalLength: 16,
+      radialLabelsLinkHorizontalLength: 24,
+      radialLabelsLinkStrokeWidth: 1,
+      radialLabelsLinkColor: { from: 'color' },
+      slicesLabelsSkipAngle: 10,
+      slicesLabelsTextColor: '#333333',
+      animate: true,
+      motionStiffness: 90,
+      motionDamping: 15,
+      defs: [
+        {
+          id: 'dots',
+          type: 'patternDots',
+          background: 'inherit',
+          color: 'rgba(255, 255, 255, 0.3)',
+          size: 4,
+          padding: 1,
+          stagger: true,
+        },
+        {
+          id: 'lines',
+          type: 'patternLines',
+          background: 'inherit',
+          color: 'rgba(255, 255, 255, 0.3)',
+          rotation: -45,
+          lineWidth: 6,
+          spacing: 10,
+        },
+      ],
+    },
+    fill: [
+      {
+        match: {
+          id: 'ocupados',
+        },
+        id: 'dots',
+      },
+      {
+        match: {
+          id: 'disponibles',
+        },
+        id: 'dots',
+      },
+    ],
+    // legends: [
+    //   {
+    //     anchor: 'bottom',
+    //     direction: 'row',
+    //     translateY: 56,
+    //     itemWidth: 100,
+    //     itemHeight: 18,
+    //     itemTextColor: '#999',
+    //     symbolSize: 18,
+    //     symbolShape: 'circle',
+    //     effects: [
+    //       {
+    //         on: 'hover',
+    //         style: {
+    //           itemTextColor: '#000',
+    //         },
+    //       },
+    //     ],
+    //   },
+    // ],
+  };
+
   return (
     <>
       <div className='mb-4 md:mb-8'>
@@ -76,18 +300,21 @@ export default function PRStats() {
               </div>
             </div>
           )}
+
           {T_Molecular_Pos !== null && (
             <DataBox
               number={formatNumber(T_Molecular_Pos)}
               label='Prueba Molecular'
             />
           )}
+
           {T_Serologicos_Pos !== null && (
             <DataBox
               number={formatNumber(T_Serologicos_Pos)}
               label='Prueba Serológica'
             />
           )}
+
           {T_Casos_Nuev_Ult_Inf !== null && (
             <DataBox
               number={formatNumber(T_Casos_Nuev_Ult_Inf)}
@@ -112,6 +339,7 @@ export default function PRStats() {
           />
         )}
       </div>
+
       {(T_Casos_Pos ||
         T_Casos_Neg ||
         T_Casos_Pend ||
@@ -135,72 +363,85 @@ export default function PRStats() {
           </div>
         </div>
       )}
-      <div className='mb-2'>
+
+      {/* Ventiladores */}
+      <div>
         <h2 className='font-black text-2xl text-center mb-8'>
-          Porcentaje de ocupación de ventiladores
+          Ocupación de ventiladores
         </h2>
-        <div className='mb-12 md:mb-16 grid grid-cols-2 gap-3 small:gap-4'>
-          {(T_Vent_Adult || T_Vent_Adult_Occ) !== null && (
-            <DataBox
-              number={`${percentage(T_Vent_Adult_Occ, T_Vent_Adult).toFixed(
-                0
-              )}%`}
-              label='Adultos'
-            />
-          )}
-          {(T_Vent_Ped || T_Vent_Ped_Occ) !== null && (
-            <DataBox
-              number={`${percentage(T_Vent_Ped_Occ, T_Vent_Ped).toFixed(0)}%`}
-              label='Pediátrico'
-            />
-          )}
+        <div className='mb-12 md:mb-16 grid md:grid-cols-2 gap-3 small:gap-4'>
+          <div>
+            <h2 className='font-black text-lg text-center mb-4'>Pediátrico</h2>
+            <div style={{ height: '350px' }}>
+              <ResponsivePie {...ventPedProps} />
+            </div>
+          </div>
+
+          <div>
+            <h2 className='font-black text-lg text-center mb-4'>Adultos</h2>
+            <div style={{ height: '350px' }}>
+              <ResponsivePie {...ventAdultProps} />
+            </div>
+          </div>
+          <div></div>
         </div>
-        <h2 className='font-black text-2xl text-center mb-8'>
-          Porcentaje de ocupación de camas de hospital
-        </h2>
-        <div className='mb-6 grid grid-cols-2 lg:grid-cols-5 gap-3 small:gap-4'>
-          {(T_Camas_Adulto || T_Paciente_Adult) !== null && (
-            <DataBox
-              number={`${percentage(T_Paciente_Adult, T_Camas_Adulto).toFixed(
-                0
-              )}%`}
-              label='Adultos'
-            />
-          )}
-          {(T_Paciente_Ped || T_Camas_Ped) !== null && (
-            <DataBox
-              number={`${percentage(T_Paciente_Ped, T_Camas_Ped).toFixed(0)}%`}
-              label='Pediátrico'
-            />
-          )}
-          {(T_Camas_Adult_Int_Occ || T_Camas_Int_Adult) !== null && (
-            <DataBox
-              number={`${percentage(
-                T_Camas_Adult_Int_Occ,
-                T_Camas_Int_Adult
-              ).toFixed(0)}%`}
-              label='Intensivo Adultos'
-            />
-          )}
-          {(T_Camas_Ped_Int_Occ || T_Camas_Int_Ped) !== null && (
-            <DataBox
-              number={`${percentage(
-                T_Camas_Ped_Int_Occ,
-                T_Camas_Int_Ped
-              ).toFixed(0)}%`}
-              label='Intensivo Pediátrico'
-            />
-          )}
-          {(T_Cuartos_PSINeg_Occ || T_Cuartos_PSiNeg) !== null && (
-            <DataBox
-              number={`${percentage(
-                T_Cuartos_PSINeg_Occ,
-                T_Cuartos_PSiNeg
-              ).toFixed(0)}%`}
-              label='Presión Negativa'
-            />
-          )}
-        </div>
+      </div>
+
+      {/* COVID 19 en Hospitales */}
+      <h2 className='font-black text-2xl text-center mb-8'>
+        Situación de casos de COVID-19 en hospitales
+      </h2>
+      {/* <div style={{ height: '400px' }}> */}
+      <div style={{ height: '400px' }}>
+        <ResponsiveBar {...hospitalProps} />
+      </div>
+      <div className='mb-2'></div>
+
+      {/* Hospitalizaciones */}
+      <h2 className='font-black text-2xl text-center mb-8'>
+        Porcentaje de ocupación de camas de hospital
+      </h2>
+      <div className='mb-6 grid grid-cols-2 lg:grid-cols-5 gap-3 small:gap-4'>
+        {(T_Camas_Adulto || T_Paciente_Adult) !== null && (
+          <DataBox
+            number={`${percentage(T_Paciente_Adult, T_Camas_Adulto).toFixed(
+              0
+            )}%`}
+            label='Adultos'
+          />
+        )}
+        {(T_Paciente_Ped || T_Camas_Ped) !== null && (
+          <DataBox
+            number={`${percentage(T_Paciente_Ped, T_Camas_Ped).toFixed(0)}%`}
+            label='Pediátrico'
+          />
+        )}
+        {(T_Camas_Adult_Int_Occ || T_Camas_Int_Adult) !== null && (
+          <DataBox
+            number={`${percentage(
+              T_Camas_Adult_Int_Occ,
+              T_Camas_Int_Adult
+            ).toFixed(0)}%`}
+            label='Intensivo Adultos'
+          />
+        )}
+        {(T_Camas_Ped_Int_Occ || T_Camas_Int_Ped) !== null && (
+          <DataBox
+            number={`${percentage(T_Camas_Ped_Int_Occ, T_Camas_Int_Ped).toFixed(
+              0
+            )}%`}
+            label='Intensivo Pediátrico'
+          />
+        )}
+        {(T_Cuartos_PSINeg_Occ || T_Cuartos_PSiNeg) !== null && (
+          <DataBox
+            number={`${percentage(
+              T_Cuartos_PSINeg_Occ,
+              T_Cuartos_PSiNeg
+            ).toFixed(0)}%`}
+            label='Presión Negativa'
+          />
+        )}
       </div>
     </>
   );
