@@ -47,11 +47,13 @@ export default function PRStats() {
     T_Casos_Unicos,
     T_Serologicos_Pos,
     T_Molecular_Pos,
+    CreationDate,
   } = stats.data[0].table[0].attributes;
+  console.log('Creation', formatDate(CreationDate));
   return (
     <>
       <div className='mb-4 md:mb-8'>
-        <div className='text-center mb-12'>
+        <div className='text-center mb-8'>
           <h2 className='font-black text-4xl '>Puerto Rico</h2>
           <p>
             Última actualización: <strong>{formatDate(EditDate)}</strong>
