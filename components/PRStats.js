@@ -90,8 +90,6 @@ export default function PRStats() {
           )}
         </div>
       </div>
-
-      {/* Aquí */}
       <div className='mb-12 md:mb-16 grid grid-cols-2 gap-3 small:gap-4'>
         <DataBox number={formatNumber(T_Muertes_Combinadas)} label='Muertes' />
         <DataBox
@@ -101,7 +99,6 @@ export default function PRStats() {
           label='Tasa de Letalidad'
         />
       </div>
-
       {(T_Casos_Pos ||
         T_Casos_Neg ||
         T_Casos_Pend ||
