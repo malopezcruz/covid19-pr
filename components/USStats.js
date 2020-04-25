@@ -21,7 +21,7 @@ export default function GlobalStats() {
   const { cases, deaths, recovered } = stats.report;
 
   return (
-    <div className='mt-16 mb-24'>
+    <div className='mt-16 mb-8 md:mb-12'>
       <h2 className='font-black text-4xl text-center mb-8'>Estados Unidos</h2>
       <div className='mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3 small:gap-4'>
         <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>

@@ -62,23 +62,24 @@ export default function PRStats() {
   } = stats.data[0].table[0].attributes;
 
   const pieDefault = {
-    margin: { top: 20, right: 100, bottom: 40, left: 100 },
+    margin: { top: 20, right: 80, bottom: 80, left: 80 },
     innerRadius: 0.5,
     padAngle: 0.5,
     cornerRadius: 3,
+    enableRadialLabels: false,
     colors: {
       scheme: 'pastel2',
       borderWidth: 1,
       borderColor: { from: 'color', modifiers: [['darker', 0.2]] },
-      radialLabelsSkipAngle: 4,
-      radialLabelsTextXOffset: 6,
+      radialLabelsSkipAngle: 0,
+      radialLabelsTextXOffset: 0,
       radialLabelsTextColor: '#333333',
       radialLabelsLinkOffset: 0,
-      radialLabelsLinkDiagonalLength: 4,
-      radialLabelsLinkHorizontalLength: 4,
-      radialLabelsLinkStrokeWidth: 1,
+      radialLabelsLinkDiagonalLength: 0,
+      radialLabelsLinkHorizontalLength: 0,
+      radialLabelsLinkStrokeWidth: 0,
       radialLabelsLinkColor: { from: 'color' },
-      slicesLabelsSkipAngle: 4,
+      slicesLabelsSkipAngle: 0,
       slicesLabelsTextColor: '#333333',
       animate: true,
       motionStiffness: 90,
@@ -118,6 +119,26 @@ export default function PRStats() {
         id: 'dots',
       },
     ],
+    legends: [
+      {
+        anchor: 'bottom',
+        direction: 'row',
+        translateY: 56,
+        itemWidth: 125,
+        itemHeight: 18,
+        itemTextColor: '#999',
+        symbolSize: 18,
+        symbolShape: 'circle',
+        effects: [
+          {
+            on: 'hover',
+            style: {
+              itemTextColor: '#000',
+            },
+          },
+        ],
+      },
+    ],
   };
 
   const hospitalProps = {
@@ -151,7 +172,9 @@ export default function PRStats() {
   const ventPedData = {
     data: [
       {
-        id: 'Disponibles',
+        id: `Disponibles (${percentage(T_Vent_Ped_Disp, T_Vent_Ped).toFixed(
+          0
+        )}%)`,
         label: `Disponibles (${percentage(T_Vent_Ped_Disp, T_Vent_Ped).toFixed(
           0
         )}%)`,
@@ -159,10 +182,8 @@ export default function PRStats() {
         color: 'red',
       },
       {
-        id: 'Ocupados',
-        label: `Ocupados (${percentage(T_Vent_Ped_Occ, T_Vent_Ped).toFixed(
-          0
-        )}%)`,
+        id: `En uso (${percentage(T_Vent_Ped_Occ, T_Vent_Ped).toFixed(0)}%)`,
+        label: `En uso (${percentage(T_Vent_Ped_Occ, T_Vent_Ped).toFixed(0)}%)`,
         value: T_Vent_Ped_Occ,
         color: 'blue',
       },
@@ -172,7 +193,9 @@ export default function PRStats() {
   const ventAdultData = {
     data: [
       {
-        id: 'Disponibles',
+        id: `Disponibles (${percentage(T_Vent_Adult_Disp, T_Vent_Adult).toFixed(
+          0
+        )}%)`,
         label: `Disponibles (${percentage(
           T_Vent_Adult_Disp,
           T_Vent_Adult
@@ -181,8 +204,10 @@ export default function PRStats() {
         color: 'red',
       },
       {
-        id: 'Ocupados',
-        label: `Ocupados (${percentage(T_Vent_Adult_Occ, T_Vent_Adult).toFixed(
+        id: `En uso (${percentage(T_Vent_Adult_Occ, T_Vent_Adult).toFixed(
+          0
+        )}%)`,
+        label: `En uso (${percentage(T_Vent_Adult_Occ, T_Vent_Adult).toFixed(
           0
         )}%)`,
         value: T_Vent_Adult_Occ,
@@ -194,7 +219,10 @@ export default function PRStats() {
   const camasAdultData = {
     data: [
       {
-        id: 'Disponibles',
+        id: `Disponibles (${percentage(
+          T_Camas_Adult_Disp,
+          T_Camas_Adulto
+        ).toFixed(0)}%)`,
         label: `Disponibles (${percentage(
           T_Camas_Adult_Disp,
           T_Camas_Adulto
@@ -203,7 +231,9 @@ export default function PRStats() {
         color: 'red',
       },
       {
-        id: 'Ocupados',
+        id: `Ocupadas (${percentage(T_Paciente_Adult, T_Camas_Adulto).toFixed(
+          0
+        )}%)`,
         label: `Ocupadas (${percentage(
           T_Paciente_Adult,
           T_Camas_Adulto
@@ -217,7 +247,9 @@ export default function PRStats() {
   const camasPedData = {
     data: [
       {
-        id: 'Disponibles',
+        id: `Disponibles (${percentage(T_Camas_Ped_Disp, T_Camas_Ped).toFixed(
+          0
+        )}%)`,
         label: `Disponibles (${percentage(
           T_Camas_Ped_Disp,
           T_Camas_Ped
@@ -226,7 +258,7 @@ export default function PRStats() {
         color: 'red',
       },
       {
-        id: 'Ocupados',
+        id: `Ocupadas (${percentage(T_Paciente_Ped, T_Camas_Ped).toFixed(0)}%)`,
         label: `Ocupadas (${percentage(T_Paciente_Ped, T_Camas_Ped).toFixed(
           0
         )}%)`,
@@ -239,7 +271,10 @@ export default function PRStats() {
   const camasAdultIntData = {
     data: [
       {
-        id: 'Disponibles',
+        id: `Disponibles (${percentage(
+          T_Camas_Adult_Int_Disp,
+          T_Camas_Int_Adult
+        ).toFixed(0)}%)`,
         label: `Disponibles (${percentage(
           T_Camas_Adult_Int_Disp,
           T_Camas_Int_Adult
@@ -248,7 +283,10 @@ export default function PRStats() {
         color: 'red',
       },
       {
-        id: 'Ocupados',
+        id: `Ocupadas (${percentage(
+          T_Camas_Adult_Int_Occ,
+          T_Camas_Int_Adult
+        ).toFixed(0)}%)`,
         label: `Ocupadas (${percentage(
           T_Camas_Adult_Int_Occ,
           T_Camas_Int_Adult
@@ -262,7 +300,10 @@ export default function PRStats() {
   const camasPedIntData = {
     data: [
       {
-        id: 'Disponibles',
+        id: `Disponibles (${percentage(
+          T_Camas_Ped_Int_Disp,
+          T_Camas_Int_Ped
+        ).toFixed(0)}%)`,
         label: `Disponibles (${percentage(
           T_Camas_Ped_Int_Disp,
           T_Camas_Int_Ped
@@ -271,8 +312,11 @@ export default function PRStats() {
         color: 'red',
       },
       {
-        id: 'Ocupados',
-        label: `Ocupados (${percentage(
+        id: `Ocupadas (${percentage(
+          T_Camas_Ped_Int_Occ,
+          T_Camas_Int_Ped
+        ).toFixed(0)}%)`,
+        label: `Ocupadas (${percentage(
           T_Camas_Ped_Int_Occ,
           T_Camas_Int_Ped
         ).toFixed(0)}%)`,
@@ -285,7 +329,10 @@ export default function PRStats() {
   const psiNegData = {
     data: [
       {
-        id: 'Disponibles',
+        id: `Disponibles (${percentage(
+          T_Cuartos_PSINeg_Disp,
+          T_Cuartos_PSiNeg
+        ).toFixed(0)}%)`,
         label: `Disponibles (${percentage(
           T_Cuartos_PSINeg_Disp,
           T_Cuartos_PSiNeg
@@ -294,8 +341,11 @@ export default function PRStats() {
         color: 'red',
       },
       {
-        id: 'Ocupados',
-        label: `Ocupadas (${percentage(
+        id: `Ocupados (${percentage(
+          T_Cuartos_PSINeg_Occ,
+          T_Cuartos_PSiNeg
+        ).toFixed(0)}%)`,
+        label: `Ocupados (${percentage(
           T_Cuartos_PSINeg_Occ,
           T_Cuartos_PSiNeg
         ).toFixed(0)}%)`,
@@ -432,7 +482,7 @@ export default function PRStats() {
         <h2 className='font-black text-2xl text-center mb-8'>
           Casos de COVID-19 en hospitales
         </h2>
-        <div className='h-400'>
+        <div className='h-300 md:h-400'>
           <ResponsiveBar {...hospitalProps} />
         </div>
       </div>
@@ -448,7 +498,7 @@ export default function PRStats() {
               <h3 className='font-black text-lg text-center md:mb-4'>
                 Adultos general
               </h3>
-              <div className='h-250 md:h-350'>
+              <div className='h-300 md:h-350'>
                 <ResponsivePie {...ventAdultProps} />
               </div>
             </div>
@@ -462,7 +512,7 @@ export default function PRStats() {
               <h3 className='font-black text-lg text-center md:mb-4'>
                 Pediátrico general
               </h3>
-              <div className='h-250 md:h-350'>
+              <div className='h-300 md:h-350'>
                 <ResponsivePie {...ventPedProps} />
               </div>
             </div>
@@ -484,7 +534,7 @@ export default function PRStats() {
             <h3 className='font-black text-lg text-center md:mb-4'>
               Adultos general
             </h3>
-            <div className='h-250 md:h-350'>
+            <div className='h-300 md:h-350'>
               <ResponsivePie {...camasAdultProps} />
             </div>
           </div>
@@ -497,7 +547,7 @@ export default function PRStats() {
             <h3 className='font-black text-lg text-center md:mb-4'>
               Pediátrico general
             </h3>
-            <div className='h-250 md:h-350'>
+            <div className='h-300 md:h-350'>
               <ResponsivePie {...camasPedProps} />
             </div>
           </div>
@@ -510,7 +560,7 @@ export default function PRStats() {
             <h3 className='font-black text-lg text-center md:mb-4'>
               Intensivo adultos
             </h3>
-            <div className='h-250 md:h-350'>
+            <div className='h-300 md:h-350'>
               <ResponsivePie {...camasAdultIntProps} />
             </div>
           </div>
@@ -523,7 +573,7 @@ export default function PRStats() {
             <h3 className='font-black text-lg text-center md:mb-4'>
               Intensivo pediátrico
             </h3>
-            <div className='h-250 md:h-350'>
+            <div className='h-300 md:h-350'>
               <ResponsivePie {...camasPedIntProps} />
             </div>
           </div>
@@ -536,7 +586,7 @@ export default function PRStats() {
             <h3 className='font-black text-lg text-center md:mb-4'>
               Cuartos de presión negativa
             </h3>
-            <div className='h-250 md:h-350'>
+            <div className='h-300 md:h-350'>
               <ResponsivePie {...psiNegProps} />
             </div>
           </div>
