@@ -34,6 +34,7 @@ export default function PRStats() {
     T_Paciente_Adult,
     T_Camas_Ped,
     T_Paciente_Ped,
+    T_Camas_Ped_Disp,
     T_Camas_Adult_Int_Occ,
     T_Camas_Ped_Int_Occ,
     T_Camas_Int_Adult,
@@ -54,69 +55,30 @@ export default function PRStats() {
     T_Vent_Covid,
     T_Pacientes_Int_Covid,
     T_Hospitalizados,
+    T_Camas_Adult_Disp,
+    T_Camas_Adult_Int_Disp,
+    T_Camas_Ped_Int_Disp,
+    T_Cuartos_PSINeg_Disp,
   } = stats.data[0].table[0].attributes;
 
-  const hospitalProps = {
-    data: [
-      {
-        hospitalizaciones: 'Hospitalizaciones',
-        Total: T_Hospitalizados,
-      },
-      {
-        hospitalizaciones: 'Ventiladores',
-        Total: T_Vent_Covid,
-      },
-      {
-        hospitalizaciones: 'Intensivo',
-        Total: T_Pacientes_Int_Covid,
-      },
-    ],
-    margin: { top: 0, right: 30, bottom: 60, left: 30 },
-    colors: { scheme: 'pastel2' },
-    indexBy: 'hospitalizaciones',
-    keys: ['Total'],
-    labelTextColor: 'inherit:darker(1.4)',
-    labelSkipWidth: 16,
-    labelSkipHeight: 16,
-    animate: true,
-  };
-
-  const ventPedProps = {
-    data: [
-      {
-        id: 'Disponibles',
-        label: `Disponibles (${percentage(T_Vent_Ped_Disp, T_Vent_Ped).toFixed(
-          0
-        )}%)`,
-        value: T_Vent_Ped_Disp,
-        color: 'red',
-      },
-      {
-        id: 'Ocupados',
-        label: `Ocupados (${percentage(T_Vent_Ped_Occ, T_Vent_Ped).toFixed(
-          0
-        )}%)`,
-        value: T_Vent_Ped_Occ,
-        color: 'blue',
-      },
-    ],
-    margin: { top: 20, right: 40, bottom: 40, left: 40 },
+  const pieDefault = {
+    margin: { top: 20, right: 100, bottom: 40, left: 100 },
     innerRadius: 0.5,
-    padAngle: 0.7,
+    padAngle: 0.5,
     cornerRadius: 3,
     colors: {
       scheme: 'pastel2',
       borderWidth: 1,
       borderColor: { from: 'color', modifiers: [['darker', 0.2]] },
-      radialLabelsSkipAngle: 10,
+      radialLabelsSkipAngle: 4,
       radialLabelsTextXOffset: 6,
       radialLabelsTextColor: '#333333',
       radialLabelsLinkOffset: 0,
-      radialLabelsLinkDiagonalLength: 16,
-      radialLabelsLinkHorizontalLength: 24,
+      radialLabelsLinkDiagonalLength: 4,
+      radialLabelsLinkHorizontalLength: 4,
       radialLabelsLinkStrokeWidth: 1,
       radialLabelsLinkColor: { from: 'color' },
-      slicesLabelsSkipAngle: 10,
+      slicesLabelsSkipAngle: 4,
       slicesLabelsTextColor: '#333333',
       animate: true,
       motionStiffness: 90,
@@ -156,29 +118,58 @@ export default function PRStats() {
         id: 'dots',
       },
     ],
-    // legends: [
-    //   {
-    //     anchor: 'bottom',
-    //     direction: 'row',
-    //     translateY: 56,
-    //     itemWidth: 100,
-    //     itemHeight: 18,
-    //     itemTextColor: '#999',
-    //     symbolSize: 18,
-    //     symbolShape: 'circle',
-    //     effects: [
-    //       {
-    //         on: 'hover',
-    //         style: {
-    //           itemTextColor: '#000',
-    //         },
-    //       },
-    //     ],
-    //   },
-    // ],
   };
 
-  const ventAdultProps = {
+  const hospitalProps = {
+    data: [
+      {
+        id: 'hospital',
+        hospitalizaciones: 'Hospitalizaciones',
+        Total: T_Hospitalizados,
+      },
+      {
+        id: 'vent',
+        hospitalizaciones: 'Ventiladores',
+        Total: T_Vent_Covid,
+      },
+      {
+        id: 'intensivo',
+        hospitalizaciones: 'Intensivo',
+        Total: T_Pacientes_Int_Covid,
+      },
+    ],
+    margin: { top: 0, right: 30, bottom: 60, left: 30 },
+    indexBy: 'hospitalizaciones',
+    keys: ['Total'],
+    labelTextColor: 'inherit:darker(1.4)',
+    labelSkipWidth: 16,
+    labelSkipHeight: 16,
+    animate: true,
+    colors: { scheme: 'pastel2' },
+  };
+
+  const ventPedData = {
+    data: [
+      {
+        id: 'Disponibles',
+        label: `Disponibles (${percentage(T_Vent_Ped_Disp, T_Vent_Ped).toFixed(
+          0
+        )}%)`,
+        value: T_Vent_Ped_Disp,
+        color: 'red',
+      },
+      {
+        id: 'Ocupados',
+        label: `Ocupados (${percentage(T_Vent_Ped_Occ, T_Vent_Ped).toFixed(
+          0
+        )}%)`,
+        value: T_Vent_Ped_Occ,
+        color: 'blue',
+      },
+    ],
+  };
+
+  const ventAdultData = {
     data: [
       {
         id: 'Disponibles',
@@ -198,82 +189,151 @@ export default function PRStats() {
         color: 'blue',
       },
     ],
-    margin: { top: 20, right: 40, bottom: 40, left: 40 },
-    innerRadius: 0.5,
-    padAngle: 0.7,
-    cornerRadius: 3,
-    colors: {
-      scheme: 'pastel2',
-      borderWidth: 1,
-      borderColor: { from: 'color', modifiers: [['darker', 0.2]] },
-      radialLabelsSkipAngle: 10,
-      radialLabelsTextXOffset: 6,
-      radialLabelsTextColor: '#333333',
-      radialLabelsLinkOffset: 0,
-      radialLabelsLinkDiagonalLength: 16,
-      radialLabelsLinkHorizontalLength: 24,
-      radialLabelsLinkStrokeWidth: 1,
-      radialLabelsLinkColor: { from: 'color' },
-      slicesLabelsSkipAngle: 10,
-      slicesLabelsTextColor: '#333333',
-      animate: true,
-      motionStiffness: 90,
-      motionDamping: 15,
-      defs: [
-        {
-          id: 'dots',
-          type: 'patternDots',
-          background: 'inherit',
-          color: 'rgba(255, 255, 255, 0.3)',
-          size: 4,
-          padding: 1,
-          stagger: true,
-        },
-        {
-          id: 'lines',
-          type: 'patternLines',
-          background: 'inherit',
-          color: 'rgba(255, 255, 255, 0.3)',
-          rotation: -45,
-          lineWidth: 6,
-          spacing: 10,
-        },
-      ],
-    },
-    fill: [
+  };
+
+  const camasAdultData = {
+    data: [
       {
-        match: {
-          id: 'ocupados',
-        },
-        id: 'dots',
+        id: 'Disponibles',
+        label: `Disponibles (${percentage(
+          T_Camas_Adult_Disp,
+          T_Camas_Adulto
+        ).toFixed(0)}%)`,
+        value: T_Camas_Adult_Disp,
+        color: 'red',
       },
       {
-        match: {
-          id: 'disponibles',
-        },
-        id: 'dots',
+        id: 'Ocupados',
+        label: `Ocupadas (${percentage(
+          T_Paciente_Adult,
+          T_Camas_Adulto
+        ).toFixed(0)}%)`,
+        value: T_Paciente_Adult,
+        color: 'blue',
       },
     ],
-    // legends: [
-    //   {
-    //     anchor: 'bottom',
-    //     direction: 'row',
-    //     translateY: 56,
-    //     itemWidth: 100,
-    //     itemHeight: 18,
-    //     itemTextColor: '#999',
-    //     symbolSize: 18,
-    //     symbolShape: 'circle',
-    //     effects: [
-    //       {
-    //         on: 'hover',
-    //         style: {
-    //           itemTextColor: '#000',
-    //         },
-    //       },
-    //     ],
-    //   },
-    // ],
+  };
+
+  const camasPedData = {
+    data: [
+      {
+        id: 'Disponibles',
+        label: `Disponibles (${percentage(
+          T_Camas_Ped_Disp,
+          T_Camas_Ped
+        ).toFixed(0)}%)`,
+        value: T_Camas_Ped_Disp,
+        color: 'red',
+      },
+      {
+        id: 'Ocupados',
+        label: `Ocupadas (${percentage(T_Paciente_Ped, T_Camas_Ped).toFixed(
+          0
+        )}%)`,
+        value: T_Paciente_Ped,
+        color: 'blue',
+      },
+    ],
+  };
+
+  const camasAdultIntData = {
+    data: [
+      {
+        id: 'Disponibles',
+        label: `Disponibles (${percentage(
+          T_Camas_Adult_Int_Disp,
+          T_Camas_Int_Adult
+        ).toFixed(0)}%)`,
+        value: T_Camas_Adult_Int_Disp,
+        color: 'red',
+      },
+      {
+        id: 'Ocupados',
+        label: `Ocupadas (${percentage(
+          T_Camas_Adult_Int_Occ,
+          T_Camas_Int_Adult
+        ).toFixed(0)}%)`,
+        value: T_Camas_Adult_Int_Occ,
+        color: 'blue',
+      },
+    ],
+  };
+
+  const camasPedIntData = {
+    data: [
+      {
+        id: 'Disponibles',
+        label: `Disponibles (${percentage(
+          T_Camas_Ped_Int_Disp,
+          T_Camas_Int_Ped
+        ).toFixed(0)}%)`,
+        value: T_Camas_Ped_Int_Disp,
+        color: 'red',
+      },
+      {
+        id: 'Ocupados',
+        label: `Ocupados (${percentage(
+          T_Camas_Ped_Int_Occ,
+          T_Camas_Int_Ped
+        ).toFixed(0)}%)`,
+        value: T_Camas_Ped_Int_Occ,
+        color: 'blue',
+      },
+    ],
+  };
+
+  const psiNegData = {
+    data: [
+      {
+        id: 'Disponibles',
+        label: `Disponibles (${percentage(
+          T_Cuartos_PSINeg_Disp,
+          T_Cuartos_PSiNeg
+        ).toFixed(0)}%)`,
+        value: T_Cuartos_PSINeg_Disp,
+        color: 'red',
+      },
+      {
+        id: 'Ocupados',
+        label: `Ocupadas (${percentage(
+          T_Cuartos_PSINeg_Occ,
+          T_Cuartos_PSiNeg
+        ).toFixed(0)}%)`,
+        value: T_Cuartos_PSINeg_Occ,
+        color: 'blue',
+      },
+    ],
+  };
+
+  const ventPedProps = {
+    ...ventPedData,
+    ...pieDefault,
+  };
+
+  const ventAdultProps = {
+    ...ventAdultData,
+    ...pieDefault,
+  };
+
+  const camasAdultProps = {
+    ...camasAdultData,
+    ...pieDefault,
+  };
+  const camasPedProps = {
+    ...camasPedData,
+    ...pieDefault,
+  };
+  const camasAdultIntProps = {
+    ...camasAdultIntData,
+    ...pieDefault,
+  };
+  const camasPedIntProps = {
+    ...camasPedIntData,
+    ...pieDefault,
+  };
+  const psiNegProps = {
+    ...psiNegData,
+    ...pieDefault,
   };
 
   return (
@@ -286,7 +346,7 @@ export default function PRStats() {
           </p>
         </div>
 
-        <div className={`mb-6 grid grid-cols-2 gap-3 small:gap-4`}>
+        <div className={`grid grid-cols-2 gap-3 small:gap-4`}>
           {T_Casos_Unicos !== null && (
             <div
               className={`py-8 px-2
@@ -323,6 +383,7 @@ export default function PRStats() {
           )}
         </div>
       </div>
+
       <div className='mb-12 md:mb-16 grid grid-cols-2 gap-3 small:gap-4'>
         {T_Muertes_Combinadas !== null && (
           <DataBox
@@ -340,11 +401,11 @@ export default function PRStats() {
         )}
       </div>
 
-      {(T_Casos_Pos ||
-        T_Casos_Neg ||
-        T_Casos_Pend ||
-        T_Casos ||
-        T_Casos_Inconcluso) !== null && (
+      {(T_Casos_Pos &&
+        T_Casos_Neg &&
+        T_Casos_Pend &&
+        T_Casos &&
+        T_Casos_Inconcluso) !== null ? (
         <div className='mb-12 md:mb-16'>
           <h2 className='font-black text-2xl text-center mb-8'>
             Pruebas realizadas
@@ -362,85 +423,125 @@ export default function PRStats() {
             </span>
           </div>
         </div>
+      ) : (
+        ' '
       )}
+
+      {/* COVID 19 en Hospitales */}
+      <div className='mb-4 md:mb-8'>
+        <h2 className='font-black text-2xl text-center mb-8'>
+          Casos de COVID-19 en hospitales
+        </h2>
+        <div className='h-400'>
+          <ResponsiveBar {...hospitalProps} />
+        </div>
+      </div>
 
       {/* Ventiladores */}
       <div>
         <h2 className='font-black text-2xl text-center mb-8'>
-          Ocupación de ventiladores
+          Utilización de ventiladores
         </h2>
-        <div className='mb-12 md:mb-16 grid md:grid-cols-2 gap-3 small:gap-4'>
-          <div>
-            <h2 className='font-black text-lg text-center mb-4'>Pediátrico</h2>
-            <div style={{ height: '350px' }}>
-              <ResponsivePie {...ventPedProps} />
+        <div className='mb-4 md:mb-8 grid md:grid-cols-2 gap-3 small:gap-4'>
+          {(T_Vent_Adult_Disp && T_Vent_Adult && T_Vent_Adult_Occ) !== null ? (
+            <div>
+              <h3 className='font-black text-lg text-center md:mb-4'>
+                Adultos general
+              </h3>
+              <div className='h-250 md:h-350'>
+                <ResponsivePie {...ventAdultProps} />
+              </div>
             </div>
-          </div>
-
-          <div>
-            <h2 className='font-black text-lg text-center mb-4'>Adultos</h2>
-            <div style={{ height: '350px' }}>
-              <ResponsivePie {...ventAdultProps} />
+          ) : (
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Sin Datos
+            </h3>
+          )}
+          {(T_Vent_Ped_Disp && T_Vent_Ped && T_Vent_Ped_Occ) !== null ? (
+            <div>
+              <h3 className='font-black text-lg text-center md:mb-4'>
+                Pediátrico general
+              </h3>
+              <div className='h-250 md:h-350'>
+                <ResponsivePie {...ventPedProps} />
+              </div>
             </div>
-          </div>
-          <div></div>
+          ) : (
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Sin Datos
+            </h3>
+          )}
         </div>
       </div>
 
-      {/* COVID 19 en Hospitales */}
-      <h2 className='font-black text-2xl text-center mb-8'>
-        Situación de casos de COVID-19 en hospitales
-      </h2>
-      {/* <div style={{ height: '400px' }}> */}
-      <div style={{ height: '400px' }}>
-        <ResponsiveBar {...hospitalProps} />
-      </div>
-      <div className='mb-2'></div>
-
       {/* Hospitalizaciones */}
       <h2 className='font-black text-2xl text-center mb-8'>
-        Porcentaje de ocupación de camas de hospital
+        Ocupación de camas de hospital
       </h2>
-      <div className='mb-6 grid grid-cols-2 lg:grid-cols-5 gap-3 small:gap-4'>
-        {(T_Camas_Adulto || T_Paciente_Adult) !== null && (
-          <DataBox
-            number={`${percentage(T_Paciente_Adult, T_Camas_Adulto).toFixed(
-              0
-            )}%`}
-            label='Adultos'
-          />
+      <div className='mb-6 grid md:grid-cols-2'>
+        {(T_Paciente_Adult && T_Camas_Adult_Disp) !== null ? (
+          <div>
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Adultos general
+            </h3>
+            <div className='h-250 md:h-350'>
+              <ResponsivePie {...camasAdultProps} />
+            </div>
+          </div>
+        ) : (
+          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
         )}
-        {(T_Paciente_Ped || T_Camas_Ped) !== null && (
-          <DataBox
-            number={`${percentage(T_Paciente_Ped, T_Camas_Ped).toFixed(0)}%`}
-            label='Pediátrico'
-          />
+
+        {(T_Paciente_Adult && T_Camas_Adult_Disp) !== null ? (
+          <div>
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Pediátrico general
+            </h3>
+            <div className='h-250 md:h-350'>
+              <ResponsivePie {...camasPedProps} />
+            </div>
+          </div>
+        ) : (
+          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
         )}
-        {(T_Camas_Adult_Int_Occ || T_Camas_Int_Adult) !== null && (
-          <DataBox
-            number={`${percentage(
-              T_Camas_Adult_Int_Occ,
-              T_Camas_Int_Adult
-            ).toFixed(0)}%`}
-            label='Intensivo Adultos'
-          />
+
+        {(T_Paciente_Adult && T_Camas_Adult_Disp) !== null ? (
+          <div>
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Intensivo adultos
+            </h3>
+            <div className='h-250 md:h-350'>
+              <ResponsivePie {...camasAdultIntProps} />
+            </div>
+          </div>
+        ) : (
+          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
         )}
-        {(T_Camas_Ped_Int_Occ || T_Camas_Int_Ped) !== null && (
-          <DataBox
-            number={`${percentage(T_Camas_Ped_Int_Occ, T_Camas_Int_Ped).toFixed(
-              0
-            )}%`}
-            label='Intensivo Pediátrico'
-          />
+
+        {(T_Paciente_Adult && T_Camas_Adult_Disp) !== null ? (
+          <div>
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Intensivo pediátrico
+            </h3>
+            <div className='h-250 md:h-350'>
+              <ResponsivePie {...camasPedIntProps} />
+            </div>
+          </div>
+        ) : (
+          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
         )}
-        {(T_Cuartos_PSINeg_Occ || T_Cuartos_PSiNeg) !== null && (
-          <DataBox
-            number={`${percentage(
-              T_Cuartos_PSINeg_Occ,
-              T_Cuartos_PSiNeg
-            ).toFixed(0)}%`}
-            label='Presión Negativa'
-          />
+
+        {(T_Paciente_Adult && T_Camas_Adult_Disp) !== null ? (
+          <div>
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Cuartos de presión negativa
+            </h3>
+            <div className='h-250 md:h-350'>
+              <ResponsivePie {...psiNegProps} />
+            </div>
+          </div>
+        ) : (
+          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
         )}
       </div>
     </>
