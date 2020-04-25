@@ -123,7 +123,7 @@ export default function PRStats() {
       {
         anchor: 'bottom',
         direction: 'row',
-        translateY: 56,
+        translateY: 45,
         itemWidth: 125,
         itemHeight: 18,
         itemTextColor: '#999',
@@ -403,10 +403,10 @@ export default function PRStats() {
             row-span-3 flex justify-center items-center bg-gray-300 text-center rounded-lg`}
             >
               <div>
-                <span className='text-5xl font-bold'>
+                <span className='text-4xl md:text-5xl font-bold'>
                   {formatNumber(T_Casos_Unicos)}
                 </span>
-                <h3 className='uppercase'>Casos Únicos</h3>
+                <h3 className='uppercase text-sm md:text-base'>Casos Únicos</h3>
               </div>
             </div>
           )}
