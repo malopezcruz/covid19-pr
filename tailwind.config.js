@@ -18,6 +18,7 @@ module.exports = {
         green: '#b3e2cd',
         pink: '#f4cae4',
         yellow: '#fdcdac',
+        lightgreen: '#e6f5c9',
       }),
       height: {
         sm: '8px',

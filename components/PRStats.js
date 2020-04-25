@@ -59,6 +59,17 @@ export default function PRStats() {
     T_Camas_Adult_Int_Disp,
     T_Camas_Ped_Int_Disp,
     T_Cuartos_PSINeg_Disp,
+    T_Fem,
+    T_Masc,
+    T_Menor_10,
+    T_10_19,
+    T_20_29,
+    T_30_39,
+    T_40_49,
+    T_50_59,
+    T_60_69,
+    T_70_79,
+    T_Mayor_80,
   } = stats.data[0].table[0].attributes;
 
   const pieDefault = {
@@ -123,10 +134,10 @@ export default function PRStats() {
       {
         anchor: 'bottom',
         direction: 'row',
-        translateY: 45,
+        translateY: 56,
         itemWidth: 125,
         itemHeight: 18,
-        itemTextColor: '#999',
+        itemTextColor: '#333',
         symbolSize: 18,
         symbolShape: 'circle',
         effects: [
@@ -141,7 +152,16 @@ export default function PRStats() {
     ],
   };
 
-  const hospitalProps = {
+  const barDefault = {
+    margin: { top: 20, right: 40, bottom: 60, left: 40 },
+    labelTextColor: 'inherit:darker(1.4)',
+    labelSkipWidth: 16,
+    labelSkipHeight: 16,
+    animate: true,
+    colors: { scheme: 'pastel2' },
+  };
+
+  const hospitalData = {
     data: [
       {
         id: 'hospital',
@@ -159,14 +179,8 @@ export default function PRStats() {
         Total: T_Pacientes_Int_Covid,
       },
     ],
-    margin: { top: 0, right: 30, bottom: 60, left: 30 },
     indexBy: 'hospitalizaciones',
     keys: ['Total'],
-    labelTextColor: 'inherit:darker(1.4)',
-    labelSkipWidth: 16,
-    labelSkipHeight: 16,
-    animate: true,
-    colors: { scheme: 'pastel2' },
   };
 
   const ventPedData = {
@@ -355,6 +369,90 @@ export default function PRStats() {
     ],
   };
 
+  const sexData = {
+    data: [
+      {
+        id: `Femenino (${percentage(T_Fem, T_Casos_Unicos).toFixed(0)}%)`,
+        label: `Femenino (${percentage(T_Fem, T_Casos_Unicos).toFixed(0)}%)`,
+        value: T_Fem,
+        color: 'red',
+      },
+      {
+        id: `Masculino (${percentage(T_Masc, T_Casos_Unicos).toFixed(0)}%)`,
+        label: `Masculino (${percentage(T_Masc, T_Casos_Unicos).toFixed(0)}%)`,
+        value: T_Masc,
+        color: 'blue',
+      },
+    ],
+  };
+
+  const ageDistData = {
+    data: [
+      {
+        id: 'Menor 10',
+        agegroup: 'Menor 10',
+        Total: T_Menor_10,
+      },
+      {
+        id: '10-19',
+        agegroup: '10-19',
+        Total: T_10_19,
+      },
+      {
+        id: '20-29',
+        agegroup: '20-29',
+        Total: T_20_29,
+      },
+      {
+        id: '30-39',
+        agegroup: '30-39',
+        Total: T_30_39,
+      },
+      {
+        id: '40-49',
+        agegroup: '40-49',
+        Total: T_40_49,
+      },
+      {
+        id: '50-59',
+        agegroup: '50-59',
+        Total: T_50_59,
+      },
+      {
+        id: '60-69',
+        agegroup: '60-69',
+        Total: T_60_69,
+      },
+      {
+        id: '70-79',
+        agegroup: '70-79',
+        Total: T_70_79,
+      },
+      {
+        id: 'Mayor 80',
+        agegroup: 'Mayor 80',
+        Total: T_Mayor_80,
+      },
+    ],
+    ndexBy: 'agegroup',
+    keys: ['Total'],
+  };
+
+  const sexProps = {
+    ...sexData,
+    ...pieDefault,
+  };
+
+  const ageDistProps = {
+    ...ageDistData,
+    ...barDefault,
+  };
+
+  const hospitalProps = {
+    ...hospitalData,
+    ...barDefault,
+  };
+
   const ventPedProps = {
     ...ventPedData,
     ...pieDefault,
@@ -433,7 +531,6 @@ export default function PRStats() {
           )}
         </div>
       </div>
-
       <div className='mb-12 md:mb-16 grid grid-cols-2 gap-3 small:gap-4'>
         {T_Muertes_Combinadas !== null && (
           <DataBox
@@ -450,7 +547,6 @@ export default function PRStats() {
           />
         )}
       </div>
-
       {(T_Casos_Pos &&
         T_Casos_Neg &&
         T_Casos_Pend &&
@@ -477,15 +573,46 @@ export default function PRStats() {
         ' '
       )}
 
-      {/* COVID 19 en Hospitales */}
-      <div className='mb-4 md:mb-8'>
-        <h2 className='font-black text-2xl text-center mb-8'>
-          Casos de COVID-19 en hospitales
-        </h2>
-        <div className='h-300 md:h-400'>
-          <ResponsiveBar {...hospitalProps} />
-        </div>
+      {/* Distribucion */}
+      <h2 className='font-black text-2xl text-center mb-8'>
+        Casos de COVID-19
+      </h2>
+      <div className='mb-4 md:mb-8 grid md:grid-cols-2 gap-3 small:gap-4'>
+        {T_50_59 !== null ? (
+          <div className='mb-4 md:mb-8'>
+            <h3 className='font-black text-lg text-center md:mb-4'>Edad</h3>
+            <div className='h-300 md:h-400'>
+              <ResponsiveBar {...ageDistProps} />
+            </div>
+          </div>
+        ) : (
+          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
+        )}
+        {(T_Masc && T_Fem) !== null ? (
+          <div>
+            <h3 className='font-black text-lg text-center md:mb-4'>Sexo</h3>
+            <div className='h-300 md:h-350'>
+              <ResponsivePie {...sexProps} />
+            </div>
+          </div>
+        ) : (
+          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
+        )}
       </div>
+
+      {/* COVID 19 en Hospitales */}
+      {(T_Hospitalizados && T_Vent_Covid && T_Pacientes_Int_Covid) !== null ? (
+        <div className='mb-4 md:mb-8'>
+          <h2 className='font-black text-2xl text-center mb-8'>
+            Casos de COVID-19 en hospitales
+          </h2>
+          <div className='h-300 md:h-400'>
+            <ResponsiveBar {...hospitalProps} />
+          </div>
+        </div>
+      ) : (
+        ' '
+      )}
 
       {/* Ventiladores */}
       <div>
@@ -523,7 +650,6 @@ export default function PRStats() {
           )}
         </div>
       </div>
-
       {/* Hospitalizaciones */}
       <h2 className='font-black text-2xl text-center mb-8'>
         Ocupación de camas de hospital
