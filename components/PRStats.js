@@ -74,7 +74,7 @@ export default function PRStats() {
 
   const pieDefault = {
     margin: { top: 20, right: 80, bottom: 80, left: 80 },
-    innerRadius: 0.5,
+    innerRadius: 0.35,
     padAngle: 0.5,
     cornerRadius: 3,
     enableRadialLabels: false,
