@@ -436,6 +436,9 @@ export default function PRStats() {
     ],
     ndexBy: 'agegroup',
     keys: ['Total'],
+    axisBottom: {
+      tickRotation: -25,
+    },
   };
 
   const sexProps = {
