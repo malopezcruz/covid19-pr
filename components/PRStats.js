@@ -501,7 +501,7 @@ export default function PRStats() {
           {T_Casos_Unicos !== null && (
             <div
               className={`py-8 px-2
-            row-span-3 flex justify-center items-center bg-gray-300 text-center rounded-lg`}
+            row-span-3 flex justify-center items-center bg-gray-200 border border-gray-300 text-center rounded-lg`}
             >
               <div>
                 <span className='text-4xl md:text-5xl font-bold'>
