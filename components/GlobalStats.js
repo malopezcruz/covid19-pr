@@ -1,8 +1,9 @@
 import React from 'react';
 import ErrorMessage from './ErrorMessage';
 import useStats from '../utils/useStats';
-import { formatNumber,deathRate } from '../utils/utils';
+import { formatNumber, deathRate } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import DataBox from './DataBox';
 
 export default function GlobalStats() {
   const [stats, isError] = useStats(
@@ -24,31 +25,13 @@ export default function GlobalStats() {
     <div className='mb-8 md:mb-16'>
       <h2 className='font-black text-4xl text-center mb-8'>Global</h2>
       <div className='mb-6 grid grid-cols-2 gap-3 small:gap-4 md:grid-cols-4'>
-        <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
-          <span className='text-3xl md:text-4xl font-bold'>
-            {formatNumber(cases)}
-          </span>
-          <h3 className='uppercase'>Confirmados</h3>
-        </div>
-        <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
-          <span className='text-3xl md:text-4xl font-bold'>
-            {formatNumber(deaths)}
-          </span>
-          <h3 className='uppercase'>Muertes</h3>
-        </div>
-        <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
-          <span className='text-3xl md:text-4xl font-bold'>
-            {formatNumber(recovered)}
-          </span>
-          <h3 className='uppercase'>Recuperados</h3>
-        </div>
-        <div className='py-8 px-2 bg-gray-300 text-center rounded-lg'>
-          <span className='text-3xl md:text-4xl font-bold'>{`${deathRate(
-            cases,
-            deaths
-          ).toFixed(2)}%`}</span>
-          <h3 className='uppercase'>Tasa de letalidad</h3>
-        </div>
+        <DataBox number={formatNumber(cases)} label='Confirmados' />
+        <DataBox number={formatNumber(deaths)} label='Muertes' />
+        <DataBox number={formatNumber(recovered)} label='Recuperados' />
+        <DataBox
+          number={`${deathRate(cases, deaths).toFixed(2)}%`}
+          label='Tasa de Letalidad'
+        />
       </div>
     </div>
   );
