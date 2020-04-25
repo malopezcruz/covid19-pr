@@ -78,6 +78,13 @@ export default function PRStats() {
     padAngle: 0.5,
     cornerRadius: 3,
     enableRadialLabels: false,
+    theme: {
+      legends: {
+        text: {
+          fontSize: 14,
+        },
+      },
+    },
     colors: {
       scheme: 'pastel2',
       borderWidth: 1,
@@ -134,10 +141,14 @@ export default function PRStats() {
       {
         anchor: 'bottom',
         direction: 'row',
-        translateY: 56,
-        itemWidth: 125,
-        itemHeight: 18,
-        itemTextColor: '#333',
+        translateY: 50,
+        translateX: 0,
+        itemSpacing: 2,
+        justify: false,
+        itemWidth: 145,
+        itemHeight: 22,
+        itemDirection: 'left-to-right',
+        itemTextColor: '#555',
         symbolSize: 18,
         symbolShape: 'circle',
         effects: [
