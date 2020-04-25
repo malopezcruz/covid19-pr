@@ -95,8 +95,11 @@ const IndexPage = () => {
           <CategoryBox>
             <PRStats />
           </CategoryBox>
-          <GlobalStats />
-          <USStats />
+
+          <CategoryBox>
+            <GlobalStats />
+            <USStats />
+          </CategoryBox>
         </div>
         <Footer />
       </div>
