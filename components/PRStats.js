@@ -52,7 +52,6 @@ export default function PRStats() {
     T_Serologicos_Pos,
     T_Molecular_Pos,
     T_Casos_Nuev_Ult_Inf,
-    T_Vent_Covid,
     T_Pacientes_Int_Covid,
     T_Hospitalizados,
     T_Camas_Adult_Disp,
@@ -70,10 +69,14 @@ export default function PRStats() {
     T_60_69,
     T_70_79,
     T_Mayor_80,
+    T_Vent_Adult_NoCovid,
+    T_Vent_Ped_NoCovid,
+    T_Vent_Adult_Covid,
+    T_Vent_Ped_Covid,
   } = stats.data[0].table[0].attributes;
 
   const pieDefault = {
-    margin: { top: 20, right: 80, bottom: 80, left: 80 },
+    margin: { top: 30, right: 80, bottom: 80, left: 80 },
     innerRadius: 0.35,
     padAngle: 0.5,
     cornerRadius: 3,
@@ -164,7 +167,7 @@ export default function PRStats() {
   };
 
   const barDefault = {
-    margin: { top: 20, right: 40, bottom: 60, left: 40 },
+    margin: { top: 30, right: 40, bottom: 40, left: 40 },
     labelTextColor: 'inherit:darker(1.4)',
     labelSkipWidth: 16,
     labelSkipHeight: 16,
@@ -178,11 +181,6 @@ export default function PRStats() {
         id: 'hospital',
         hospitalizaciones: 'Hospitalizaciones',
         Total: T_Hospitalizados,
-      },
-      {
-        id: 'vent',
-        hospitalizaciones: 'Ventiladores',
-        Total: T_Vent_Covid,
       },
       {
         id: 'intensivo',
@@ -207,10 +205,48 @@ export default function PRStats() {
         color: 'red',
       },
       {
-        id: `En uso (${percentage(T_Vent_Ped_Occ, T_Vent_Ped).toFixed(0)}%)`,
-        label: `En uso (${percentage(T_Vent_Ped_Occ, T_Vent_Ped).toFixed(0)}%)`,
-        value: T_Vent_Ped_Occ,
+        id: `Regular (${percentage(T_Vent_Ped_NoCovid, T_Vent_Ped).toFixed(
+          0
+        )}%)`,
+        label: `Regular (${percentage(T_Vent_Ped_NoCovid, T_Vent_Ped).toFixed(
+          0
+        )}%)`,
+        value: T_Vent_Ped_NoCovid,
         color: 'blue',
+      },
+      {
+        id: `COVID-19 (${percentage(T_Vent_Ped_Covid, T_Vent_Ped).toFixed(
+          0
+        )}%)`,
+        label: `COVID-19 (${percentage(T_Vent_Ped_Covid, T_Vent_Ped).toFixed(
+          0
+        )}%)`,
+        value: T_Vent_Ped_Covid,
+        color: 'blue',
+      },
+    ],
+    legends: [
+      {
+        anchor: 'bottom',
+        direction: 'column',
+        translateY: 80,
+        translateX: 0,
+        itemSpacing: 10,
+        justify: false,
+        itemWidth: 140,
+        itemHeight: 22,
+        itemDirection: 'left-to-right',
+        itemTextColor: '#555',
+        symbolSize: 18,
+        symbolShape: 'circle',
+        effects: [
+          {
+            on: 'hover',
+            style: {
+              itemTextColor: '#000',
+            },
+          },
+        ],
       },
     ],
   };
@@ -229,14 +265,50 @@ export default function PRStats() {
         color: 'red',
       },
       {
-        id: `En uso (${percentage(T_Vent_Adult_Occ, T_Vent_Adult).toFixed(
+        id: `Regular (${percentage(T_Vent_Adult_NoCovid, T_Vent_Adult).toFixed(
           0
         )}%)`,
-        label: `En uso (${percentage(T_Vent_Adult_Occ, T_Vent_Adult).toFixed(
-          0
-        )}%)`,
-        value: T_Vent_Adult_Occ,
+        label: `Regular (${percentage(
+          T_Vent_Adult_NoCovid,
+          T_Vent_Adult
+        ).toFixed(0)}%)`,
+        value: T_Vent_Adult_NoCovid,
         color: 'blue',
+      },
+      {
+        id: `COVID-19 (${percentage(T_Vent_Adult_Covid, T_Vent_Adult).toFixed(
+          0
+        )}%)`,
+        label: `COVID-19 (${percentage(
+          T_Vent_Adult_Covid,
+          T_Vent_Adult
+        ).toFixed(0)}%)`,
+        value: T_Vent_Adult_Covid,
+        color: 'blue',
+      },
+    ],
+    legends: [
+      {
+        anchor: 'bottom',
+        direction: 'column',
+        translateY: 80,
+        translateX: 0,
+        itemSpacing: 10,
+        justify: false,
+        itemWidth: 140,
+        itemHeight: 22,
+        itemDirection: 'left-to-right',
+        itemTextColor: '#555',
+        symbolSize: 18,
+        symbolShape: 'circle',
+        effects: [
+          {
+            on: 'hover',
+            style: {
+              itemTextColor: '#000',
+            },
+          },
+        ],
       },
     ],
   };
@@ -468,13 +540,13 @@ export default function PRStats() {
   };
 
   const ventPedProps = {
-    ...ventPedData,
     ...pieDefault,
+    ...ventPedData,
   };
 
   const ventAdultProps = {
-    ...ventAdultData,
     ...pieDefault,
+    ...ventAdultData,
   };
 
   const camasAdultProps = {
@@ -500,7 +572,7 @@ export default function PRStats() {
 
   return (
     <>
-      <div className='mb-4 md:mb-8'>
+      <section className='mb-4 md:mb-8'>
         <div className='text-center mb-8'>
           <h2 className='font-black text-4xl '>Puerto Rico</h2>
           <p>
@@ -544,8 +616,10 @@ export default function PRStats() {
             />
           )}
         </div>
-      </div>
-      <div className='mb-12 md:mb-16 grid grid-cols-2 gap-3 small:gap-4'>
+      </section>
+
+      {/* letalidad */}
+      <section className='mb-12 md:mb-16 grid grid-cols-2 gap-3 small:gap-4'>
         {T_Muertes_Combinadas !== null && (
           <DataBox
             number={formatNumber(T_Muertes_Combinadas)}
@@ -560,13 +634,15 @@ export default function PRStats() {
             label='Tasa de Letalidad'
           />
         )}
-      </div>
+      </section>
+
+      {/* Pruebas */}
       {(T_Casos_Pos &&
         T_Casos_Neg &&
         T_Casos_Pend &&
         T_Casos &&
         T_Casos_Inconcluso) !== null ? (
-        <div className='mb-12 md:mb-16'>
+        <section className='mb-12 md:mb-16'>
           <h2 className='font-black text-2xl text-center mb-8'>
             Pruebas realizadas
           </h2>
@@ -582,62 +658,54 @@ export default function PRStats() {
               * Pruebas inconclusas: <strong>{T_Casos_Inconcluso}</strong>
             </span>
           </div>
-        </div>
+        </section>
       ) : (
         ' '
       )}
 
       {/* Distribucion */}
-      <h2 className='font-black text-2xl text-center mb-8'>
-        Casos de COVID-19
-      </h2>
-      <div className='mb-4 md:mb-8 grid md:grid-cols-2 gap-3 small:gap-4'>
-        {T_50_59 !== null ? (
-          <div className='mb-4 md:mb-8'>
-            <h3 className='font-black text-lg text-center md:mb-4'>Edad</h3>
-            <div className='h-300 md:h-400'>
-              <ResponsiveBar {...ageDistProps} />
-            </div>
-          </div>
-        ) : (
-          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
-        )}
-        {(T_Masc && T_Fem) !== null ? (
-          <div>
-            <h3 className='font-black text-lg text-center md:mb-4'>Sexo</h3>
-            <div className='h-300 md:h-350'>
-              <ResponsivePie {...sexProps} />
-            </div>
-          </div>
-        ) : (
-          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
-        )}
-      </div>
-
-      {/* COVID 19 en Hospitales */}
-      {(T_Hospitalizados && T_Vent_Covid && T_Pacientes_Int_Covid) !== null ? (
-        <div className='mb-4 md:mb-8'>
-          <h2 className='font-black text-2xl text-center mb-8'>
-            Casos de COVID-19 en hospitales
-          </h2>
-          <div className='h-300 md:h-400'>
-            <ResponsiveBar {...hospitalProps} />
-          </div>
-        </div>
-      ) : (
-        ' '
-      )}
-
-      {/* Ventiladores */}
-      <div>
-        <h2 className='font-black text-2xl text-center mb-8'>
-          Utilización de ventiladores
+      <section className='mb-8'>
+        <h2 className='font-black text-2xl text-center mb-8 md:mb-12'>
+          Casos de COVID-19
         </h2>
         <div className='mb-4 md:mb-8 grid md:grid-cols-2 gap-3 small:gap-4'>
-          {(T_Vent_Adult_Disp && T_Vent_Adult && T_Vent_Adult_Occ) !== null ? (
+          {T_50_59 !== null ? (
+            <div className='mb-4 md:mb-8'>
+              <h3 className='font-black text-lg text-center md:mb-4'>Edad</h3>
+              <div className='h-300 md:h-400'>
+                <ResponsiveBar {...ageDistProps} />
+              </div>
+            </div>
+          ) : (
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Sin Datos
+            </h3>
+          )}
+          {(T_Masc && T_Fem) !== null ? (
             <div>
+              <h3 className='font-black text-lg text-center md:mb-4'>Sexo</h3>
+              <div className='h-300 md:h-350'>
+                <ResponsivePie {...sexProps} />
+              </div>
+            </div>
+          ) : (
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Sin Datos
+            </h3>
+          )}
+        </div>
+      </section>
+
+      {/* Ventiladores */}
+      <section className='mb-4 md:mb-16'>
+        <h2 className='font-black text-2xl text-center mb-8 md:mb-12'>
+          Utilización de ventiladores
+        </h2>
+        <div className='mb-4 md:mb-8 grid md:grid-cols-2 small:gap-4'>
+          {(T_Vent_Adult_Disp && T_Vent_Adult && T_Vent_Adult_Occ) !== null ? (
+            <div className='mb-4 md:mb-0'>
               <h3 className='font-black text-lg text-center md:mb-4'>
-                Adultos general
+                Adultos
               </h3>
               <div className='h-300 md:h-350'>
                 <ResponsivePie {...ventAdultProps} />
@@ -649,9 +717,9 @@ export default function PRStats() {
             </h3>
           )}
           {(T_Vent_Ped_Disp && T_Vent_Ped && T_Vent_Ped_Occ) !== null ? (
-            <div>
+            <div className='mb-4 md:mb-0'>
               <h3 className='font-black text-lg text-center md:mb-4'>
-                Pediátrico general
+                Pediátrico
               </h3>
               <div className='h-300 md:h-350'>
                 <ResponsivePie {...ventPedProps} />
@@ -663,77 +731,107 @@ export default function PRStats() {
             </h3>
           )}
         </div>
-      </div>
+      </section>
+
       {/* Hospitalizaciones */}
-      <h2 className='font-black text-2xl text-center mb-8'>
-        Ocupación de camas de hospital
-      </h2>
-      <div className='mb-6 grid md:grid-cols-2'>
-        {(T_Paciente_Adult && T_Camas_Adult_Disp) !== null ? (
-          <div>
-            <h3 className='font-black text-lg text-center md:mb-4'>
-              Adultos general
-            </h3>
-            <div className='h-300 md:h-350'>
-              <ResponsivePie {...camasAdultProps} />
+      <section>
+        <h2 className='font-black text-2xl text-center mb-8 md:mb-12'>
+          Ocupación de camas de hospital
+        </h2>
+        <div className='grid md:grid-cols-2 gap-4'>
+          {(T_Hospitalizados && T_Pacientes_Int_Covid) !== null ? (
+            <div>
+              <h3 className='font-black text-lg text-center md:mb-4'>
+                Casos de COVID-19 en hospitales
+              </h3>
+              <div className='h-300 md:h-400'>
+                <ResponsiveBar {...hospitalProps} />
+              </div>
             </div>
-          </div>
-        ) : (
-          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
-        )}
+          ) : (
+            ' '
+          )}
+          {(T_Cuartos_PSINeg_Disp &&
+            T_Cuartos_PSINeg_Occ &&
+            T_Cuartos_PSiNeg) !== null ? (
+            <div>
+              <h3 className='font-black text-lg text-center md:mb-4'>
+                Cuartos de presión negativa
+              </h3>
+              <div className='h-300 md:h-350'>
+                <ResponsivePie {...psiNegProps} />
+              </div>
+            </div>
+          ) : (
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Sin Datos
+            </h3>
+          )}
 
-        {(T_Paciente_Adult && T_Camas_Adult_Disp) !== null ? (
-          <div>
-            <h3 className='font-black text-lg text-center md:mb-4'>
-              Pediátrico general
-            </h3>
-            <div className='h-300 md:h-350'>
-              <ResponsivePie {...camasPedProps} />
+          {(T_Camas_Adult_Int_Disp &&
+            T_Camas_Adult_Int_Occ &&
+            T_Camas_Int_Adult) !== null ? (
+            <div>
+              <h3 className='font-black text-lg text-center md:mb-4'>
+                Intensivo adultos
+              </h3>
+              <div className='h-300 md:h-350'>
+                <ResponsivePie {...camasAdultIntProps} />
+              </div>
             </div>
-          </div>
-        ) : (
-          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
-        )}
+          ) : (
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Sin Datos
+            </h3>
+          )}
 
-        {(T_Paciente_Adult && T_Camas_Adult_Disp) !== null ? (
-          <div>
-            <h3 className='font-black text-lg text-center md:mb-4'>
-              Intensivo adultos
-            </h3>
-            <div className='h-300 md:h-350'>
-              <ResponsivePie {...camasAdultIntProps} />
+          {(T_Camas_Ped_Int_Disp && T_Camas_Ped_Int_Occ && T_Camas_Int_Ped) !==
+          null ? (
+            <div>
+              <h3 className='font-black text-lg text-center md:mb-4'>
+                Intensivo pediátrico
+              </h3>
+              <div className='h-300 md:h-350'>
+                <ResponsivePie {...camasPedIntProps} />
+              </div>
             </div>
-          </div>
-        ) : (
-          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
-        )}
+          ) : (
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Sin Datos
+            </h3>
+          )}
+          {(T_Camas_Adult_Disp && T_Paciente_Adult && T_Camas_Adulto) !==
+          null ? (
+            <div>
+              <h3 className='font-black text-lg text-center md:mb-4'>
+                Adultos general
+              </h3>
+              <div className='h-300 md:h-350'>
+                <ResponsivePie {...camasAdultProps} />
+              </div>
+            </div>
+          ) : (
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Sin Datos
+            </h3>
+          )}
 
-        {(T_Paciente_Adult && T_Camas_Adult_Disp) !== null ? (
-          <div>
-            <h3 className='font-black text-lg text-center md:mb-4'>
-              Intensivo pediátrico
-            </h3>
-            <div className='h-300 md:h-350'>
-              <ResponsivePie {...camasPedIntProps} />
+          {(T_Camas_Ped_Disp && T_Paciente_Ped && T_Camas_Ped) !== null ? (
+            <div>
+              <h3 className='font-black text-lg text-center md:mb-4'>
+                Pediátrico general
+              </h3>
+              <div className='h-300 md:h-350'>
+                <ResponsivePie {...camasPedProps} />
+              </div>
             </div>
-          </div>
-        ) : (
-          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
-        )}
-
-        {(T_Paciente_Adult && T_Camas_Adult_Disp) !== null ? (
-          <div>
+          ) : (
             <h3 className='font-black text-lg text-center md:mb-4'>
-              Cuartos de presión negativa
+              Sin Datos
             </h3>
-            <div className='h-300 md:h-350'>
-              <ResponsivePie {...psiNegProps} />
-            </div>
-          </div>
-        ) : (
-          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
-        )}
-      </div>
+          )}
+        </div>
+      </section>
     </>
   );
 }
