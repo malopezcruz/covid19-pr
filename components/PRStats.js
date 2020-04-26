@@ -41,8 +41,6 @@ export default function PRStats() {
     T_Camas_Int_Ped,
     T_Cuartos_PSiNeg,
     T_Cuartos_PSINeg_Occ,
-    T_Vent_Adult_Occ,
-    T_Vent_Ped_Occ,
     T_Vent_Adult,
     T_Vent_Ped,
     T_Vent_Ped_Disp,
@@ -581,58 +579,78 @@ export default function PRStats() {
         </div>
 
         <div className={`grid grid-cols-2 gap-3 small:gap-4`}>
-          {T_Casos_Unicos !== null && (
-            <div
-              className={`py-8 px-2
+          <div
+            className={`py-8 px-2
             row-span-3 flex justify-center items-center bg-gray-200 border border-gray-300 text-center rounded-lg`}
-            >
+          >
+            {T_Casos_Unicos !== null ? (
               <div>
                 <span className='text-4xl md:text-5xl font-bold'>
                   {formatNumber(T_Casos_Unicos)}
                 </span>
                 <h3 className='uppercase text-sm md:text-base'>Casos Únicos</h3>
               </div>
-            </div>
-          )}
+            ) : (
+              <h3 className='font-black text-lg text-center md:mb-4'>
+                Sin Datos
+              </h3>
+            )}
+          </div>
 
-          {T_Molecular_Pos !== null && (
+          {T_Molecular_Pos !== null ? (
             <DataBox
               number={formatNumber(T_Molecular_Pos)}
               label='Prueba Molecular'
             />
+          ) : (
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Sin Datos
+            </h3>
           )}
 
-          {T_Serologicos_Pos !== null && (
+          {T_Serologicos_Pos !== null ? (
             <DataBox
               number={formatNumber(T_Serologicos_Pos)}
               label='Prueba Serológica'
             />
+          ) : (
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Sin Datos
+            </h3>
           )}
 
-          {T_Casos_Nuev_Ult_Inf !== null && (
+          {T_Casos_Nuev_Ult_Inf !== null ? (
             <DataBox
               number={formatNumber(T_Casos_Nuev_Ult_Inf)}
               label='Casos Nuevos'
             />
+          ) : (
+            <h3 className='font-black text-lg text-center md:mb-4'>
+              Sin Datos
+            </h3>
           )}
         </div>
       </section>
 
       {/* letalidad */}
       <section className='mb-12 md:mb-16 grid grid-cols-2 gap-3 small:gap-4'>
-        {T_Muertes_Combinadas !== null && (
+        {T_Muertes_Combinadas !== null ? (
           <DataBox
             number={formatNumber(T_Muertes_Combinadas)}
             label='Muertes'
           />
+        ) : (
+          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
         )}
-        {T_Casos_Unicos !== null && (
+        {(T_Casos_Unicos && T_Muertes_Combinadas) !== null ? (
           <DataBox
             number={`${deathRate(T_Casos_Unicos, T_Muertes_Combinadas).toFixed(
               2
             )}%`}
             label='Tasa de Letalidad'
           />
+        ) : (
+          <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
         )}
       </section>
 
@@ -702,7 +720,10 @@ export default function PRStats() {
           Utilización de ventiladores
         </h2>
         <div className='mb-4 md:mb-8 grid md:grid-cols-2 small:gap-4'>
-          {(T_Vent_Adult_Disp && T_Vent_Adult && T_Vent_Adult_Occ) !== null ? (
+          {(T_Vent_Adult_Disp &&
+            T_Vent_Adult &&
+            T_Vent_Adult_NoCovid &&
+            T_Vent_Ped_NoCovid) !== null ? (
             <div className='mb-4 md:mb-0'>
               <h3 className='font-black text-lg text-center md:mb-4'>
                 Adultos
@@ -716,7 +737,10 @@ export default function PRStats() {
               Sin Datos
             </h3>
           )}
-          {(T_Vent_Ped_Disp && T_Vent_Ped && T_Vent_Ped_Occ) !== null ? (
+          {(T_Vent_Ped_Disp &&
+            T_Vent_Ped &&
+            T_Vent_Ped_NoCovid &&
+            T_Vent_Ped_Covid) !== null ? (
             <div className='mb-4 md:mb-0'>
               <h3 className='font-black text-lg text-center md:mb-4'>
                 Pediátrico
