@@ -194,30 +194,30 @@ export default function PRStats() {
     data: [
       {
         id: `Disponibles (${percentage(T_Vent_Ped_Disp, T_Vent_Ped).toFixed(
-          0
+          1
         )}%)`,
         label: `Disponibles (${percentage(T_Vent_Ped_Disp, T_Vent_Ped).toFixed(
-          0
+          1
         )}%)`,
         value: T_Vent_Ped_Disp,
         color: 'red',
       },
       {
         id: `Regular (${percentage(T_Vent_Ped_NoCovid, T_Vent_Ped).toFixed(
-          0
+          1
         )}%)`,
         label: `Regular (${percentage(T_Vent_Ped_NoCovid, T_Vent_Ped).toFixed(
-          0
+          1
         )}%)`,
         value: T_Vent_Ped_NoCovid,
         color: 'blue',
       },
       {
         id: `COVID-19 (${percentage(T_Vent_Ped_Covid, T_Vent_Ped).toFixed(
-          0
+          1
         )}%)`,
         label: `COVID-19 (${percentage(T_Vent_Ped_Covid, T_Vent_Ped).toFixed(
-          0
+          1
         )}%)`,
         value: T_Vent_Ped_Covid,
         color: 'blue',
@@ -253,34 +253,34 @@ export default function PRStats() {
     data: [
       {
         id: `Disponibles (${percentage(T_Vent_Adult_Disp, T_Vent_Adult).toFixed(
-          0
+          1
         )}%)`,
         label: `Disponibles (${percentage(
           T_Vent_Adult_Disp,
           T_Vent_Adult
-        ).toFixed(0)}%)`,
+        ).toFixed(1)}%)`,
         value: T_Vent_Adult_Disp,
         color: 'red',
       },
       {
         id: `Regular (${percentage(T_Vent_Adult_NoCovid, T_Vent_Adult).toFixed(
-          0
+          1
         )}%)`,
         label: `Regular (${percentage(
           T_Vent_Adult_NoCovid,
           T_Vent_Adult
-        ).toFixed(0)}%)`,
+        ).toFixed(1)}%)`,
         value: T_Vent_Adult_NoCovid,
         color: 'blue',
       },
       {
         id: `COVID-19 (${percentage(T_Vent_Adult_Covid, T_Vent_Adult).toFixed(
-          0
+          1
         )}%)`,
         label: `COVID-19 (${percentage(
           T_Vent_Adult_Covid,
           T_Vent_Adult
-        ).toFixed(0)}%)`,
+        ).toFixed(1)}%)`,
         value: T_Vent_Adult_Covid,
         color: 'blue',
       },
