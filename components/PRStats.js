@@ -11,6 +11,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ResponsiveBar } from '@nivo/bar';
 import { ResponsivePie } from '@nivo/pie';
+import ToolTipComp from './ToolTipComp';
 
 export default function PRStats() {
   const [stats, isError] = useStats(`https://covid19api.io/api/v1/PRExtraData`);
@@ -71,6 +72,8 @@ export default function PRStats() {
     T_Vent_Ped_NoCovid,
     T_Vent_Adult_Covid,
     T_Vent_Ped_Covid,
+    T_Casos_Diario_Serologicos,
+    T_Casos_Diarios_Molecular,
   } = stats.data[0].table[0].attributes;
 
   const pieDefault = {
@@ -623,7 +626,20 @@ export default function PRStats() {
             <DataBox
               number={formatNumber(T_Casos_Nuev_Ult_Inf)}
               label='Casos Nuevos'
-            />
+            >
+              {T_Casos_Diario_Serologicos !== null && (
+                <ToolTipComp datafor='new-cases'>
+                  <p>
+                    <strong>{T_Casos_Diario_Serologicos}</strong> Prueba
+                    serológica
+                  </p>
+                  <p>
+                    <strong>{T_Casos_Diarios_Molecular}</strong> Prueba
+                    molecular
+                  </p>
+                </ToolTipComp>
+              )}
+            </DataBox>
           ) : (
             <h3 className='font-black text-lg text-center md:mb-4'>
               Sin Datos
