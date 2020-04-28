@@ -74,6 +74,8 @@ export default function PRStats() {
     T_Vent_Ped_Covid,
     T_Casos_Diario_Serologicos,
     T_Casos_Diarios_Molecular,
+    T_Muertes_COVID_RD,
+    T_Fatalidades,
   } = stats.data[0].table[0].attributes;
 
   const pieDefault = {
@@ -628,14 +630,17 @@ export default function PRStats() {
               label='Casos Nuevos'
             >
               {T_Casos_Diario_Serologicos !== null && (
-                <ToolTipComp datafor='new-cases'>
-                  <p>
-                    <strong>{T_Casos_Diario_Serologicos}</strong> Prueba
-                    serológica
-                  </p>
+                <ToolTipComp
+                  datafor='newcases'
+                  uniqueID={T_Casos_Diario_Serologicos}
+                >
                   <p>
                     <strong>{T_Casos_Diarios_Molecular}</strong> Prueba
                     molecular
+                  </p>
+                  <p>
+                    <strong>{T_Casos_Diario_Serologicos}</strong> Prueba
+                    serológica
                   </p>
                 </ToolTipComp>
               )}
@@ -653,8 +658,20 @@ export default function PRStats() {
         {T_Muertes_Combinadas !== null ? (
           <DataBox
             number={formatNumber(T_Muertes_Combinadas)}
-            label='Muertes'
-          />
+            label='Muertes combinadas'
+          >
+            {(T_Fatalidades && T_Muertes_COVID_RD) !== null && (
+              <ToolTipComp datafor='fatality' uniqueID={T_Muertes_Combinadas}>
+                <p>
+                  <strong>{T_Fatalidades}</strong> COVID-19
+                </p>
+                <p>
+                  <strong>{T_Muertes_COVID_RD}</strong> COVID-19 Registro
+                  demográfico
+                </p>
+              </ToolTipComp>
+            )}
+          </DataBox>
         ) : (
           <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
         )}
