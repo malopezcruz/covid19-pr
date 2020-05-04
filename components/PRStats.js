@@ -839,7 +839,10 @@ export default function PRStats() {
             T_Vent_Ped_NoCovid) !== null ? (
             <div className='mb-4 md:mb-0'>
               <h3 className='font-black text-lg text-center md:mb-4'>
-                Adultos
+                Adultos{' '}
+                <span className='text-gray-500 font-light'>
+                  {`(${formatNumber(T_Vent_Adult)})`}
+                </span>
               </h3>
               <div className='h-300 md:h-350'>
                 <ResponsivePie {...ventAdultProps} />
@@ -856,7 +859,10 @@ export default function PRStats() {
             T_Vent_Ped_Covid) !== null ? (
             <div className='mb-4 md:mb-0'>
               <h3 className='font-black text-lg text-center md:mb-4'>
-                Pediátrico
+                Pediátrico{' '}
+                <span className='text-gray-500 font-light'>
+                  {`(${formatNumber(T_Vent_Ped)})`}
+                </span>
               </h3>
               <div className='h-300 md:h-350'>
                 <ResponsivePie {...ventPedProps} />
@@ -893,7 +899,10 @@ export default function PRStats() {
             T_Cuartos_PSiNeg) !== null ? (
             <div>
               <h3 className='font-black text-lg text-center md:mb-4'>
-                Cuartos de presión negativa
+                Cuartos de presión negativa{' '}
+                <span className='text-gray-500 font-light'>
+                  {`(${formatNumber(T_Cuartos_PSiNeg)})`}
+                </span>
               </h3>
               <div className='h-300 md:h-350'>
                 <ResponsivePie {...psiNegProps} />
@@ -911,7 +920,10 @@ export default function PRStats() {
             T_Camas_Int_Adult) !== null ? (
             <div className='mb-4'>
               <h3 className='font-black text-lg text-center md:mb-4'>
-                Intensivo adultos
+                Intensivo adultos{' '}
+                <span className='text-gray-500 font-light'>
+                  {`(${formatNumber(T_Camas_Int_Adult)})`}
+                </span>
               </h3>
               <div className='h-300 md:h-350'>
                 <ResponsivePie {...camasAdultIntProps} />
@@ -929,7 +941,10 @@ export default function PRStats() {
             T_Camas_Int_Ped) !== null ? (
             <div>
               <h3 className='font-black text-lg text-center md:mb-4'>
-                Intensivo pediátrico
+                Intensivo pediátrico{' '}
+                <span className='text-gray-500 font-light'>
+                  {`(${formatNumber(T_Camas_Int_Ped)})`}
+                </span>
               </h3>
               <div className='h-300 md:h-350'>
                 <ResponsivePie {...camasPedIntProps} />
@@ -944,7 +959,10 @@ export default function PRStats() {
           null ? (
             <div>
               <h3 className='font-black text-lg text-center md:mb-4'>
-                Adultos general
+                Adultos general{' '}
+                <span className='text-gray-500 font-light'>
+                  {`(${formatNumber(T_Camas_Adulto)})`}
+                </span>
               </h3>
               <div className='h-300 md:h-350'>
                 <ResponsivePie {...camasAdultProps} />
@@ -959,7 +977,10 @@ export default function PRStats() {
           {(T_Camas_Ped_Disp && T_Paciente_Ped && T_Camas_Ped) !== null ? (
             <div>
               <h3 className='font-black text-lg text-center md:mb-4'>
-                Pediátrico general
+                Pediátrico general{' '}
+                <span className='text-gray-500 font-light'>
+                  {`(${formatNumber(T_Camas_Ped)})`}
+                </span>
               </h3>
               <div className='h-300 md:h-350'>
                 <ResponsivePie {...camasPedProps} />
