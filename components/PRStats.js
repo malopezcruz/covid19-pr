@@ -36,8 +36,6 @@ export default function PRStats() {
     T_Camas_Ped,
     T_Paciente_Ped,
     T_Camas_Ped_Disp,
-    T_Camas_Adult_Int_Occ,
-    T_Camas_Ped_Int_Occ,
     T_Camas_Int_Adult,
     T_Camas_Int_Ped,
     T_Cuartos_PSiNeg,
@@ -76,6 +74,10 @@ export default function PRStats() {
     T_Casos_Diarios_Molecular,
     T_Muertes_COVID_RD,
     T_Fatalidades,
+    T_Paciente_Adult_Int_Covid,
+    T_Paciente_Adult_Int_NoCovid,
+    T_Paciente_Ped_Int_Covid,
+    T_Paciente_Ped_Int_No_Covid,
   } = stats.data[0].table[0].attributes;
 
   const pieDefault = {
@@ -208,22 +210,26 @@ export default function PRStats() {
         color: 'red',
       },
       {
-        id: `Regular (${percentage(T_Vent_Ped_NoCovid, T_Vent_Ped).toFixed(
-          1
-        )}%)`,
-        label: `Regular (${percentage(T_Vent_Ped_NoCovid, T_Vent_Ped).toFixed(
-          1
-        )}%)`,
+        id: `Paciente Regular (${percentage(
+          T_Vent_Ped_NoCovid,
+          T_Vent_Ped
+        ).toFixed(1)}%)`,
+        label: `Paciente Regular (${percentage(
+          T_Vent_Ped_NoCovid,
+          T_Vent_Ped
+        ).toFixed(1)}%)`,
         value: T_Vent_Ped_NoCovid,
         color: 'blue',
       },
       {
-        id: `COVID-19 (${percentage(T_Vent_Ped_Covid, T_Vent_Ped).toFixed(
-          1
-        )}%)`,
-        label: `COVID-19 (${percentage(T_Vent_Ped_Covid, T_Vent_Ped).toFixed(
-          1
-        )}%)`,
+        id: `Paciente COVID-19 (${percentage(
+          T_Vent_Ped_Covid,
+          T_Vent_Ped
+        ).toFixed(1)}%)`,
+        label: `Paciente COVID-19 (${percentage(
+          T_Vent_Ped_Covid,
+          T_Vent_Ped
+        ).toFixed(1)}%)`,
         value: T_Vent_Ped_Covid,
         color: 'blue',
       },
@@ -233,7 +239,7 @@ export default function PRStats() {
         anchor: 'bottom',
         direction: 'column',
         translateY: 80,
-        translateX: 0,
+        translateX: -25,
         itemSpacing: 10,
         justify: false,
         itemWidth: 140,
@@ -268,10 +274,11 @@ export default function PRStats() {
         color: 'red',
       },
       {
-        id: `Regular (${percentage(T_Vent_Adult_NoCovid, T_Vent_Adult).toFixed(
-          1
-        )}%)`,
-        label: `Regular (${percentage(
+        id: `Paciente Regular (${percentage(
+          T_Vent_Adult_NoCovid,
+          T_Vent_Adult
+        ).toFixed(1)}%)`,
+        label: `Paciente Regular (${percentage(
           T_Vent_Adult_NoCovid,
           T_Vent_Adult
         ).toFixed(1)}%)`,
@@ -279,10 +286,11 @@ export default function PRStats() {
         color: 'blue',
       },
       {
-        id: `COVID-19 (${percentage(T_Vent_Adult_Covid, T_Vent_Adult).toFixed(
-          1
-        )}%)`,
-        label: `COVID-19 (${percentage(
+        id: `Paciente COVID-19 (${percentage(
+          T_Vent_Adult_Covid,
+          T_Vent_Adult
+        ).toFixed(1)}%)`,
+        label: `Paciente COVID-19 (${percentage(
           T_Vent_Adult_Covid,
           T_Vent_Adult
         ).toFixed(1)}%)`,
@@ -295,7 +303,7 @@ export default function PRStats() {
         anchor: 'bottom',
         direction: 'column',
         translateY: 80,
-        translateX: 0,
+        translateX: -25,
         itemSpacing: 10,
         justify: false,
         itemWidth: 140,
@@ -374,25 +382,61 @@ export default function PRStats() {
         id: `Disponibles (${percentage(
           T_Camas_Adult_Int_Disp,
           T_Camas_Int_Adult
-        ).toFixed(0)}%)`,
+        ).toFixed(1)}%)`,
         label: `Disponibles (${percentage(
           T_Camas_Adult_Int_Disp,
           T_Camas_Int_Adult
-        ).toFixed(0)}%)`,
+        ).toFixed(1)}%)`,
         value: T_Camas_Adult_Int_Disp,
         color: 'red',
       },
       {
-        id: `Ocupadas (${percentage(
-          T_Camas_Adult_Int_Occ,
+        id: `Paciente Regular (${percentage(
+          T_Paciente_Adult_Int_NoCovid,
           T_Camas_Int_Adult
-        ).toFixed(0)}%)`,
-        label: `Ocupadas (${percentage(
-          T_Camas_Adult_Int_Occ,
+        ).toFixed(1)}%)`,
+        label: `Paciente Regular (${percentage(
+          T_Paciente_Adult_Int_NoCovid,
           T_Camas_Int_Adult
-        ).toFixed(0)}%)`,
-        value: T_Camas_Adult_Int_Occ,
+        ).toFixed(1)}%)`,
+        value: T_Paciente_Adult_Int_NoCovid,
         color: 'blue',
+      },
+      {
+        id: `Paciente COVID-19 (${percentage(
+          T_Paciente_Adult_Int_Covid,
+          T_Camas_Int_Adult
+        ).toFixed(1)}%)`,
+        label: `Paciente COVID-19 (${percentage(
+          T_Paciente_Adult_Int_Covid,
+          T_Camas_Int_Adult
+        ).toFixed(1)}%)`,
+        value: T_Paciente_Adult_Int_Covid,
+        color: 'blue',
+      },
+    ],
+    legends: [
+      {
+        anchor: 'bottom',
+        direction: 'column',
+        translateY: 80,
+        translateX: -25,
+        itemSpacing: 10,
+        justify: false,
+        itemWidth: 140,
+        itemHeight: 22,
+        itemDirection: 'left-to-right',
+        itemTextColor: '#555',
+        symbolSize: 18,
+        symbolShape: 'circle',
+        effects: [
+          {
+            on: 'hover',
+            style: {
+              itemTextColor: '#000',
+            },
+          },
+        ],
       },
     ],
   };
@@ -403,25 +447,61 @@ export default function PRStats() {
         id: `Disponibles (${percentage(
           T_Camas_Ped_Int_Disp,
           T_Camas_Int_Ped
-        ).toFixed(0)}%)`,
+        ).toFixed(1)}%)`,
         label: `Disponibles (${percentage(
           T_Camas_Ped_Int_Disp,
           T_Camas_Int_Ped
-        ).toFixed(0)}%)`,
+        ).toFixed(1)}%)`,
         value: T_Camas_Ped_Int_Disp,
         color: 'red',
       },
       {
-        id: `Ocupadas (${percentage(
-          T_Camas_Ped_Int_Occ,
+        id: `Paciente Regular (${percentage(
+          T_Camas_Int_Ped - T_Camas_Ped_Int_Disp,
           T_Camas_Int_Ped
-        ).toFixed(0)}%)`,
-        label: `Ocupadas (${percentage(
-          T_Camas_Ped_Int_Occ,
+        ).toFixed(1)}%)`,
+        label: `Paciente Regular (${percentage(
+          T_Camas_Int_Ped - T_Camas_Ped_Int_Disp,
           T_Camas_Int_Ped
-        ).toFixed(0)}%)`,
-        value: T_Camas_Ped_Int_Occ,
+        ).toFixed(1)}%)`,
+        value: T_Camas_Int_Ped - T_Camas_Ped_Int_Disp,
         color: 'blue',
+      },
+      {
+        id: `Paciente COVID-19 (${percentage(
+          T_Paciente_Ped_Int_Covid,
+          T_Camas_Int_Ped
+        ).toFixed(1)}%)`,
+        label: `Paciente COVID-19 (${percentage(
+          T_Paciente_Ped_Int_Covid,
+          T_Camas_Int_Ped
+        ).toFixed(1)}%)`,
+        value: T_Paciente_Ped_Int_Covid,
+        color: 'blue',
+      },
+    ],
+    legends: [
+      {
+        anchor: 'bottom',
+        direction: 'column',
+        translateY: 80,
+        translateX: -25,
+        itemSpacing: 10,
+        justify: false,
+        itemWidth: 140,
+        itemHeight: 22,
+        itemDirection: 'left-to-right',
+        itemTextColor: '#555',
+        symbolSize: 18,
+        symbolShape: 'circle',
+        effects: [
+          {
+            on: 'hover',
+            style: {
+              itemTextColor: '#000',
+            },
+          },
+        ],
       },
     ],
   };
@@ -561,12 +641,12 @@ export default function PRStats() {
     ...pieDefault,
   };
   const camasAdultIntProps = {
-    ...camasAdultIntData,
     ...pieDefault,
+    ...camasAdultIntData,
   };
   const camasPedIntProps = {
-    ...camasPedIntData,
     ...pieDefault,
+    ...camasPedIntData,
   };
   const psiNegProps = {
     ...psiNegData,
@@ -663,11 +743,11 @@ export default function PRStats() {
             {(T_Fatalidades && T_Muertes_COVID_RD) !== null && (
               <ToolTipComp datafor='fatality' uniqueID={T_Muertes_Combinadas}>
                 <p>
-                  <strong>{T_Fatalidades}</strong> COVID-19
+                  <strong>{T_Fatalidades}</strong> Vigilancia de COVID-19
                 </p>
                 <p>
-                  <strong>{T_Muertes_COVID_RD}</strong> COVID-19 Registro
-                  demográfico
+                  <strong>{T_Muertes_COVID_RD}</strong> Registro demográfico
+                  COVID-19
                 </p>
               </ToolTipComp>
             )}
@@ -734,7 +814,7 @@ export default function PRStats() {
           )}
           {(T_Masc && T_Fem) !== null ? (
             <div>
-              <h3 className='font-black text-lg text-center md:mb-4'>Sexo</h3>
+              <h3 className='font-black text-lg text-center md:mb-4'>Género</h3>
               <div className='h-300 md:h-350'>
                 <ResponsivePie {...sexProps} />
               </div>
@@ -826,9 +906,10 @@ export default function PRStats() {
           )}
 
           {(T_Camas_Adult_Int_Disp &&
-            T_Camas_Adult_Int_Occ &&
+            T_Paciente_Adult_Int_Covid &&
+            T_Paciente_Adult_Int_NoCovid &&
             T_Camas_Int_Adult) !== null ? (
-            <div>
+            <div className='mb-4'>
               <h3 className='font-black text-lg text-center md:mb-4'>
                 Intensivo adultos
               </h3>
@@ -842,8 +923,10 @@ export default function PRStats() {
             </h3>
           )}
 
-          {(T_Camas_Ped_Int_Disp && T_Camas_Ped_Int_Occ && T_Camas_Int_Ped) !==
-          null ? (
+          {(T_Camas_Ped_Int_Disp &&
+            T_Paciente_Ped_Int_Covid &&
+            T_Paciente_Ped_Int_No_Covid &&
+            T_Camas_Int_Ped) !== null ? (
             <div>
               <h3 className='font-black text-lg text-center md:mb-4'>
                 Intensivo pediátrico
