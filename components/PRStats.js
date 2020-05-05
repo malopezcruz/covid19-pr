@@ -78,6 +78,7 @@ export default function PRStats() {
     T_Paciente_Adult_Int_NoCovid,
     T_Paciente_Ped_Int_Covid,
     T_Paciente_Ped_Int_No_Covid,
+    T_Camas_Ped_Int_Occ,
   } = stats.data[0].table[0].attributes;
 
   const pieDefault = {
@@ -180,6 +181,33 @@ export default function PRStats() {
     colors: { scheme: 'pastel2' },
   };
 
+  const legendColumnDefault = {
+    legends: [
+      {
+        anchor: 'bottom',
+        direction: 'column',
+        translateY: 80,
+        translateX: -25,
+        itemSpacing: 10,
+        justify: false,
+        itemWidth: 140,
+        itemHeight: 22,
+        itemDirection: 'left-to-right',
+        itemTextColor: '#555',
+        symbolSize: 18,
+        symbolShape: 'circle',
+        effects: [
+          {
+            on: 'hover',
+            style: {
+              itemTextColor: '#000',
+            },
+          },
+        ],
+      },
+    ],
+  };
+
   const hospitalData = {
     data: [
       {
@@ -234,30 +262,7 @@ export default function PRStats() {
         color: 'blue',
       },
     ],
-    legends: [
-      {
-        anchor: 'bottom',
-        direction: 'column',
-        translateY: 80,
-        translateX: -25,
-        itemSpacing: 10,
-        justify: false,
-        itemWidth: 140,
-        itemHeight: 22,
-        itemDirection: 'left-to-right',
-        itemTextColor: '#555',
-        symbolSize: 18,
-        symbolShape: 'circle',
-        effects: [
-          {
-            on: 'hover',
-            style: {
-              itemTextColor: '#000',
-            },
-          },
-        ],
-      },
-    ],
+    ...legendColumnDefault,
   };
 
   const ventAdultData = {
@@ -298,30 +303,7 @@ export default function PRStats() {
         color: 'blue',
       },
     ],
-    legends: [
-      {
-        anchor: 'bottom',
-        direction: 'column',
-        translateY: 80,
-        translateX: -25,
-        itemSpacing: 10,
-        justify: false,
-        itemWidth: 140,
-        itemHeight: 22,
-        itemDirection: 'left-to-right',
-        itemTextColor: '#555',
-        symbolSize: 18,
-        symbolShape: 'circle',
-        effects: [
-          {
-            on: 'hover',
-            style: {
-              itemTextColor: '#000',
-            },
-          },
-        ],
-      },
-    ],
+    ...legendColumnDefault,
   };
 
   const camasAdultData = {
@@ -415,32 +397,10 @@ export default function PRStats() {
         color: 'blue',
       },
     ],
-    legends: [
-      {
-        anchor: 'bottom',
-        direction: 'column',
-        translateY: 80,
-        translateX: -25,
-        itemSpacing: 10,
-        justify: false,
-        itemWidth: 140,
-        itemHeight: 22,
-        itemDirection: 'left-to-right',
-        itemTextColor: '#555',
-        symbolSize: 18,
-        symbolShape: 'circle',
-        effects: [
-          {
-            on: 'hover',
-            style: {
-              itemTextColor: '#000',
-            },
-          },
-        ],
-      },
-    ],
+    ...legendColumnDefault,
   };
 
+  // Intensivo Pediátrico
   const camasPedIntData = {
     data: [
       {
@@ -480,30 +440,37 @@ export default function PRStats() {
         color: 'blue',
       },
     ],
-    legends: [
+    ...legendColumnDefault,
+  };
+
+  const camasPedIntDataNoCovidData = {
+    data: [
       {
-        anchor: 'bottom',
-        direction: 'column',
-        translateY: 80,
-        translateX: -25,
-        itemSpacing: 10,
-        justify: false,
-        itemWidth: 140,
-        itemHeight: 22,
-        itemDirection: 'left-to-right',
-        itemTextColor: '#555',
-        symbolSize: 18,
-        symbolShape: 'circle',
-        effects: [
-          {
-            on: 'hover',
-            style: {
-              itemTextColor: '#000',
-            },
-          },
-        ],
+        id: `Disponibles (${percentage(
+          T_Camas_Ped_Int_Disp,
+          T_Camas_Int_Ped
+        ).toFixed(1)}%)`,
+        label: `Disponibles (${percentage(
+          T_Camas_Ped_Int_Disp,
+          T_Camas_Int_Ped
+        ).toFixed(1)}%)`,
+        value: T_Camas_Ped_Int_Disp,
+        color: 'red',
+      },
+      {
+        id: `Paciente Regular (${percentage(
+          T_Camas_Ped_Int_Occ,
+          T_Camas_Int_Ped
+        ).toFixed(1)}%)`,
+        label: `Paciente Regular (${percentage(
+          T_Camas_Ped_Int_Occ,
+          T_Camas_Int_Ped
+        ).toFixed(1)}%)`,
+        value: T_Camas_Ped_Int_Occ,
+        color: 'blue',
       },
     ],
+    ...legendColumnDefault,
   };
 
   const psiNegData = {
@@ -636,18 +603,27 @@ export default function PRStats() {
     ...camasAdultData,
     ...pieDefault,
   };
+
   const camasPedProps = {
     ...camasPedData,
     ...pieDefault,
   };
+
   const camasAdultIntProps = {
     ...pieDefault,
     ...camasAdultIntData,
   };
+
   const camasPedIntProps = {
     ...pieDefault,
     ...camasPedIntData,
   };
+
+  const camasPedIntNoCovidDataProps = {
+    ...pieDefault,
+    ...camasPedIntDataNoCovidData,
+  };
+
   const psiNegProps = {
     ...psiNegData,
     ...pieDefault,
@@ -844,7 +820,7 @@ export default function PRStats() {
                   {`(${formatNumber(T_Vent_Adult)})`}
                 </span>
               </h3>
-              <div className='h-300 md:h-350'>
+              <div className='h-300 md:h-350 pb-4 md:pb-0'>
                 <ResponsivePie {...ventAdultProps} />
               </div>
             </div>
@@ -864,7 +840,7 @@ export default function PRStats() {
                   {`(${formatNumber(T_Vent_Ped)})`}
                 </span>
               </h3>
-              <div className='h-300 md:h-350'>
+              <div className='h-300 md:h-350 pb-4 md:pb-0'>
                 <ResponsivePie {...ventPedProps} />
               </div>
             </div>
@@ -904,7 +880,7 @@ export default function PRStats() {
                   {`(${formatNumber(T_Cuartos_PSiNeg)})`}
                 </span>
               </h3>
-              <div className='h-300 md:h-350'>
+              <div className='h-300 md:h-350 pb-4 md:pb-0'>
                 <ResponsivePie {...psiNegProps} />
               </div>
             </div>
@@ -914,18 +890,19 @@ export default function PRStats() {
             </h3>
           )}
 
+          {/* Cuidado intensivo */}
           {(T_Camas_Adult_Int_Disp &&
             T_Paciente_Adult_Int_Covid &&
             T_Paciente_Adult_Int_NoCovid &&
             T_Camas_Int_Adult) !== null ? (
-            <div className='mb-4'>
+            <div className='mb-4 md:mb-12'>
               <h3 className='font-black text-lg text-center md:mb-4'>
                 Intensivo adultos{' '}
                 <span className='text-gray-500 font-light'>
                   {`(${formatNumber(T_Camas_Int_Adult)})`}
                 </span>
               </h3>
-              <div className='h-300 md:h-350'>
+              <div className='h-300 md:h-350 pb-4 md:pb-0'>
                 <ResponsivePie {...camasAdultIntProps} />
               </div>
             </div>
@@ -939,22 +916,32 @@ export default function PRStats() {
             T_Paciente_Ped_Int_Covid &&
             T_Paciente_Ped_Int_No_Covid &&
             T_Camas_Int_Ped) !== null ? (
-            <div>
+            <div className='mb-4 md:b-12'>
               <h3 className='font-black text-lg text-center md:mb-4'>
                 Intensivo pediátrico{' '}
                 <span className='text-gray-500 font-light'>
                   {`(${formatNumber(T_Camas_Int_Ped)})`}
                 </span>
               </h3>
-              <div className='h-300 md:h-350'>
+              <div className='h-300 md:h-350 pb-4 md:pb-0'>
                 <ResponsivePie {...camasPedIntProps} />
               </div>
             </div>
           ) : (
-            <h3 className='font-black text-lg text-center md:mb-4'>
-              Sin Datos
-            </h3>
+            <div className='mb-4 md:b-12'>
+              <h3 className='font-black text-lg text-center md:mb-4'>
+                Intensivo pediátrico{' '}
+                <span className='text-gray-500 font-light'>
+                  {`(${formatNumber(T_Camas_Int_Ped)})`}
+                </span>
+              </h3>
+              <div className='h-300 md:h-350 pb-4 md:pb-0'>
+                <ResponsivePie {...camasPedIntNoCovidDataProps} />
+              </div>
+            </div>
           )}
+
+          {/* Camas en general */}
           {(T_Camas_Adult_Disp && T_Paciente_Adult && T_Camas_Adulto) !==
           null ? (
             <div>
@@ -964,7 +951,7 @@ export default function PRStats() {
                   {`(${formatNumber(T_Camas_Adulto)})`}
                 </span>
               </h3>
-              <div className='h-300 md:h-350'>
+              <div className='h-300 md:h-350 pb-4 md:pb-0'>
                 <ResponsivePie {...camasAdultProps} />
               </div>
             </div>
@@ -982,7 +969,7 @@ export default function PRStats() {
                   {`(${formatNumber(T_Camas_Ped)})`}
                 </span>
               </h3>
-              <div className='h-300 md:h-350'>
+              <div className='h-300 md:h-350 pb-4 md:pb-0'>
                 <ResponsivePie {...camasPedProps} />
               </div>
             </div>
