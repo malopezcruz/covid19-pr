@@ -690,14 +690,26 @@ export default function PRStats() {
                   datafor='newcases'
                   uniqueID={T_Casos_Diario_Serologicos}
                 >
-                  <p>
-                    <strong>{T_Casos_Diarios_Molecular}</strong> Prueba
-                    molecular
-                  </p>
-                  <p>
-                    <strong>{T_Casos_Diario_Serologicos}</strong> Prueba
-                    serológica
-                  </p>
+                  <table className='table-auto'>
+                    <tbody>
+                      <tr>
+                        <td className='border px-4 py-2'>Prueba molecular</td>
+                        <td className='border px-4 py-2'>
+                          <strong>
+                            {formatNumber(T_Casos_Diarios_Molecular)}
+                          </strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className='border px-4 py-2'>Prueba serológica</td>
+                        <td className='border px-4 py-2'>
+                          <strong>
+                            {formatNumber(T_Casos_Diario_Serologicos)}
+                          </strong>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </ToolTipComp>
               )}
             </DataBox>
@@ -718,13 +730,26 @@ export default function PRStats() {
           >
             {(T_Fatalidades && T_Muertes_COVID_RD) !== null && (
               <ToolTipComp datafor='fatality' uniqueID={T_Muertes_Combinadas}>
-                <p>
-                  <strong>{T_Fatalidades}</strong> Vigilancia de COVID-19
-                </p>
-                <p>
-                  <strong>{T_Muertes_COVID_RD}</strong> Registro demográfico
-                  COVID-19
-                </p>
+                <table className='table-auto'>
+                  <tbody>
+                    <tr>
+                      <td className='border px-4 py-2'>
+                        Vigilancia de COVID-19
+                      </td>
+                      <td className='border px-4 py-2'>
+                        <strong>{formatNumber(T_Fatalidades)}</strong>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className='border px-4 py-2'>
+                        Registro demográfico COVID-19
+                      </td>
+                      <td className='border px-4 py-2'>
+                        <strong>{formatNumber(T_Muertes_COVID_RD)}</strong>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </ToolTipComp>
             )}
           </DataBox>
