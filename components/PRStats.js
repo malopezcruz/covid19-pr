@@ -693,16 +693,16 @@ export default function PRStats() {
                   <table className='table-auto'>
                     <tbody>
                       <tr>
-                        <td className='border px-4 py-2'>Prueba molecular</td>
-                        <td className='border px-4 py-2'>
+                        <td className='px-2 py-1'>Prueba molecular:</td>
+                        <td className='px-2 py-1 text-right'>
                           <strong>
                             {formatNumber(T_Casos_Diarios_Molecular)}
                           </strong>
                         </td>
                       </tr>
                       <tr>
-                        <td className='border px-4 py-2'>Prueba serológica</td>
-                        <td className='border px-4 py-2'>
+                        <td className='px-2 py-1'>Prueba serológica:</td>
+                        <td className='px-2 py-1 text-right'>
                           <strong>
                             {formatNumber(T_Casos_Diario_Serologicos)}
                           </strong>
@@ -733,18 +733,16 @@ export default function PRStats() {
                 <table className='table-auto'>
                   <tbody>
                     <tr>
-                      <td className='border px-4 py-2'>
-                        Vigilancia de COVID-19
-                      </td>
-                      <td className='border px-4 py-2'>
+                      <td className='px-2 py-1'>Vigilancia de COVID-19:</td>
+                      <td className='px-2 py-1 text-right'>
                         <strong>{formatNumber(T_Fatalidades)}</strong>
                       </td>
                     </tr>
                     <tr>
-                      <td className='border px-4 py-2'>
-                        Registro demográfico COVID-19
+                      <td className='px-2 py-1'>
+                        Registro demográfico COVID-19:
                       </td>
-                      <td className='border px-4 py-2'>
+                      <td className='px-2 py-1 text-right'>
                         <strong>{formatNumber(T_Muertes_COVID_RD)}</strong>
                       </td>
                     </tr>
@@ -767,6 +765,17 @@ export default function PRStats() {
           <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
         )}
       </section>
+
+      {/* <div className='mb-4 md:mb-8 grid md:grid-cols-2 gap-3 small:gap-4'>
+        <iframe
+          src='https://ourworldindata.org/grapher/total-cases-covid-19?year=2020-05-09&time=2020-03-28..&country=PRI'
+          style={{ width: '100%', height: '600px', border: '0px none' }}
+        ></iframe>
+        <iframe
+          src='https://ourworldindata.org/grapher/total-deaths-covid-19?time=2020-03-28..&country=PRI'
+          style={{ width: '100%', height: '600px', border: '0px none' }}
+        ></iframe>
+      </div> */}
 
       {/* Pruebas */}
       {(T_Casos_Pos &&
