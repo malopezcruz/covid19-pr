@@ -3,7 +3,7 @@ import Head from 'next/head';
 import GlobalStats from '../components/GlobalStats';
 import PRStats from '../components/PRStats';
 import USStats from '../components/USStats';
-import CategoryBox from '../components/CategoryBox';
+// import CategoryBox from '../components/CategoryBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Footer from '../components/Footer';
 import {
@@ -92,14 +92,14 @@ const IndexPage = () => {
           </h1>
         </div>
         <div className='w-full max-w-screen-lg px-4 mx-auto flex-grow mt-6'>
-          <CategoryBox>
-            <PRStats />
-          </CategoryBox>
+          {/* <CategoryBox> */}
+          <PRStats />
+          {/* </CategoryBox> */}
 
-          <CategoryBox>
-            <GlobalStats />
-            <USStats />
-          </CategoryBox>
+          {/* <CategoryBox> */}
+          <GlobalStats />
+          <USStats />
+          {/* </CategoryBox> */}
         </div>
         <Footer />
       </div>

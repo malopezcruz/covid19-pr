@@ -1,6 +1,7 @@
 import React from 'react';
 import ErrorMessage from './ErrorMessage';
-import DataBox from '../components/DataBox';
+import DataBox from './DataBox';
+import CategoryBox from './CategoryBox';
 import useStats from '../utils/useStats';
 import {
   formatNumber,
@@ -83,8 +84,8 @@ export default function PRStats() {
 
   const pieDefault = {
     margin: { top: 30, right: 80, bottom: 80, left: 80 },
-    innerRadius: 0.35,
-    padAngle: 0.5,
+    innerRadius: 0.37,
+    padAngle: 1,
     cornerRadius: 3,
     enableRadialLabels: false,
     theme: {
@@ -96,42 +97,46 @@ export default function PRStats() {
     },
     colors: {
       scheme: 'pastel2',
-      borderWidth: 1,
-      borderColor: { from: 'color', modifiers: [['darker', 0.2]] },
-      radialLabelsSkipAngle: 0,
-      radialLabelsTextXOffset: 0,
-      radialLabelsTextColor: '#333333',
-      radialLabelsLinkOffset: 0,
-      radialLabelsLinkDiagonalLength: 0,
-      radialLabelsLinkHorizontalLength: 0,
-      radialLabelsLinkStrokeWidth: 0,
-      radialLabelsLinkColor: { from: 'color' },
-      slicesLabelsSkipAngle: 0,
-      slicesLabelsTextColor: '#333333',
-      animate: true,
-      motionStiffness: 90,
-      motionDamping: 15,
-      defs: [
-        {
-          id: 'dots',
-          type: 'patternDots',
-          background: 'inherit',
-          color: 'rgba(255, 255, 255, 0.3)',
-          size: 4,
-          padding: 1,
-          stagger: true,
-        },
-        {
-          id: 'lines',
-          type: 'patternLines',
-          background: 'inherit',
-          color: 'rgba(255, 255, 255, 0.3)',
-          rotation: -45,
-          lineWidth: 6,
-          spacing: 10,
-        },
-      ],
     },
+    borderWidth: 1,
+    borderColor: {
+      from: 'color',
+      modifiers: [['darker', 0.2]],
+    },
+    radialLabelsSkipAngle: 0,
+    radialLabelsTextXOffset: 0,
+    radialLabelsTextColor: '#222',
+    radialLabelsLinkOffset: 0,
+    radialLabelsLinkDiagonalLength: 0,
+    radialLabelsLinkHorizontalLength: 0,
+    radialLabelsLinkStrokeWidth: 0,
+    radialLabelsLinkColor: { from: 'color' },
+    slicesLabelsSkipAngle: 0,
+    slicesLabelsTextColor: '#222',
+    animate: true,
+    motionStiffness: 90,
+    motionDamping: 15,
+    defs: [
+      {
+        id: 'dots',
+        type: 'patternDots',
+        background: 'inherit',
+        color: 'rgba(255, 255, 255, 0.3)',
+        size: 4,
+        padding: 1,
+        stagger: true,
+      },
+      {
+        id: 'lines',
+        type: 'patternLines',
+        background: 'inherit',
+        color: 'rgba(255, 255, 255, 0.3)',
+        rotation: -45,
+        lineWidth: 6,
+        spacing: 10,
+      },
+    ],
+
     fill: [
       {
         match: {
@@ -179,6 +184,11 @@ export default function PRStats() {
     labelSkipHeight: 16,
     animate: true,
     colors: { scheme: 'pastel2' },
+    borderWidth: 1,
+    borderColor: {
+      from: 'color',
+      modifiers: [['darker', 0.3]],
+    },
   };
 
   const legendColumnDefault = {
@@ -630,7 +640,7 @@ export default function PRStats() {
   };
 
   return (
-    <>
+    <CategoryBox>
       <section className='mb-4 md:mb-8'>
         <div className='text-center mb-8'>
           <h2 className='font-black text-4xl '>Puerto Rico</h2>
@@ -1014,6 +1024,6 @@ export default function PRStats() {
           )}
         </div>
       </section>
-    </>
+    </CategoryBox>
   );
 }

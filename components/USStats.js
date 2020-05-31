@@ -1,5 +1,6 @@
 import React from 'react';
 import ErrorMessage from './ErrorMessage';
+import CategoryBox from './CategoryBox';
 import useStats from '../utils/useStats';
 import { formatNumber, deathRate } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,17 +23,19 @@ export default function GlobalStats() {
   const { cases, deaths, recovered } = stats.report;
 
   return (
-    <div className='mt-16 mb-8 md:mb-12'>
-      <h2 className='font-black text-4xl text-center mb-8'>Estados Unidos</h2>
-      <div className='mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3 small:gap-4'>
-        <DataBox number={formatNumber(cases)} label='Confirmados' />
-        <DataBox number={formatNumber(deaths)} label='Muertes' />
-        <DataBox number={formatNumber(recovered)} label='Recuperados' />
-        <DataBox
-          number={`${deathRate(cases, deaths).toFixed(2)}%`}
-          label='Tasa de Letalidad'
-        />
+    <CategoryBox>
+      <div className='mb-8 md:mb-8'>
+        <h2 className='font-black text-4xl text-center mb-8'>Estados Unidos</h2>
+        <div className='mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3 small:gap-4'>
+          <DataBox number={formatNumber(cases)} label='Confirmados' />
+          <DataBox number={formatNumber(deaths)} label='Muertes' />
+          <DataBox number={formatNumber(recovered)} label='Recuperados' />
+          <DataBox
+            number={`${deathRate(cases, deaths).toFixed(2)}%`}
+            label='Tasa de Letalidad'
+          />
+        </div>
       </div>
-    </div>
+    </CategoryBox>
   );
 }
