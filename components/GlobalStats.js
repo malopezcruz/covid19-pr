@@ -24,9 +24,9 @@ export default function GlobalStats() {
 
   return (
     <CategoryBox>
-      <div className='mb-8 md:mb-8'>
+      <div className='mb-4'>
         <h2 className='font-black text-4xl text-center mb-8'>Global</h2>
-        <div className='mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3 small:gap-4'>
+        <div className='grid grid-cols-2 lg:grid-cols-4 gap-3 small:gap-4'>
           <DataBox number={formatNumber(cases)} label='Confirmados' />
           <DataBox number={formatNumber(deaths)} label='Muertes' />
           <DataBox number={formatNumber(recovered)} label='Recuperados' />
