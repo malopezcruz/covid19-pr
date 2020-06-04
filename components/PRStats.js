@@ -85,9 +85,9 @@ export default function PRStats() {
   const pieDefault = {
     margin: { top: 30, right: 80, bottom: 80, left: 80 },
     innerRadius: 0.37,
-    padAngle: 1,
-    cornerRadius: 3,
-    enableRadialLabels: false,
+    padAngle: 0.7,
+    cornerRadius: 0.5,
+    enableRadialLabels: true,
     theme: {
       legends: {
         text: {
@@ -96,21 +96,24 @@ export default function PRStats() {
       },
     },
     colors: {
-      scheme: 'pastel2',
+      scheme: 'paired',
     },
     borderWidth: 1,
     borderColor: {
       from: 'color',
-      modifiers: [['darker', 0.2]],
+      modifiers: [['darker', 0.1]],
     },
-    radialLabelsSkipAngle: 0,
-    radialLabelsTextXOffset: 0,
+    radialLabel: 'value',
+    radialLabelsSkipAngle: 2,
+    radialLabelsTextXOffset: 2,
     radialLabelsTextColor: '#222',
-    radialLabelsLinkOffset: 0,
-    radialLabelsLinkDiagonalLength: 0,
-    radialLabelsLinkHorizontalLength: 0,
-    radialLabelsLinkStrokeWidth: 0,
+    radialLabelsLinkOffset: 2,
+    radialLabelsLinkDiagonalLength: 10,
+    radialLabelsLinkHorizontalLength: 10,
+    radialLabelsLinkStrokeWidth: 1,
     radialLabelsLinkColor: { from: 'color' },
+    enableRadialLabels: true,
+    enableSlicesLabels: false,
     slicesLabelsSkipAngle: 0,
     slicesLabelsTextColor: '#222',
     animate: true,
@@ -183,7 +186,7 @@ export default function PRStats() {
     labelSkipWidth: 16,
     labelSkipHeight: 16,
     animate: true,
-    colors: { scheme: 'pastel2' },
+    colors: { scheme: 'paired' },
     borderWidth: 1,
     borderColor: {
       from: 'color',
@@ -427,14 +430,14 @@ export default function PRStats() {
       },
       {
         id: `Paciente Regular (${percentage(
-          T_Camas_Int_Ped - T_Camas_Ped_Int_Disp,
+          T_Paciente_Ped_Int_No_Covid,
           T_Camas_Int_Ped
         ).toFixed(1)}%)`,
         label: `Paciente Regular (${percentage(
-          T_Camas_Int_Ped - T_Camas_Ped_Int_Disp,
+          T_Paciente_Ped_Int_No_Covid,
           T_Camas_Int_Ped
         ).toFixed(1)}%)`,
-        value: T_Camas_Int_Ped - T_Camas_Ped_Int_Disp,
+        value: T_Paciente_Ped_Int_No_Covid,
         color: 'blue',
       },
       {

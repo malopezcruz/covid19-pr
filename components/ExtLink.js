@@ -5,7 +5,7 @@ export default function ExtLink({ link, label }) {
   return (
     <>
       <a
-        className='text-green-300 text-base'
+        className='text-blue-200 text-base'
         href={link}
         rel='noreferrer noopenner'
         target='_blank'
