@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ResponsiveBar } from '@nivo/bar';
 import { ResponsivePie } from '@nivo/pie';
 import ToolTipComp from './ToolTipComp';
+import ReactTooltip from 'react-tooltip';
 
 export default function PRStats() {
   const [stats, isError] = useStats(`https://covid19api.io/api/v1/PRExtraData`);
@@ -26,12 +27,7 @@ export default function PRStats() {
     );
 
   const {
-    T_Casos_Pos,
-    T_Casos_Neg,
-    T_Casos_Pend,
-    T_Casos_Inconcluso,
     T_Muertes_Combinadas,
-    T_Casos,
     T_Camas_Adulto,
     T_Paciente_Adult,
     T_Camas_Ped,
@@ -80,6 +76,10 @@ export default function PRStats() {
     T_Paciente_Ped_Int_Covid,
     T_Paciente_Ped_Int_No_Covid,
     T_Camas_Ped_Int_Occ,
+    // T_IgM,
+    // T_IgM_IgG,
+    // T_IgG,
+    // T_No_Especificada,
   } = stats.data[0].table[0].attributes;
 
   const pieDefault = {
@@ -674,7 +674,7 @@ export default function PRStats() {
           {T_Molecular_Pos !== null ? (
             <DataBox
               number={formatNumber(T_Molecular_Pos)}
-              label='Prueba Molecular'
+              label='Casos confirmados'
             />
           ) : (
             <h3 className='font-black text-lg text-center md:mb-4'>
@@ -685,7 +685,7 @@ export default function PRStats() {
           {T_Serologicos_Pos !== null ? (
             <DataBox
               number={formatNumber(T_Serologicos_Pos)}
-              label='Prueba Serológica'
+              label='Casos probables'
             />
           ) : (
             <h3 className='font-black text-lg text-center md:mb-4'>
@@ -696,8 +696,9 @@ export default function PRStats() {
           {T_Casos_Nuev_Ult_Inf !== null ? (
             <DataBox
               number={formatNumber(T_Casos_Nuev_Ult_Inf)}
-              label='Casos Nuevos'
+              label='Casos reportados hoy'
             >
+              {' '}
               {T_Casos_Diario_Serologicos !== null && (
                 <ToolTipComp
                   datafor='newcases'
@@ -706,7 +707,7 @@ export default function PRStats() {
                   <table className='table-auto'>
                     <tbody>
                       <tr>
-                        <td className='px-2 py-1'>Prueba molecular:</td>
+                        <td className='px-2 py-1'>Casos confirmados:</td>
                         <td className='px-2 py-1 text-right'>
                           <strong>
                             {formatNumber(T_Casos_Diarios_Molecular)}
@@ -714,7 +715,7 @@ export default function PRStats() {
                         </td>
                       </tr>
                       <tr>
-                        <td className='px-2 py-1'>Prueba serológica:</td>
+                        <td className='px-2 py-1'>Casos probables:</td>
                         <td className='px-2 py-1 text-right'>
                           <strong>
                             {formatNumber(T_Casos_Diario_Serologicos)}
@@ -723,6 +724,10 @@ export default function PRStats() {
                       </tr>
                     </tbody>
                   </table>
+                  <p className='text-xs px-2 pt-1 pb-2 w-56'>
+                    Los casos reportados se distribuyen según la fecha en que se
+                    tomó la prueba (entre varios días o semanas atrás).
+                  </p>
                 </ToolTipComp>
               )}
             </DataBox>
@@ -733,7 +738,6 @@ export default function PRStats() {
           )}
         </div>
       </section>
-
       {/* letalidad */}
       <section className='mb-12 md:mb-16 grid grid-cols-2 gap-3 small:gap-4'>
         {T_Muertes_Combinadas !== null ? (
@@ -746,15 +750,13 @@ export default function PRStats() {
                 <table className='table-auto'>
                   <tbody>
                     <tr>
-                      <td className='px-2 py-1'>Vigilancia de COVID-19:</td>
+                      <td className='px-2 py-1'>Muertes confirmadas:</td>
                       <td className='px-2 py-1 text-right'>
                         <strong>{formatNumber(T_Fatalidades)}</strong>
                       </td>
                     </tr>
                     <tr>
-                      <td className='px-2 py-1'>
-                        Registro demográfico COVID-19:
-                      </td>
+                      <td className='px-2 py-1'>Muertes probables:</td>
                       <td className='px-2 py-1 text-right'>
                         <strong>{formatNumber(T_Muertes_COVID_RD)}</strong>
                       </td>
@@ -778,33 +780,20 @@ export default function PRStats() {
           <h3 className='font-black text-lg text-center md:mb-4'>Sin Datos</h3>
         )}
       </section>
-
-      {/* <div className='mb-4 md:mb-8 grid md:grid-cols-2 gap-3 small:gap-4'>
-        <iframe
-          src='https://ourworldindata.org/grapher/total-cases-covid-19?year=2020-05-09&time=2020-03-28..&country=PRI'
-          style={{ width: '100%', height: '600px', border: '0px none' }}
-        ></iframe>
-        <iframe
-          src='https://ourworldindata.org/grapher/total-deaths-covid-19?time=2020-03-28..&country=PRI'
-          style={{ width: '100%', height: '600px', border: '0px none' }}
-        ></iframe>
-      </div> */}
-
       {/* Pruebas */}
-      {(T_Casos_Pos &&
-        T_Casos_Neg &&
-        T_Casos_Pend &&
-        T_Casos &&
-        T_Casos_Inconcluso) !== null ? (
+      {/* {(T_IgM && T_IgM_IgG && T_IgG && T_No_Especificada) !== null ? (
         <section className='mb-12 md:mb-16'>
           <h2 className='font-black text-2xl text-center mb-8'>
-            Pruebas realizadas
+            Total de pruebas realizadas
           </h2>
           <div className='mb-6 grid grid-cols-2 lg:grid-cols-4 gap-3 small:gap-4'>
-            <DataBox number={formatNumber(T_Casos_Pos)} label='Positivos' />
-            <DataBox number={formatNumber(T_Casos_Neg)} label='Negativos' />
-            <DataBox number={formatNumber(T_Casos_Pend)} label='Pendientes' />
-            <DataBox number={`${formatNumber(T_Casos)} *`} label='Total' />
+            <DataBox number={formatNumber(T_IgM)} label='IgM' />
+            <DataBox number={formatNumber(T_IgM_IgG)} label='IgM/IgG' />
+            <DataBox number={formatNumber(T_IgG)} label='IgG' />
+            <DataBox
+              number={`${formatNumber(T_No_Especificada)}`}
+              label='No especificada'
+            />
           </div>
           <div className='uppercase text-xs text-center text-gray-700'>
             <span>👉 </span>
@@ -815,9 +804,8 @@ export default function PRStats() {
         </section>
       ) : (
         ' '
-      )}
-
-      {/* Distribucion */}
+      )} */}
+      g{/* Distribucion */}
       <section className='mb-8'>
         <h2 className='font-black text-2xl text-center mb-8 md:mb-12'>
           Casos de COVID-19
@@ -849,7 +837,6 @@ export default function PRStats() {
           )}
         </div>
       </section>
-
       {/* Ventiladores */}
       <section className='mb-4 md:mb-16'>
         <h2 className='font-black text-2xl text-center mb-8 md:mb-12'>
@@ -898,7 +885,6 @@ export default function PRStats() {
           )}
         </div>
       </section>
-
       {/* Hospitalizaciones */}
       <section>
         <h2 className='font-black text-2xl text-center mb-8 md:mb-12'>
