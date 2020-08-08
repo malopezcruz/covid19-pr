@@ -18,7 +18,7 @@ export default function Footer() {
             <li className='ml-4 mb-2'>
               <ExtLink
                 link='https://rconnect.dfci.harvard.edu/covidpr/'
-                label='Monitero de la tasa de positividad'
+                label='Monitoreo de la tasa de positividad'
               />
             </li>
             <li className='ml-4 mb-2'>
