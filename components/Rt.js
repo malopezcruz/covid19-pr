@@ -32,7 +32,7 @@ export default function Rt() {
           <sub>t</sub>
         </span>{' '}
         (número reproductivo efectivo o instantáneo) representa el promedio las
-        variaciones de <em>R</em> en el tiempo. Su impotancia radica en que
+        variaciones de <em>R</em> en el tiempo. Su importancia radica en que
         permite tener una idea del éxito o fracaso de las medidas adoptadas para
         contener la epidemia.
       </p>
@@ -67,7 +67,7 @@ export default function Rt() {
         <span className='text-blue-900'>
           <em>
             Por ello es importante ver estos números como una tendencia general,
-            un escenerario probable entre otros tantos &mdash;diferente
+            un escenario probable entre otros tantos &mdash;diferente
             selección de parámetros y diversas dinámicas de contactos en la
             población darán estimaciones distintas&mdash; y valorar en su
             contexto la última semana de datos

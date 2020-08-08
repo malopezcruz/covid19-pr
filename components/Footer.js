@@ -54,14 +54,6 @@ export default function Footer() {
         </div>
         <div className='mb-6'>
           <h4 className='text-xl mb-2 font-medium'>Nota técnica</h4>
-          {/* <ul className='flex flex-col'>
-            <li className='ml-4 mb-2'>
-              <ExtLink
-                link='https://github.com/ChrisMichaelPerezSantiago/covid19'
-                label='Covid-19 API'
-              />
-            </li>
-          </ul> */}
           <p>
             <em>R</em>
             <sub>t</sub> se calcula utilizando los paquetes{' '}
