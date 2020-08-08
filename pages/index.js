@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import GlobalStats from '../components/GlobalStats';
-import PRStats from '../components/PRStats';
-import USStats from '../components/USStats';
-// import CategoryBox from '../components/CategoryBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Footer from '../components/Footer';
 import {
@@ -12,6 +8,8 @@ import {
 } from '../utils/googleAnalytics';
 import '../styles/index.css';
 import '../utils/addFontAwesome.js';
+import Rt from '../components/Rt';
+// import DailyCasesPlot from '../components/DailyCasesPlot';
 
 const IndexPage = () => {
   useEffect(() => {
@@ -88,18 +86,15 @@ const IndexPage = () => {
               fixedWidth
               className='inline -mt-1 mr-2'
             />
-            COVID-19
+            COVID-19{' '}
+            <span className='text-blue-200 font-medium text-base'>
+              PUERTO RICO
+            </span>
           </h1>
         </div>
         <div className='w-full max-w-screen-lg px-4 mx-auto flex-grow mt-6'>
-          {/* <CategoryBox> */}
-          <PRStats />
-          {/* </CategoryBox> */}
-
-          {/* <CategoryBox> */}
-          <GlobalStats />
-          <USStats />
-          {/* </CategoryBox> */}
+          <Rt />
+          {/* <DailyCasesPlot /> */}
         </div>
         <Footer />
       </div>

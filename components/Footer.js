@@ -7,14 +7,18 @@ export default function Footer() {
     <footer className='bg-gray-900 tracking-wide py-8 font-light'>
       <div className='w-full max-w-screen-lg px-4 lg:px-0 mx-auto grid gri-cols-1 md:grid-cols-3 md:gap-6 text-gray-200 pt-6'>
         <div className='mb-6'>
-          <h4 className='text-xl mb-2 font-medium'>
-            Información oficial de Puerto Rico
-          </h4>
+          <h4 className='text-xl mb-2 font-medium'>En Puerto Rico...</h4>
           <ul className='flex flex-col'>
             <li className='ml-4 mb-2'>
               <ExtLink
                 link='https://bioseguridad.maps.arcgis.com/apps/opsdashboard/index.html#/3bfb64c9a91944bc8c41edd8ff27e6df'
                 label='Dashboard Puerto Rico COVID-19'
+              />
+            </li>
+            <li className='ml-4 mb-2'>
+              <ExtLink
+                link='https://rconnect.dfci.harvard.edu/covidpr/'
+                label='Monitero de la tasa de positividad'
               />
             </li>
             <li className='ml-4 mb-2'>
@@ -32,7 +36,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className='mb-6'>
-          <h4 className='text-xl mb-2 font-medium'>Datos actualizados</h4>
+          <h4 className='text-xl mb-2 font-medium'>En el mundo...</h4>
           <ul className='flex flex-col'>
             <li className='ml-4 mb-2'>
               <ExtLink
@@ -49,15 +53,29 @@ export default function Footer() {
           </ul>
         </div>
         <div className='mb-6'>
-          <h4 className='text-xl mb-2 font-medium'>Fuente</h4>
-          <ul className='flex flex-col'>
+          <h4 className='text-xl mb-2 font-medium'>Nota técnica</h4>
+          {/* <ul className='flex flex-col'>
             <li className='ml-4 mb-2'>
               <ExtLink
                 link='https://github.com/ChrisMichaelPerezSantiago/covid19'
                 label='Covid-19 API'
               />
             </li>
-          </ul>
+          </ul> */}
+          <p>
+            <em>R</em>
+            <sub>t</sub> se calcula utilizando los paquetes{' '}
+            <ExtLink
+              link='https://cran.r-project.org/web/packages/EpiEstim/index.html'
+              label='EpiEstim'
+            />{' '}
+            e{' '}
+            <ExtLink
+              link='https://cran.r-project.org/web/packages/incidence/index.html'
+              label='Incidence'
+            />{' '}
+            para el lenguaje R.
+          </p>
         </div>
         <div className='md:col-span-3 text-center'>
           <a
