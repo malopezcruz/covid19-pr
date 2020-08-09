@@ -4,8 +4,8 @@ import ExtLink from './ExtLink';
 
 export default function Rt() {
   return (
-    <section className='mt-4 md:mt-8  mb-12 md:mb-20'>
-      <h2 className='text-2xl md:text-4xl text-blue-900 font-semibold mb-8'>
+    <section className='mt-2 md:mt-8  mb-12 md:mb-20'>
+      <h2 className='text-2xl md:text-4xl text-blue-900 font-semibold mb-8 leading-tight'>
         Estimado del número reproductivo instantáneo <em>R</em>
         <sub>t</sub>
       </h2>
