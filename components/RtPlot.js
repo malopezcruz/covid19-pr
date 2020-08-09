@@ -20,13 +20,11 @@ import {
 
 export default function RtPlot() {
   return (
-    <div style={{ width: '100%', height: 500 }}>
-      <ResponsiveContainer>
+    <div style={{ position: 'relative', paddingBottom: '60%' }}>
+      <ResponsiveContainer width='100%' height='100%' className='absolute'>
         <ComposedChart
-          width={1000}
-          height={400}
           data={rt}
-          margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
+          margin={{ top: 5, right: 20, bottom: 5, left: -20 }}
         >
           <CartesianGrid stroke='#f2f2f2' />
           <XAxis
@@ -49,7 +47,7 @@ export default function RtPlot() {
             label={{
               value: 'R',
               angle: -90,
-              position: 'insideLeft',
+              position: 'outsideLeft',
               fill: '#999',
             }}
           />

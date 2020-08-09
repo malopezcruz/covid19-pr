@@ -21,18 +21,17 @@ export default function Rt() {
         </span>{' '}
         (número reproductivo básico) es el número de infecciones secundarias
         producto de un caso de infección. Si <em>R</em>
-        <sub>0</sub> es mayor que 1 (<em>R</em>
-        <sub>0</sub> &gt; 1), tendríamos crecimiento exponencial y los casos
-        aumentarían a mayor velocidad. A manera de ejemplo: si <em>R</em> fuera
-        igual a 2, 100 personas podrían infectar a otras 200 personas, mientras
-        que si <em>R</em> fuera 0.5 solamente infectarían a otras 50. En este
-        contexto,{' '}
+        <sub>0</sub> es mayor de 1 (<em>R</em>
+        <sub>0</sub> &gt; 1), tendríamos crecimiento y los casos aumentarían a
+        mayor velocidad. A manera de ejemplo: si <em>R</em> fuera igual a 2, 100
+        personas podrían infectar a otras 200 personas, mientras que si{' '}
+        <em>R</em> fuera 0.5 solamente infectarían a otras 50. En este sentido,{' '}
         <span className='text-blue-900 font-semibold'>
           <em>R</em>
           <sub>t</sub>
         </span>{' '}
         (número reproductivo efectivo o instantáneo) representa el promedio las
-        variaciones de <em>R</em> en el tiempo. Su importancia radica en que
+        variaciones de <em>R</em> en el tiempo. Su importancia radica en que nos
         permite tener una idea del éxito o fracaso de las medidas adoptadas para
         contener la epidemia.
       </p>
@@ -52,8 +51,9 @@ export default function Rt() {
         >
           Nishiura et al., IJID, 2020
         </a>
-        ) basado en un promedio móvil de 14 días. Se utilizan los datos que
-        provee el Departamento de Salud de Puerto Rico en su{' '}
+        ) basado en un promedio móvil de 14 días. Se utiliza además los datos de
+        incidencia de casos que provee el Departamento de Salud de Puerto Rico
+        en su{' '}
         <a
           className='border-b-2 border-pink-400 hover:border-pink-600 hover:transition-colors duration-500 ease-in-out'
           href='http://www.salud.gov.pr/Estadisticas-Registros-y-Publicaciones/Pages/COVID-19.aspx'
@@ -67,10 +67,10 @@ export default function Rt() {
         <span className='text-blue-900'>
           <em>
             Por ello es importante ver estos números como una tendencia general,
-            un escenario probable entre otros tantos &mdash;diferente
-            selección de parámetros y diversas dinámicas de contactos en la
-            población darán estimaciones distintas&mdash; y valorar en su
-            contexto la última semana de datos
+            un escenario probable entre otros tantos &mdash;diferente selección
+            de parámetros y diversas dinámicas de contactos en la población
+            darían estimaciones distintas&mdash;, por lo que hay que valorar en
+            su contexto la última semana de datos
           </em>
         </span>
         .
