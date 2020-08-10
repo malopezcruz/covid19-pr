@@ -20,7 +20,8 @@ export default function Rt() {
           <sub>0</sub>
         </span>{' '}
         (número reproductivo básico) es el número de infecciones secundarias
-        producto de un caso de infección. Si <em>R</em>
+        producto de un caso de infección en una población susceptible. Si{' '}
+        <em>R</em>
         <sub>0</sub> es mayor de 1 (<em>R</em>
         <sub>0</sub> &gt; 1), tendríamos crecimiento y los casos aumentarían a
         mayor velocidad. A manera de ejemplo: si <em>R</em> fuera igual a 2, 100
@@ -30,10 +31,10 @@ export default function Rt() {
           <em>R</em>
           <sub>t</sub>
         </span>{' '}
-        (número reproductivo efectivo o instantáneo) representa el promedio las
-        variaciones de <em>R</em> en el tiempo. Su importancia radica en que nos
-        permite tener una idea del éxito o fracaso de las medidas adoptadas para
-        contener la epidemia.
+        (número reproductivo efectivo o instantáneo) representa el promedio de
+        las variaciones de <em>R</em> en el tiempo. Su importancia radica en que
+        nos permite tener una idea del éxito o fracaso de las medidas adoptadas
+        para contener la epidemia.
       </p>
       <p className='mb-4'>
         Para calcular
@@ -52,8 +53,8 @@ export default function Rt() {
           Nishiura et al., IJID, 2020
         </a>
         ) basado en un promedio móvil de 14 días. Se utiliza además los datos de
-        incidencia de casos que provee el Departamento de Salud de Puerto Rico
-        en su{' '}
+        incidencia de casos confirmados que provee el Departamento de Salud de
+        Puerto Rico en su{' '}
         <a
           className='border-b-2 border-pink-400 hover:border-pink-600 hover:transition-colors duration-500 ease-in-out'
           href='http://www.salud.gov.pr/Estadisticas-Registros-y-Publicaciones/Pages/COVID-19.aspx'
