@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function ToolTipComp({ children, dataFor, uniqueID }) {
   const [uniqueId] = useState(uniqueID);
+
   return (
     <div className='absolute top-0 right-0 mr-3 mt-1'>
       <a

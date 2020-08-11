@@ -1,7 +1,5 @@
 import React from 'react';
 import RtPlot from './RtPlot';
-import ExtLink from './ExtLink';
-
 export default function Rt() {
   return (
     <section className='mt-2 md:mt-8  mb-12 md:mb-20'>
@@ -9,19 +7,20 @@ export default function Rt() {
         Estimado del número reproductivo instantáneo <em>R</em>
         <sub>t</sub>
       </h2>
+
       <RtPlot />
+
       <h3 className='text-xl md:text-2xl text-blue-900 font-semibold mb-4'>
-        Breve nota sobre <em>R</em>
-        <sub>t</sub>
+        Breve nota sobre el número reproductivo
       </h3>
       <p className='mb-4'>
+        El número reproductivo básico (
         <span className='text-blue-900 font-semibold'>
           <em>R</em>
           <sub>0</sub>
-        </span>{' '}
-        (número reproductivo básico) es el número de infecciones secundarias
-        producto de un caso de infección en una población susceptible. Si{' '}
-        <em>R</em>
+        </span>
+        ) es el número de infecciones secundarias producto de un caso de
+        infección en una población susceptible. Si <em>R</em>
         <sub>0</sub> es mayor de 1 (<em>R</em>
         <sub>0</sub> &gt; 1), tendríamos crecimiento y los casos aumentarían a
         mayor velocidad. A manera de ejemplo: si <em>R</em> fuera igual a 2, 100
