@@ -1,5 +1,4 @@
 import React from 'react';
-import rt from '../data/rt.json';
 import { formatDateTimeSeries, formatDateLabel } from '../utils/utils';
 import {
   ComposedChart,
@@ -13,18 +12,13 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-export default function RtPlot() {
+export default function RtPlot({ data, caption }) {
   return (
-    <figure
-      className='mb-8 md:mb-12'
-      role='figure'
-      aria-label='Rt de casos confirmados. Fuente: Departamento de Salud de
-    Puerto Rico, Informe de casos COVID-19'
-    >
+    <figure className='mb-8 md:mb-12' role='figure' aria-label={caption}>
       <div style={{ position: 'relative', paddingBottom: '56%' }}>
         <ResponsiveContainer width='100%' height='100%' className='absolute'>
           <ComposedChart
-            data={rt}
+            data={data}
             margin={{ top: 5, right: 20, bottom: 0, left: -20 }}
           >
             <CartesianGrid stroke='#f2f2f2' />
@@ -75,10 +69,8 @@ export default function RtPlot() {
           </ComposedChart>
         </ResponsiveContainer>
       </div>
-      <figcaption className='pl-8 pr-8 text-xs md:text-sm text-blue-900'>
-        <em>R</em>
-        <sub>t</sub> de casos confirmados. Fuente: Departamento de Salud de
-        Puerto Rico, <em>Informe de casos COVID-19</em>.
+      <figcaption className='pl-10 pr-8 text-xs md:text-sm text-blue-900'>
+        {caption}
       </figcaption>
     </figure>
   );

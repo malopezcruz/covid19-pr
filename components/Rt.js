@@ -1,5 +1,8 @@
 import React from 'react';
+import BodyLink from './BodyLink';
 import RtPlot from './RtPlot';
+import rt from '../data/rt.json';
+
 export default function Rt() {
   return (
     <section className='mt-2 md:mt-8  mb-12 md:mb-20'>
@@ -8,11 +11,27 @@ export default function Rt() {
         <sub>t</sub>
       </h2>
 
-      <RtPlot />
+      <RtPlot
+        data={rt}
+        caption={
+          <>
+            Número reproductivo de casos confirmados. Fuente: Departamento de
+            Salud de Puerto Rico,{' '}
+            <em>
+              <BodyLink
+                link='http://www.salud.gov.pr/Estadisticas-Registros-y-Publicaciones/Pages/COVID-19.aspx'
+                label='Informe de casos COVID-19'
+              />
+            </em>
+            .
+          </>
+        }
+      />
 
       <h3 className='text-xl md:text-2xl text-blue-900 font-semibold mb-4'>
         Breve nota sobre el número reproductivo
       </h3>
+
       <p className='mb-4'>
         El número reproductivo básico (
         <span className='text-blue-900 font-semibold'>
@@ -25,15 +44,15 @@ export default function Rt() {
         <sub>0</sub> &gt; 1), tendríamos crecimiento y los casos aumentarían a
         mayor velocidad. A manera de ejemplo: si <em>R</em> fuera igual a 2, 100
         personas podrían infectar a otras 200 personas, mientras que si{' '}
-        <em>R</em> fuera 0.5 solamente infectarían a otras 50. En este sentido,{' '}
+        <em>R</em> fuera 0.5 solamente infectarían a otras 50. En este sentido,
+        el número reproductivo efectivo o instantáneo (
         <span className='text-blue-900 font-semibold'>
           <em>R</em>
           <sub>t</sub>
-        </span>{' '}
-        (número reproductivo efectivo o instantáneo) representa el promedio de
-        las variaciones de <em>R</em> en el tiempo. Su importancia radica en que
-        nos permite tener una idea del éxito o fracaso de las medidas adoptadas
-        para contener la epidemia.
+        </span>
+        ) representa el promedio de las variaciones de <em>R</em> en el tiempo.
+        Su importancia radica en que nos permite tener una idea del éxito o
+        fracaso de las medidas adoptadas para contener la epidemia.
       </p>
       <p className='mb-4'>
         Para calcular
@@ -43,25 +62,17 @@ export default function Rt() {
         </span>{' '}
         realizo un estimado paramétrico con media de intervalo serial de 4.8 y
         desviación estándar de 2.3 (véase{' '}
-        <a
-          className='border-b-2 border-pink-400 hover:border-pink-600 hover:transition-colors duration-500 ease-in-out'
-          href='https://www.sciencedirect.com/science/article/pii/S1201971220301193'
-          rel='noreferrer noopenner'
-          target='_blank'
-        >
-          Nishiura et al., IJID, 2020
-        </a>
+        <BodyLink
+          link='https://www.sciencedirect.com/science/article/pii/S1201971220301193'
+          label='Nishiura et al., IJID, 2020'
+        />
         ) basado en un promedio móvil de 14 días. Se utiliza además los datos
         actualizados de incidencia de casos confirmados que provee el
         Departamento de Salud de Puerto Rico en su{' '}
-        <a
-          className='border-b-2 border-pink-400 hover:border-pink-600 hover:transition-colors duration-500 ease-in-out'
-          href='http://www.salud.gov.pr/Estadisticas-Registros-y-Publicaciones/Pages/COVID-19.aspx'
-          rel='noreferrer noopenner'
-          target='_blank'
-        >
-          informe diario
-        </a>
+        <BodyLink
+          link='http://www.salud.gov.pr/Estadisticas-Registros-y-Publicaciones/Pages/COVID-19.aspx'
+          label='informe diario'
+        />
         . Parto del supuesto de que puede haber rezagos en la divulgación de los
         resultados de las pruebas.{' '}
         <span className='text-blue-900'>
@@ -80,14 +91,10 @@ export default function Rt() {
         <sub>t</sub> y <em>R</em>
         <sub>0</sub>, y la relación de éstos con otros indicadores visita el
         siguiente enlace donde recopilo algunos artículos sobre el{' '}
-        <a
-          className='border-b-2 border-pink-400 hover:border-pink-600 hover:transition-colors duration-500 ease-in-out'
-          href='https://bit.ly/rt-bib'
-          rel='noreferrer noopenner'
-          target='_blank'
-        >
-          número reproductivo y sus variantes
-        </a>{' '}
+        <BodyLink
+          link='https://bit.ly/rt-bib'
+          label='número reproductivo y sus variantes'
+        />{' '}
         (más adelante incluiré las referencias en esta página).
       </p>
     </section>
