@@ -51,9 +51,9 @@ export default function Rt() {
         >
           Nishiura et al., IJID, 2020
         </a>
-        ) basado en un promedio móvil de 14 días. Se utiliza además los datos de
-        incidencia de casos confirmados que provee el Departamento de Salud de
-        Puerto Rico en su{' '}
+        ) basado en un promedio móvil de 14 días. Se utiliza además los datos
+        actualizados de incidencia de casos confirmados que provee el
+        Departamento de Salud de Puerto Rico en su{' '}
         <a
           className='border-b-2 border-pink-400 hover:border-pink-600 hover:transition-colors duration-500 ease-in-out'
           href='http://www.salud.gov.pr/Estadisticas-Registros-y-Publicaciones/Pages/COVID-19.aspx'
