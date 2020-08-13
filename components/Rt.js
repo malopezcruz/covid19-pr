@@ -41,11 +41,11 @@ export default function Rt() {
         ) es el número de infecciones secundarias producto de un caso de
         infección en una población susceptible. Si <em>R</em>
         <sub>0</sub> es mayor de 1 (<em>R</em>
-        <sub>0</sub> &gt; 1), tendríamos crecimiento y los casos aumentarían a
-        mayor velocidad. A manera de ejemplo: si <em>R</em> fuera igual a 2, 100
-        personas podrían infectar a otras 200 personas, mientras que si{' '}
-        <em>R</em> fuera 0.5 solamente infectarían a otras 50. En este sentido,
-        el número reproductivo efectivo o instantáneo (
+        <sub>0</sub> &gt; 1), tendríamos crecimiento exponencial y los casos
+        aumentarían a mayor velocidad. A manera de ejemplo: si <em>R</em> fuera
+        igual a 2, 100 personas podrían infectar a otras 200 personas, mientras
+        que si <em>R</em> fuera 0.5 solamente infectarían a otras 50. En este
+        sentido, el número reproductivo efectivo o instantáneo (
         <span className='text-blue-900 font-semibold'>
           <em>R</em>
           <sub>t</sub>
