@@ -55,7 +55,7 @@ export default function BarPlot({ data, caption }) {
               labelStyle={{ color: '#2c5282', fontSize: '20' }}
               itemStyle={{ color: 'hotpink', fontSize: '12' }}
               labelFormatter={(date) => formatDateLabel(date)}
-              itemFormatter={(number) => formatNumber(number)}
+              formatter={(value) => formatNumber(value)}
               cursor={{ fill: '#e8f3f9' }}
             />
             {/* <Legend verticalAlign='top' wrapperStyle={{ lineHeight: '40px' }} /> */}
@@ -63,11 +63,11 @@ export default function BarPlot({ data, caption }) {
             <Brush
               dataKey='dates'
               data={data}
-              height={30}
+              height={15}
               stroke='#2c5282'
               fill='#e8f3f9'
               tickFormatter={(date) => formatDateTimeSeries(date)}
-              travellerWidth={20}
+              travellerWidth={30}
             />
             <Bar name='Casos' dataKey='counts' fill='#2c5282' barSize={50} />
           </BarChart>
