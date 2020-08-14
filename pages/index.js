@@ -9,7 +9,8 @@ import {
 import '../styles/index.css';
 import '../utils/addFontAwesome.js';
 import Rt from '../components/Rt';
-// import DailyCasesPlot from '../components/DailyCasesPlot';
+import Cases from '../components/Cases';
+import Fatalities from '../components/Fatalities';
 
 const IndexPage = () => {
   useEffect(() => {
@@ -78,7 +79,7 @@ const IndexPage = () => {
       </Head>
 
       <div className='flex flex-col min-h-screen'>
-        <div className='bg-gray-900 p-4'>
+        <header className='bg-gray-900 p-4 flex'>
           <h1 className='w-full align-middle max-w-screen-lg px-0 md:px-4 mx-auto text-2xl text-gray-200 lg:text-3xl text-left font-black'>
             <FontAwesomeIcon
               icon='virus'
@@ -91,10 +92,11 @@ const IndexPage = () => {
               PUERTO RICO
             </span>
           </h1>
-        </div>
+        </header>
         <div className='w-full max-w-screen-lg px-4 mx-auto flex-grow mt-6'>
           <Rt />
-          {/* <DailyCasesPlot /> */}
+          <Cases />
+          <Fatalities />
         </div>
         <Footer />
       </div>

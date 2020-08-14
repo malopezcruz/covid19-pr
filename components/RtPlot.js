@@ -47,7 +47,7 @@ export default function RtPlot({ data, caption }) {
               }}
             />
             <Tooltip
-              labelStyle={{ color: '#1b85be', fontSize: '20' }}
+              labelStyle={{ color: '#2c5282', fontSize: '20' }}
               itemStyle={{ color: 'hotpink', fontSize: '12' }}
               labelFormatter={(date) => formatDateLabel(date)}
             />

@@ -1,5 +1,9 @@
 import React from 'react';
-import { formatDateTimeSeries, formatDateLabel } from '../utils/utils';
+import {
+  formatDateTimeSeries,
+  formatDateLabel,
+  formatNumber,
+} from '../utils/utils';
 
 import {
   BarChart,
@@ -14,19 +18,17 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-import data from '../data/weekly_cases.json';
-
 export default function DailyCasesPlot({ data, caption }) {
   return (
     <figure className='mb-8 md:mb-12' role='figure' aria-label={caption}>
-      <div style={{ position: 'relative', paddingBottom: '56%' }}>
+      <div style={{ position: 'relative', paddingBottom: '66%' }}>
         <ResponsiveContainer width='100%' height='100%' className='absolute'>
           <BarChart
             data={data}
             margin={{
               top: 5,
               right: 20,
-              left: 0,
+              left: -10,
               bottom: 5,
             }}
           >
@@ -44,13 +46,27 @@ export default function DailyCasesPlot({ data, caption }) {
                 fill: '#999',
               }}
             />
-            <YAxis type='number' domain={[0, 450]} scale='linear' />
-            <Tooltip />
+            <YAxis
+              type='number'
+              domain={[0, (dataMax) => dataMax + dataMax * 0.05]}
+              scale='linear'
+            />
+            <Tooltip
+              labelStyle={{ color: '#2c5282', fontSize: '20' }}
+              itemStyle={{ color: 'hotpink', fontSize: '12' }}
+              labelFormatter={(date) => formatDateLabel(date)}
+              itemFormatter={(number) => formatNumber(number)}
+            />
             {/* <Legend verticalAlign='top' wrapperStyle={{ lineHeight: '40px' }} /> */}
             {/* <ReferenceLine y={0} stroke='#000' /> */}
-            <Brush dataKey='name' height={30} stroke='#1b85be' fill='#e8f3f9' />
-            <Bar name='Casos' dataKey='counts' fill='#1b85be' />
-            <Bar dataKey='uv' fill='#82ca9d' />
+            <Brush
+              dataKey='name'
+              height={30}
+              stroke='#2c5282'
+              fill='#e8f3f9'
+              labelFormatter={(date) => formatDateLabel(date)}
+            />
+            <Bar name='Casos' dataKey='counts' fill='#2c5282' barSize={50} />
           </BarChart>
         </ResponsiveContainer>
       </div>
