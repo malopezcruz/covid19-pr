@@ -21,7 +21,7 @@ import {
 export default function DailyCasesPlot({ data, caption }) {
   return (
     <figure className='mb-8 md:mb-12' role='figure' aria-label={caption}>
-      <div style={{ position: 'relative', paddingBottom: '66%' }}>
+      <div style={{ position: 'relative', paddingBottom: '80%' }}>
         <ResponsiveContainer width='100%' height='100%' className='absolute'>
           <BarChart
             data={data}
@@ -60,8 +60,8 @@ export default function DailyCasesPlot({ data, caption }) {
             {/* <Legend verticalAlign='top' wrapperStyle={{ lineHeight: '40px' }} /> */}
             {/* <ReferenceLine y={0} stroke='#000' /> */}
             <Brush
-              dataKey='name'
-              height={30}
+              dataKey='counts'
+              height={20}
               stroke='#2c5282'
               fill='#e8f3f9'
               labelFormatter={(date) => formatDateLabel(date)}
