@@ -1,16 +1,21 @@
 import React from 'react';
 import BodyLink from './BodyLink';
 import BarPlot from './BarPlot';
+import { formatNumber } from '../utils/utils';
 import daily_deaths from '../data/daily_deaths.json';
 import weekly_deaths from '../data/weekly_deaths.json';
 import twoweeks_deaths from '../data/twoweeks_deaths.json';
 import monthly_deaths from '../data/monthly_deaths.json';
 
+const totalFatalities = monthly_deaths
+  .map((item) => item.counts)
+  .reduce((prev, next) => prev + next);
+
 export default function Rt() {
   return (
     <section className='mt-2 md:mt-8  mb-12 md:mb-20'>
       <h2 className='text-2xl md:text-4xl text-blue-900 font-semibold mb-8 leading-tight'>
-        Muertes{' '}
+        Muertes (n = {formatNumber(totalFatalities)})
       </h2>
 
       <div className='grid lg:grid-cols-2 lg:gap-2'>
