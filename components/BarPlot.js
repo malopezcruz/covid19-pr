@@ -18,7 +18,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-export default function DailyCasesPlot({ data, caption }) {
+export default function BarPlot({ data, caption }) {
   return (
     <figure className='mb-8 md:mb-12' role='figure' aria-label={caption}>
       <div style={{ position: 'relative', paddingBottom: '80%' }}>
@@ -56,15 +56,18 @@ export default function DailyCasesPlot({ data, caption }) {
               itemStyle={{ color: 'hotpink', fontSize: '12' }}
               labelFormatter={(date) => formatDateLabel(date)}
               itemFormatter={(number) => formatNumber(number)}
+              cursor={{ fill: '#e8f3f9' }}
             />
             {/* <Legend verticalAlign='top' wrapperStyle={{ lineHeight: '40px' }} /> */}
             {/* <ReferenceLine y={0} stroke='#000' /> */}
             <Brush
-              dataKey='counts'
-              height={20}
+              dataKey='dates'
+              data={data}
+              height={30}
               stroke='#2c5282'
               fill='#e8f3f9'
-              labelFormatter={(date) => formatDateLabel(date)}
+              tickFormatter={(date) => formatDateTimeSeries(date)}
+              travellerWidth={20}
             />
             <Bar name='Casos' dataKey='counts' fill='#2c5282' barSize={50} />
           </BarChart>

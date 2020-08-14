@@ -1,5 +1,4 @@
 import React from 'react';
-import BodyLink from './BodyLink';
 import BarPlot from './BarPlot';
 import { formatNumber } from '../utils/utils';
 import daily_deaths from '../data/daily_deaths.json';
@@ -11,7 +10,7 @@ const totalFatalities = monthly_deaths
   .map((item) => item.counts)
   .reduce((prev, next) => prev + next);
 
-export default function Rt() {
+export default function Fatalities() {
   return (
     <section className='mt-2 md:mt-8  mb-12 md:mb-20'>
       <h2 className='text-2xl md:text-4xl text-blue-900 font-semibold mb-8 leading-tight'>
