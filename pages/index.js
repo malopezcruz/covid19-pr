@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 import {
   initializeGoogleAnalytics,
@@ -79,24 +79,8 @@ const IndexPage = () => {
         />
       </Head>
 
-      <div className='flex flex-col min-h-screen'>
-        <header className='bg-gray-900 p-4 flex justify-between items-center'>
-          <div>
-            <h1 className='w-full align-middle max-w-screen-lg px-0 md:px-4 mx-auto text-2xl text-gray-200 lg:text-3xl text-left font-black'>
-              <FontAwesomeIcon
-                icon='virus'
-                width='30'
-                fixedWidth
-                className='inline -mt-1 mr-2'
-              />
-              COVID-19{' '}
-              <span className='text-blue-200 font-medium text-base'>
-                PUERTO RICO
-              </span>
-            </h1>
-          </div>
-          <div className='text-gray-200 mt-1 mr-1'>2020-08-15</div>
-        </header>
+      <div className='flex flex-col min-h-screen text-bodytext'>
+        <Header />
         <div className='w-full max-w-screen-lg px-4 mx-auto flex-grow mt-6'>
           <Rt />
           <Growth />

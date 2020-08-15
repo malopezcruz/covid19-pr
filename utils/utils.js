@@ -1,4 +1,3 @@
-// import { format } from 'date-fns-tz';
 import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
 
@@ -7,16 +6,17 @@ export const formatNumber = (x) => {
 };
 
 export const formatDate = (date) => {
-  return format(new Date(date), 'eeee, d-MMMM-yyyy, h:mm aa', {
-    locale: es_PR,
+  /* eslint-disable no-alert, no-console */
+  return format(new Date(date), eeee, "eeee, d 'de' MMMM 'de' yyyy, h:mm aa", {
+    locale: es,
   });
 };
 
 export const formatDateTimeSeries = (date) => {
   return format(
     new Date(parseISO(date)),
-    'MMM-d',
-    // {timeZone: 'America/Puerto_Rico'}
+    /* eslint-disable no-alert, no-console */
+    'MMM d',
     { locale: es }
   );
 };
@@ -24,17 +24,9 @@ export const formatDateTimeSeries = (date) => {
 export const formatDateLabel = (date) => {
   return format(
     new Date(parseISO(date)),
-    'd MMMM yyyy',
+    /* eslint-disable no-alert, no-console */
+    "d 'de' MMMM 'de' yyyy",
     // {timeZone: 'America/Puerto_Rico'}
     { locale: es }
   );
-};
-
-export const deathRate = (cases, death) => (death / cases) * 100;
-
-export const percentage = (num, dem) => (num / dem) * 100;
-
-export const parseInput = (input) => {
-  let num = input.replace(/,/g, '');
-  return num * 1;
 };

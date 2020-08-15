@@ -38,6 +38,7 @@ export default function BarPlot({ data, caption }) {
               dataKey='dates'
               interval={0}
               height={80}
+              stroke='#999'
               tickFormatter={(date) => formatDateTimeSeries(date)}
               tick={{
                 angle: -60,
@@ -50,6 +51,7 @@ export default function BarPlot({ data, caption }) {
               type='number'
               domain={[0, (dataMax) => dataMax + dataMax * 0.05]}
               scale='linear'
+              stroke='#999'
             />
             <Tooltip
               labelStyle={{ color: '#2c5282', fontSize: '20' }}
@@ -65,7 +67,7 @@ export default function BarPlot({ data, caption }) {
               data={data}
               height={25}
               stroke='#2c5282'
-              fill='#e8f3f9'
+              fill='#f7fafc'
               tickFormatter={(date) => formatDateTimeSeries(date)}
               travellerWidth={25}
             />
@@ -73,7 +75,7 @@ export default function BarPlot({ data, caption }) {
           </BarChart>
         </ResponsiveContainer>
       </div>
-      <figcaption className='pl-10 pr-8 text-xs md:text-sm text-blue-900'>
+      <figcaption className='pl-10 pr-8 text-xs md:text-sm text-subtitle'>
         {caption}
       </figcaption>
     </figure>

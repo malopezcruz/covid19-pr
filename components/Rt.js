@@ -13,7 +13,7 @@ export default function Rt() {
         Estimado del número reproductivo instantáneo <em>R</em>
         <sub>t</sub>
       </h2>
-      <div className='mb-8 md:mb-12'>
+      <div className='mb-8 md:mb-12 text-subtitle'>
         <p className='md:text-lg'>
           {formatDateLabel(Fecha)}: {Promedio} ({Intervalo[0]} - {Intervalo[1]}{' '}
           )

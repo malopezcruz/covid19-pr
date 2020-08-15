@@ -10,9 +10,6 @@ module.exports = {
       fontFamily: {
         sans: ['Lato', ...defaultTheme.fontFamily.sans],
       },
-      screens: {
-        'dark-mode': { raw: '(prefers-color-scheme: dark)' },
-      },
       backgroundColor: (theme) => ({
         ...theme('colors'),
         green: '#b3e2cd',
@@ -20,6 +17,10 @@ module.exports = {
         yellow: '#fdcdac',
         lightgreen: '#e6f5c9',
       }),
+      textColor: {
+        subtitle: '#646464',
+        bodytext: '#222222',
+      },
       height: {
         sm: '8px',
         md: '16px',

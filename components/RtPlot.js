@@ -27,6 +27,7 @@ export default function RtPlot({ data, caption }) {
               dataKey='Fecha'
               interval={6}
               height={60}
+              stroke='#999'
               tickFormatter={(date) => formatDateTimeSeries(date)}
               tick={{
                 angle: -60,
@@ -37,12 +38,13 @@ export default function RtPlot({ data, caption }) {
             />
             <YAxis
               type='number'
+              stroke='#999'
               domain={[0, 5]}
               scale='linear'
               label={{
                 value: 'R',
                 angle: -90,
-                position: 'outsideLeft',
+                // position: 'outsideLeft',
                 fill: '#999',
               }}
             />
@@ -69,7 +71,7 @@ export default function RtPlot({ data, caption }) {
           </ComposedChart>
         </ResponsiveContainer>
       </div>
-      <figcaption className='pl-10 pr-8 text-xs md:text-sm text-blue-900'>
+      <figcaption className='pl-10 pr-8 text-xs md:text-sm text-subtitle'>
         {caption}
       </figcaption>
     </figure>

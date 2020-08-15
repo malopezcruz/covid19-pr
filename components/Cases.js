@@ -19,30 +19,22 @@ export default function Cases() {
 
       <div className='grid lg:grid-cols-2 lg:gap-2'>
         <article>
-          <h3 className='text-xl md:text-2xl text-blue-900 font-semibold mb-4'>
-            Diaria
-          </h3>
+          <h3 className='text-lg text-subtitle mb-4'>Diaria</h3>
           <BarPlot data={daily_cases} caption='' />
         </article>
 
         <article>
-          <h3 className='text-xl md:text-2xl text-blue-900 font-semibold mb-4'>
-            Semanal
-          </h3>
+          <h3 className='text-lg text-subtitle mb-4'>Semanal</h3>
           <BarPlot data={weekly_cases} caption='' />
         </article>
 
         <article>
-          <h3 className='text-xl md:text-2xl text-blue-900 font-semibold mb-4'>
-            14 días{' '}
-          </h3>
+          <h3 className='text-lg text-subtitle mb-4'>14 días </h3>
           <BarPlot data={twoweeks_cases} caption='' />
         </article>
 
         <article>
-          <h3 className='text-xl md:text-2xl text-blue-900 font-semibold mb-4'>
-            Mensual
-          </h3>
+          <h3 className='text-lg text-subtitle mb-4'>Mensual</h3>
           <BarPlot data={monthly_cases} caption='' />
         </article>
       </div>
