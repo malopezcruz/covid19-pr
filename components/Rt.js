@@ -2,14 +2,23 @@ import React from 'react';
 import BodyLink from './BodyLink';
 import RtPlot from './RtPlot';
 import rt from '../data/rt.json';
+import { formatDateLabel } from '../utils/utils';
+
+const { Intervalo, Fecha, Promedio } = rt[rt.length - 5];
 
 export default function Rt() {
   return (
     <section className='mt-2 md:mt-8  mb-12 md:mb-20'>
-      <h2 className='text-2xl md:text-4xl text-blue-900 font-semibold mb-8 leading-tight'>
+      <h2 className='text-2xl md:text-4xl text-blue-900 font-semibold mb-2 leading-tight'>
         Estimado del número reproductivo instantáneo <em>R</em>
         <sub>t</sub>
       </h2>
+      <div className='mb-8 md:mb-12'>
+        <p className='md:text-lg'>
+          {formatDateLabel(Fecha)}: {Promedio} ({Intervalo[0]} - {Intervalo[1]}{' '}
+          )
+        </p>
+      </div>
 
       <RtPlot
         data={rt}
@@ -27,6 +36,7 @@ export default function Rt() {
           </>
         }
       />
+
       <article>
         <h3 className='text-xl md:text-2xl text-blue-900 font-semibold mb-4'>
           Breve nota sobre el número reproductivo
@@ -42,9 +52,10 @@ export default function Rt() {
           <sub>0</sub> es mayor de 1 (<em>R</em>
           <sub>0</sub> &gt; 1), tendríamos crecimiento exponencial y los casos
           aumentarían a mayor velocidad. A manera de ejemplo: si <em>R</em>{' '}
-          fuera igual a 2, 100 personas podrían infectar a otras 200 personas,
-          mientras que si <em>R</em> fuera 0.5 solamente infectarían a otras 50.
-          En este sentido, el número reproductivo efectivo o instantáneo (
+          fuera igual a 2, 200 personas pudieran contraer COVID-19 al tener
+          contacto con 100 personas, mientras que si <em>R</em> fuera 0.5
+          solamente 50 personas pudieran contraer la enfermedad. En este
+          sentido, el número reproductivo efectivo o instantáneo (
           <span className='text-blue-900 font-semibold'>
             <em>R</em>
             <sub>t</sub>
