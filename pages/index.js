@@ -95,7 +95,7 @@ const IndexPage = () => {
               </span>
             </h1>
           </div>
-          <div className='text-gray-200 mt-1 mr-1'>2020-08-14</div>
+          <div className='text-gray-200 mt-1 mr-1'>2020-08-15</div>
         </header>
         <div className='w-full max-w-screen-lg px-4 mx-auto flex-grow mt-6'>
           <Rt />

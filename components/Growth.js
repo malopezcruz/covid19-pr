@@ -17,8 +17,9 @@ export default function Rt() {
           %, 95% CI)
         </p>
         <p className='md:text-lg'>
-          Reducción a la mitad: {parseInt(halving)} días (entre{' '}
-          {parseInt(halving_conf[0])} días a {parseInt(halving_conf[1])} días)
+          Reducción a la mitad: {parseInt(halving)} días
+          {/* (entre{' '}
+          {parseInt(halving_conf[0])} días a {parseInt(halving_conf[1])} días) */}
         </p>
       </div>
 
