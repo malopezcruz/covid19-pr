@@ -59,16 +59,17 @@ export default function RtPlot({ data, caption }) {
             <Bar name='Casos' dataKey='counts' fill='#2c5282' barSize={50} />
             <Area
               name='Intervalo'
-              type='monotone'
+              type='basis'
               dataKey='range'
-              stroke='#fbb6ce'
-              fill='#fff5f7'
+              stroke='#d9e8f2'
+              fill='#d9e8f2'
             />
             <Line
               name='Promedio'
-              type='monotone'
+              type='basis'
               dataKey='fit'
-              stroke='hotpink'
+              stroke='#1b85be'
+              strokeWidth={1.5}
               dot={false}
             />
           </ComposedChart>

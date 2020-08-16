@@ -57,15 +57,16 @@ export default function RtPlot({ data, caption }) {
             <ReferenceLine y={1} stroke='hotpink' strokeDasharray='3 3' />
             <Area
               name='Intervalo'
-              type='monotone'
+              type='basis'
               dataKey='Intervalo'
               stroke='#d9e8f2'
               fill='#d9e8f2'
             />
             <Line
-              type='monotone'
+              type='basis'
               dataKey='Promedio'
               stroke='#1b85be'
+              strokeWidth={1.5}
               dot={false}
             />
           </ComposedChart>
