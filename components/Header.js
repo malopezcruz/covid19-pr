@@ -2,7 +2,7 @@ import React from 'react';
 import { formatDateTimeSeries } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const reportDay = '2020-08-16';
+const reportDay = '2020-08-17';
 
 export default function Header() {
   return (
