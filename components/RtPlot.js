@@ -15,7 +15,7 @@ import {
 export default function RtPlot({ data, caption }) {
   return (
     <figure className='mb-8 md:mb-12' role='figure' aria-label={caption}>
-      <div style={{ position: 'relative', paddingBottom: '56%' }}>
+      <div style={{ position: 'relative', paddingBottom: '66%' }}>
         <ResponsiveContainer width='100%' height='100%' className='absolute'>
           <ComposedChart
             data={data}

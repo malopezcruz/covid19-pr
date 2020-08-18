@@ -12,9 +12,10 @@ const totalCases = monthly_cases
 
 export default function Cases() {
   return (
-    <section className='mt-2 md:mt-8  mb-12 md:mb-20'>
-      <h2 className='text-2xl md:text-4xl text-blue-900 font-semibold mb-4 leading-tight'>
-        Incidencia de casos (n = {formatNumber(totalCases)})
+    <section className='mb-12 md:mb-24'>
+      <h2 className='text-2xl md:text-4xl text-blue-900 font-semibold mb-6 leading-tight uppercase'>
+        Incidencia de casos (<span className='lowercase'>n</span> ={' '}
+        {formatNumber(totalCases)})
       </h2>
 
       <div className='grid lg:grid-cols-2 lg:gap-2'>

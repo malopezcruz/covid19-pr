@@ -8,10 +8,11 @@ const { Intervalo, Fecha, Promedio } = rt[rt.length - 6];
 
 export default function Rt() {
   return (
-    <section className='mt-2 md:mt-8  mb-12 md:mb-20'>
+    <section className='mt-2 md:mt-8  mb-12 md:mb-24'>
       <h2 className='text-2xl md:text-4xl text-blue-900 font-semibold mb-2 leading-tight'>
-        Estimado del número reproductivo instantáneo <em>R</em>
-        <sub>t</sub>
+        <em>R</em>
+        <sub>t</sub>:{' '}
+        <span className='uppercase'>número reproductivo instantáneo</span>
       </h2>
       <div className='mb-8 md:mb-12 text-subtitle'>
         <p className='md:text-lg'>

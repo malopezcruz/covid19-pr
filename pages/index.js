@@ -12,6 +12,7 @@ import Rt from '../components/Rt';
 import Cases from '../components/Cases';
 import Fatalities from '../components/Fatalities';
 import Growth from '../components/Growth';
+import Summary from '../components/Summary';
 
 const IndexPage = () => {
   useEffect(() => {
@@ -82,9 +83,14 @@ const IndexPage = () => {
       <div className='flex flex-col min-h-screen text-bodytext'>
         <Header />
         <div className='w-full max-w-screen-lg px-4 mx-auto flex-grow mt-6'>
+          <Summary />
+          <hr className='mb-12 md:mb-20' />
           <Rt />
+          <hr className='mb-12 md:mb-20' />
           <Growth />
+          <hr className='mb-12 md:mb-20' />
           <Cases />
+          <hr className='mb-12 md:mb-20' />
           <Fatalities />
         </div>
         <Footer />

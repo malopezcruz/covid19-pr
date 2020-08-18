@@ -30,3 +30,5 @@ export const formatDateLabel = (date) => {
     { locale: es }
   );
 };
+
+export const reportDate = '2020-08-17';

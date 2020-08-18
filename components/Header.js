@@ -1,8 +1,7 @@
 import React from 'react';
-import { formatDateTimeSeries } from '../utils/utils';
+import { reportDate, formatDateTimeSeries } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-const reportDay = '2020-08-17';
+console.log(reportDate);
 
 export default function Header() {
   return (
@@ -16,13 +15,11 @@ export default function Header() {
             className='inline -mt-1 mr-2'
           />
           COVID-19{' '}
-          <span className='text-blue-200 font-medium text-base'>
-            PUERTO RICO
-          </span>
+          <span className='text-blue-200 font-medium text-base'>PR</span>
         </h1>
       </div>
       <div className='text-gray-200 mt-1 mr-1 uppercase text-sm'>
-        {formatDateTimeSeries(reportDay)}
+        {formatDateTimeSeries(reportDate)}
       </div>
     </header>
   );
