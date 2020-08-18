@@ -13,10 +13,15 @@ const totalFatalities = monthly_deaths
 export default function Fatalities() {
   return (
     <section className='mb-12 md:mb-24'>
-      <h2 className='text-2xl md:text-4xl text-blue-900 font-semibold mb-6 leading-tight uppercase'>
-        Muertes (<span className='lowercase'>n</span> ={' '}
-        {formatNumber(totalFatalities)})
-      </h2>
+      <header className='mb-6'>
+        <h2 className='text-2xl md:text-4xl text-blue-900 font-semibold leading-tight uppercase'>
+          Muertes
+        </h2>
+        <p className='text-xl md:text-2xl font-bold text-subtitle'>
+          {' '}
+          (n = {formatNumber(totalFatalities)})
+        </p>
+      </header>
 
       <div className='grid lg:grid-cols-2 lg:gap-2'>
         <article>
