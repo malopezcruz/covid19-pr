@@ -26,12 +26,12 @@ export default function Summary() {
           {formatDateLabel(reportDate)}
         </span>
       </h2>
-      <div className='grid md:grid-cols-2 lg:grid-cols-4 md:gap-8'>
+      <div className='grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8'>
         <div className='shadow-md p-4 border-t-8 border-blue-800 mb-6'>
           <h3 className='font-semibold text-center uppercase text-blue-900 mb-2'>
             R<sub className='lowercase'>T</sub>
           </h3>
-          <p className='text-3xl text-subtitle text-center mb-2'>
+          <p className='text-2xl sm:text-3xl text-subtitle text-center mb-2'>
             <strong>{Intervalo[0]}</strong> &#8211;{' '}
             <strong>{Intervalo[1]}</strong>
           </p>
@@ -40,7 +40,7 @@ export default function Summary() {
           <h3 className='uppercase font-semibold text-center text-blue-900 mb-2'>
             Crecimiento
           </h3>
-          <p className='text-3xl text-subtitle text-center mb-2'>
+          <p className='text-2xl sm:text-3xl text-subtitle text-center mb-2'>
             <strong>{r_conf[0] * 100}%</strong> &#8211;{' '}
             <strong>{r_conf[1] * 100}%</strong>
           </p>
@@ -49,15 +49,15 @@ export default function Summary() {
           <h3 className='font-semibold text-center uppercase text-blue-900 mb-2'>
             Casos confirmados
           </h3>
-          <p className='text-3xl text-subtitle text-center mb-2'>
+          <p className='text-2xl sm:text-3xl text-subtitle text-center mb-2'>
             <strong>{formatNumber(totalCases)}</strong>
           </p>
         </div>
-        <div className='shadow-md p-4 border-t-8 border-blue-800 last:mb-2 md:last:mb-6'>
+        <div className='shadow-md p-4 border-t-8 border-blue-800 mb-6'>
           <h3 className='uppercase font-semibold text-center text-blue-900 mb-2'>
             Muertes
           </h3>
-          <p className='text-3xl text-subtitle text-center mb-2'>
+          <p className='text-2xl sm:text-3xl text-subtitle text-center mb-2'>
             <strong>{formatNumber(totalFatalities)}</strong>
           </p>
         </div>

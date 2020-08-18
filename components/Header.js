@@ -1,7 +1,6 @@
 import React from 'react';
 import { reportDate, formatDateTimeSeries } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-console.log(reportDate);
 
 export default function Header() {
   return (
