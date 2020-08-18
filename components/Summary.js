@@ -32,7 +32,8 @@ export default function Summary() {
             R<sub className='lowercase'>T</sub>
           </h3>
           <p className='text-3xl text-subtitle text-center mb-2'>
-            <strong>{Intervalo[0]}</strong> - <strong>{Intervalo[1]}</strong>
+            <strong>{Intervalo[0]}</strong> &#8211;{' '}
+            <strong>{Intervalo[1]}</strong>
           </p>
         </div>
         <div className='shadow p-4 border-t-8 border-blue-800 mb-6'>
@@ -40,7 +41,7 @@ export default function Summary() {
             Crecimiento
           </h3>
           <p className='text-3xl text-subtitle text-center mb-2'>
-            <strong>{r_conf[0] * 100}%</strong> a{' '}
+            <strong>{r_conf[0] * 100}%</strong> &#8211;{' '}
             <strong>{r_conf[1] * 100}%</strong>
           </p>
         </div>
