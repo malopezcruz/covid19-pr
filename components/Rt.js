@@ -4,7 +4,7 @@ import RtPlot from './RtPlot';
 import rt from '../data/rt.json';
 import { formatDateLabel } from '../utils/utils';
 
-const { Intervalo, Fecha, Promedio } = rt[rt.length - 6];
+const { Intervalo, Fecha, Promedio } = rt[rt.length - 2];
 
 export default function Rt() {
   return (
