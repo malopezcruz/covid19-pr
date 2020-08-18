@@ -21,7 +21,7 @@ export default function Rt() {
         Crecimiento de la curva epidémica
       </h2>
       <div className='grid md:grid-cols-2 md:gap-8'>
-        <div className='shadow p-4 border-t-8 border-blue-800 mb-6'>
+        <div className='shadow-md p-4 border-t-8 border-blue-800 mb-6'>
           <h3 className='font-semibold text-center uppercase text-blue-900 mb-2'>
             Antes
           </h3>
@@ -37,7 +37,7 @@ export default function Rt() {
             días)
           </p>
         </div>
-        <div className='shadow p-4 border-t-8 border-blue-800 mb-6'>
+        <div className='shadow-md p-4 border-t-8 border-blue-800 mb-6'>
           <h3 className='uppercase font-semibold text-center text-blue-900 mb-2'>
             Después
           </h3>

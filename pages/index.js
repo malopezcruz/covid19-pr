@@ -84,13 +84,13 @@ const IndexPage = () => {
         <Header />
         <div className='w-full max-w-screen-lg px-4 mx-auto flex-grow mt-6'>
           <Summary />
-          <hr className='mb-12 md:mb-20' />
+          <hr className='mb-12 md:mb-20 border-hr' />
           <Rt />
-          <hr className='mb-12 md:mb-20' />
+          <hr className='mb-12 md:mb-20 border-hr' />
           <Growth />
-          <hr className='mb-12 md:mb-20' />
+          <hr className='mb-12 md:mb-20 border-hr' />
           <Cases />
-          <hr className='mb-12 md:mb-20' />
+          <hr className='mb-12 md:mb-20 boerder-hr' />
           <Fatalities />
         </div>
         <Footer />

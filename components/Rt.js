@@ -39,7 +39,7 @@ export default function Rt() {
       />
 
       <article>
-        <h3 className='text-xl md:text-2xl text-blue-900 font-semibold mb-4'>
+        <h3 className='text-xl md:text-2xl text-blue-900 font-semibold mb-4 leading-tight'>
           Breve nota sobre el número reproductivo
         </h3>
         <p className='mb-4'>

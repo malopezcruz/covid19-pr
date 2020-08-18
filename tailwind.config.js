@@ -21,6 +21,9 @@ module.exports = {
         subtitle: '#646464',
         bodytext: '#222222',
       },
+      borderColor: {
+        hr: '#e2e2e2',
+      },
       height: {
         sm: '8px',
         md: '16px',
@@ -35,6 +38,8 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    margin: ['responsive', 'first', 'last'],
+  },
   plugins: [],
 };
