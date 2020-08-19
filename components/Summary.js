@@ -20,7 +20,7 @@ const { Intervalo } = rt[rt.length - 1];
 export default function Summary() {
   return (
     <section className='mt-6 md:mt-8 mb-16 md:mb-20'>
-      <h2 className='text-2xl md:text-4xl text-blue-900 font-semibold mb-8 sm:mb-12 leading-tight uppercase'>
+      <h2 className='text-xl md:text-3xl text-blue-900 font-semibold mb-8 sm:mb-12 leading-tight uppercase'>
         RESUMEN{' '}
         <span className='ml-1 text-subtitle text-base md:text-lg'>
           {formatDateLabel(reportDate)}

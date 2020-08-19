@@ -17,7 +17,7 @@ const {
 export default function Rt() {
   return (
     <section className='mb-12 md:mb-24'>
-      <h2 className='uppercase text-2xl md:text-4xl text-blue-900 font-semibold mb-6 md:mb-12 leading-tight'>
+      <h2 className='uppercase text-xl md:text-3xl text-blue-900 font-semibold mb-6 md:mb-12 leading-tight'>
         Crecimiento de la curva epidémica
       </h2>
       <div className='grid md:grid-cols-2 md:gap-8'>
