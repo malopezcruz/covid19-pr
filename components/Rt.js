@@ -4,22 +4,22 @@ import RtPlot from './RtPlot';
 import rt from '../data/rt.json';
 import { formatDateLabel } from '../utils/utils';
 
-const { Intervalo, Fecha, Promedio } = rt[rt.length - 2];
+const { Intervalo, Fecha, Promedio } = rt[rt.length - 4];
 
 export default function Rt() {
   return (
     <section className='mt-2 mb-12 md:mb-24'>
-      <h2 className='text-2xl md:text-4xl text-blue-900 font-semibold mb-2 leading-tight'>
+      <h2 className='text-2xl md:text-4xl text-blue-900 font-semibold mb-8 md:mb-12 leading-tight'>
         <em>R</em>
         <sub>t</sub>:{' '}
         <span className='uppercase'>número reproductivo instantáneo</span>
       </h2>
-      <div className='mb-8 md:mb-12 text-subtitle'>
+      {/* <div className='mb-8 md:mb-12 text-subtitle'>
         <p className='md:text-lg'>
           {formatDateLabel(Fecha)}: {Promedio} ({Intervalo[0]} - {Intervalo[1]}{' '}
           )
         </p>
-      </div>
+      </div> */}
 
       <RtPlot
         data={rt}
