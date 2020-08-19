@@ -31,4 +31,4 @@ export const formatDateLabel = (date) => {
   );
 };
 
-export const reportDate = '2020-08-18';
+export const reportDate = '2020-08-19';
