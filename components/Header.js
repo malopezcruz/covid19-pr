@@ -17,9 +17,9 @@ export default function Header() {
           <span className='text-blue-200 font-medium text-base'>PR</span>
         </h1>
       </div>
-      <div className='text-gray-200 mt-1 mr-1 uppercase text-sm'>
+      {/* <div className='text-gray-200 mt-1 mr-1 uppercase text-sm'>
         {formatDateTimeSeries(reportDate)}
-      </div>
+      </div> */}
     </header>
   );
 }

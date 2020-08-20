@@ -26,18 +26,18 @@ export default function Summary() {
           {formatDateLabel(reportDate)}
         </span>
       </h2>
-      <div className='grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8'>
+      <div className='grid grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8'>
         <div className='shadow-md p-4 border-t-8 border-blue-800'>
-          <h3 className='font-semibold text-center uppercase text-blue-900 mb-2'>
+          <h3 className='font-semibold text-center text-blue-900 mb-2'>
             <em>R</em>
-            <sub>t</sub>
+            <sub className>t</sub>
           </h3>
           <p className='text-2xl sm:text-3xl text-subtitle text-center mb-2'>
             <strong>{Intervalo[0]}</strong> &#8211;{' '}
             <strong>{Intervalo[1]}</strong>
           </p>
         </div>
-        <div className='shadow-md p-4 border-t-8 border-blue-800'>
+        {/* <div className='shadow-md p-4 border-t-8 border-blue-800'>
           <h3 className='uppercase font-semibold text-center text-blue-900 mb-2'>
             Crecimiento
           </h3>
@@ -45,7 +45,7 @@ export default function Summary() {
             <strong>{r_conf[0] * 100}%</strong> &#8211;{' '}
             <strong>{r_conf[1] * 100}%</strong>
           </p>
-        </div>
+        </div> */}
         <div className='shadow-md p-4 border-t-8 border-blue-800'>
           <h3 className='font-semibold text-center uppercase text-blue-900 mb-2'>
             Casos

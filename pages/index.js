@@ -87,8 +87,8 @@ const IndexPage = () => {
           <hr className='mb-12 md:mb-20 border-hr' />
           <Rt />
           <hr className='mb-12 md:mb-20 border-hr' />
-          <Growth />
-          <hr className='mb-12 md:mb-20 border-hr' />
+          {/* <Growth />
+          <hr className='mb-12 md:mb-20 border-hr' /> */}
           <Cases />
           <hr className='mb-12 md:mb-20 boerder-hr' />
           <Fatalities />

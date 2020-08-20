@@ -33,6 +33,18 @@ export default function Footer() {
                 label='Departamento de Salud de Puerto Rico'
               />
             </li>
+            <li className='ml-4 mb-2'>
+              <ExtLink
+                link='https://sacundim.github.io/covid-19-puerto-rico/'
+                label='Análisis de los boletines diarios de COVID-19 en PR'
+              />
+            </li>
+            <li className='ml-4 mb-2'>
+              <ExtLink
+                link='https://colab.research.google.com/drive/12SleJ6K7hNsHLdSEsqcusHpqMky6oXtN#scrollTo=t1r-h4aFI7_q'
+                label='Directorio de SMICRC (Rastreo de contatctos'
+              />
+            </li>
           </ul>
         </div>
         <div className='mb-6'>
