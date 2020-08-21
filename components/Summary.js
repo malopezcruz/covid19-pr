@@ -30,7 +30,7 @@ export default function Summary() {
         <div className='shadow-md p-4 border-t-8 border-blue-800'>
           <h3 className='font-semibold text-center text-blue-900 mb-2'>
             <em>R</em>
-            <sub className>t</sub>
+            <sub>t</sub>
           </h3>
           <p className='text-2xl sm:text-3xl text-subtitle text-center mb-2'>
             <strong>{Intervalo[0]}</strong> &#8211;{' '}

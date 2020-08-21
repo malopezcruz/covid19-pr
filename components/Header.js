@@ -1,5 +1,5 @@
 import React from 'react';
-import { reportDate, formatDateTimeSeries } from '../utils/utils';
+// import { reportDate, formatDateTimeSeries } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Header() {
