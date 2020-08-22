@@ -65,7 +65,7 @@ export default function RtPlot({ data, caption }) {
             <Line
               type='basis'
               dataKey='Promedio'
-              stroke='#1b85be'
+              stroke='#2c5282'
               strokeWidth={1.5}
               dot={false}
             />
