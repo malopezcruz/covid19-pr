@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BarPlot from './BarPlot';
 import { formatNumber } from '../utils/utils';
 import daily_deaths from '../data/daily_deaths.json';
@@ -11,10 +11,12 @@ const totalFatalities = monthly_deaths
   .reduce((prev, next) => prev + next);
 
 export default function Fatalities() {
+  const [openTab, setOpenTab] = useState(1);
+
   return (
     <section className='mb-12 md:mb-24'>
-      <header className='mb-6'>
-        <h2 className='text-xl md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
+      <header className='mb-2 sm:mb-6'>
+        <h2 className='text-xl mb-1 sm:mb-2 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
           Muertes
         </h2>
         <p className='text-lg md:text-2xl font-bold text-subtitle'>
@@ -23,26 +25,104 @@ export default function Fatalities() {
         </p>
       </header>
 
-      <div className='grid lg:grid-cols-2 lg:gap-2'>
-        <article>
-          <h3 className='text-base uppercase text-subtitle mb-4'>Diaria</h3>
-          <BarPlot data={daily_deaths} caption='' />
-        </article>
-
-        <article>
-          <h3 className='text-base uppercase mb-4'>Semanal</h3>
-          <BarPlot data={weekly_deaths} caption='' />
-        </article>
-
-        <article>
-          <h3 className='text-base uppercase mb-4'>14 días </h3>
-          <BarPlot data={twoweeks_deaths} caption='' />
-        </article>
-
-        <article>
-          <h3 className='text-base uppercase mb-4'>Mensual</h3>
-          <BarPlot data={monthly_deaths} caption='' />
-        </article>
+      {/* Tab */}
+      <div className='flex flex-wrap'>
+        <div className='w-full'>
+          <ul
+            className='flex mb-0 list-none flex-wrap pt-3 pb-6 flex-row'
+            role='tablist'
+          >
+            <li className='-mb-px mr-2 last:mr-0 flex-auto text-center'>
+              <a
+                className={`text-sm uppercase sm:tracking-widest ${
+                  openTab === 1
+                    ? 'text-blue-900 font-semibold'
+                    : 'text-tabs font-medium'
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenTab(1);
+                }}
+                data-toggle='tab'
+                href='#link1'
+                role='tablist'
+              >
+                Diaria
+              </a>
+            </li>
+            <li className='-mb-px mr-2 last:mr-0 flex-auto text-center'>
+              <a
+                className={`text-sm uppercase sm:tracking-widest ${
+                  openTab === 2
+                    ? 'text-blue-900 font-semibold'
+                    : 'text-tabs font-medium'
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenTab(2);
+                }}
+                data-toggle='tab'
+                href='#link2'
+                role='tablist'
+              >
+                Semanal
+              </a>
+            </li>
+            <li className='-mb-px mr-2 last:mr-0 flex-auto text-center'>
+              <a
+                className={`text-sm uppercase sm:tracking-widest ${
+                  openTab === 3
+                    ? 'text-blue-900 font-semibold'
+                    : 'text-tabs font-medium'
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenTab(3);
+                }}
+                data-toggle='tab'
+                href='#link3'
+                role='tablist'
+              >
+                14 días
+              </a>
+            </li>
+            <li className='-mb-px mr-2 last:mr-0 flex-auto text-center'>
+              <a
+                className={`text-sm uppercase sm:tracking-widest ${
+                  openTab === 4
+                    ? 'text-blue-900 font-semibold'
+                    : 'text-tabs font-medium'
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenTab(4);
+                }}
+                data-toggle='tab'
+                href='#link4'
+                role='tablist'
+              >
+                Mensual
+              </a>
+            </li>
+          </ul>
+          {/* tabPanel */}
+          <div className='relative flex flex-col min-w-0 break-words w-full'>
+            <div className='pt-4 flex-auto'>
+              <div className={openTab === 1 ? 'block' : 'hidden'} id='link1'>
+                <BarPlot data={daily_deaths} caption='' />
+              </div>
+              <div className={openTab === 2 ? 'block' : 'hidden'} id='link2'>
+                <BarPlot data={weekly_deaths} caption='' />
+              </div>
+              <div className={openTab === 3 ? 'block' : 'hidden'} id='link3'>
+                <BarPlot data={twoweeks_deaths} caption='' />
+              </div>
+              <div className={openTab === 4 ? 'block' : 'hidden'} id='link4'>
+                <BarPlot data={monthly_deaths} caption='' />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

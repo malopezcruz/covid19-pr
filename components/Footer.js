@@ -45,6 +45,12 @@ export default function Footer() {
                 label='Directorio de SMICRC (Rastreo de contatctos'
               />
             </li>
+            <li className='ml-4 mb-2'>
+              <ExtLink
+                link='http://taskforceciudadano.com'
+                label='Task Force Ciudadano'
+              />
+            </li>
           </ul>
         </div>
         <div className='mb-6'>

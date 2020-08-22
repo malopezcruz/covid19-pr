@@ -18,8 +18,9 @@ module.exports = {
         lightgreen: '#e6f5c9',
       }),
       textColor: {
-        subtitle: '#646464',
+        subtitle: '#777777',
         bodytext: '#222222',
+        tabs: '#999999',
       },
       borderColor: {
         hr: '#e2e2e2',
@@ -42,4 +43,7 @@ module.exports = {
     margin: ['responsive', 'first', 'last'],
   },
   plugins: [],
+  future: {
+    removeDeprecatedGapUtilities: true,
+  },
 };

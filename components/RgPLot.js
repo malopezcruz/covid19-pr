@@ -23,7 +23,7 @@ export default function RtPlot({ data, caption }) {
             data={data}
             margin={{ top: 5, right: 20, bottom: 0, left: -20 }}
           >
-            <CartesianGrid stroke='#f2f2f2' />
+            <CartesianGrid stroke='#f2f2f2' vertical={false} />
             <XAxis
               name='Fecha'
               dataKey='dates'
