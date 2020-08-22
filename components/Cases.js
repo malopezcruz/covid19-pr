@@ -15,8 +15,8 @@ export default function Cases() {
 
   return (
     <section className='mb-12 md:mb-24'>
-      <header className='mb-2 sm:mb-6'>
-        <h2 className='text-xl mb-1 sm:mb-2 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
+      <header className='mb-4 sm:mb-6'>
+        <h2 className='text-xl mb-2 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
           Incidencia de casos
         </h2>
         <p className='text-lg md:text-2xl font-bold text-subtitle'>
@@ -29,7 +29,7 @@ export default function Cases() {
       <div className='flex flex-wrap'>
         <div className='w-full'>
           <ul
-            className='flex mb-0 list-none flex-wrap pt-3 pb-6 flex-row justify-between sm:justify-start'
+            className='flex px-6 sm:px-0 mb-0 list-none flex-wrap pt-3 pb-6 flex-row justify-between sm:justify-start'
             role='tablist'
           >
             <li className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'>
