@@ -29,15 +29,15 @@ export default function Fatalities() {
       <div className='flex flex-wrap'>
         <div className='w-full'>
           <ul
-            className='flex mb-0 list-none flex-wrap pt-3 pb-6 flex-row'
+            className='flex mb-0 list-none flex-wrap pt-3 pb-6 flex-row justify-between sm:justify-start'
             role='tablist'
           >
-            <li className='-mb-px mr-2 last:mr-0 flex-auto text-center'>
+            <li className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'>
               <a
                 className={`text-sm uppercase sm:tracking-widest ${
                   openTab === 1
                     ? 'text-blue-900 font-semibold'
-                    : 'text-tabs font-medium'
+                    : 'text-tabs font-medium hover:text-subtitle'
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -50,12 +50,12 @@ export default function Fatalities() {
                 Diaria
               </a>
             </li>
-            <li className='-mb-px mr-2 last:mr-0 flex-auto text-center'>
+            <li className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'>
               <a
                 className={`text-sm uppercase sm:tracking-widest ${
                   openTab === 2
                     ? 'text-blue-900 font-semibold'
-                    : 'text-tabs font-medium'
+                    : 'text-tabs font-medium hover:text-subtitle'
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -68,12 +68,12 @@ export default function Fatalities() {
                 Semanal
               </a>
             </li>
-            <li className='-mb-px mr-2 last:mr-0 flex-auto text-center'>
+            <li className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'>
               <a
                 className={`text-sm uppercase sm:tracking-widest ${
                   openTab === 3
                     ? 'text-blue-900 font-semibold'
-                    : 'text-tabs font-medium'
+                    : 'text-tabs font-medium hover:text-subtitle'
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -86,12 +86,12 @@ export default function Fatalities() {
                 14 días
               </a>
             </li>
-            <li className='-mb-px mr-2 last:mr-0 flex-auto text-center'>
+            <li className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'>
               <a
                 className={`text-sm uppercase sm:tracking-widest ${
                   openTab === 4
                     ? 'text-blue-900 font-semibold'
-                    : 'text-tabs font-medium'
+                    : 'text-tabs font-medium hover:text-subtitle'
                 }`}
                 onClick={(e) => {
                   e.preventDefault();

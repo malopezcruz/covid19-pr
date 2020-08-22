@@ -42,7 +42,7 @@ export default function Footer() {
             <li className='ml-4 mb-2'>
               <ExtLink
                 link='https://colab.research.google.com/drive/12SleJ6K7hNsHLdSEsqcusHpqMky6oXtN#scrollTo=t1r-h4aFI7_q'
-                label='Directorio de SMICRC (Rastreo de contatctos'
+                label='Directorio de SMICRC (Rastreo de contactos)'
               />
             </li>
             <li className='ml-4 mb-2'>

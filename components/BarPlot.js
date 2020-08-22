@@ -23,7 +23,7 @@ export default function BarPlot({ data, caption }) {
 
   return (
     <figure role='figure' {...ariaLabelCaption}>
-      <div style={{ position: 'relative', paddingBottom: '66%' }}>
+      <div className='relative pb-5/6 sm:pb-4/6'>
         <ResponsiveContainer width='100%' height='100%' className='absolute'>
           <BarChart
             data={data}
@@ -39,7 +39,7 @@ export default function BarPlot({ data, caption }) {
               name='Fecha'
               dataKey='dates'
               interval={0}
-              height={80}
+              height={60}
               stroke='#999'
               tickFormatter={(date) => formatDateTimeSeries(date)}
               tick={{
@@ -64,6 +64,7 @@ export default function BarPlot({ data, caption }) {
             />
             {/* <Legend verticalAlign='top' wrapperStyle={{ lineHeight: '40px' }} /> */}
             {/* <ReferenceLine y={0} stroke='#000' /> */}
+            <Bar name='Casos' dataKey='counts' fill='#2c5282' barSize={100} />
             <Brush
               dataKey='dates'
               data={data}
@@ -73,7 +74,6 @@ export default function BarPlot({ data, caption }) {
               tickFormatter={(date) => formatDateTimeSeries(date)}
               travellerWidth={25}
             />
-            <Bar name='Casos' dataKey='counts' fill='#2c5282' barSize={100} />
           </BarChart>
         </ResponsiveContainer>
       </div>
