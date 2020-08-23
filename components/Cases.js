@@ -43,7 +43,7 @@ export default function Cases() {
                   setOpenTab(1);
                 }}
                 data-toggle='tab'
-                href='#link1'
+                href='#casos-diarios'
                 role='tablist'
               >
                 Diaria
@@ -61,7 +61,7 @@ export default function Cases() {
                   setOpenTab(2);
                 }}
                 data-toggle='tab'
-                href='#link2'
+                href='#casos-semanales'
                 role='tablist'
               >
                 Semanal
@@ -79,7 +79,7 @@ export default function Cases() {
                   setOpenTab(3);
                 }}
                 data-toggle='tab'
-                href='#link3'
+                href='#casos-14dias'
                 role='tablist'
               >
                 14 días
@@ -97,7 +97,7 @@ export default function Cases() {
                   setOpenTab(4);
                 }}
                 data-toggle='tab'
-                href='#link4'
+                href='#casos-mensuales'
                 role='tablist'
               >
                 Mensual
@@ -107,16 +107,28 @@ export default function Cases() {
           {/* tabPanel */}
           <div className='relative flex flex-col min-w-0 break-words w-full'>
             <div className='pt-4 flex-auto'>
-              <div className={openTab === 1 ? 'block' : 'hidden'} id='link1'>
+              <div
+                className={openTab === 1 ? 'block' : 'hidden'}
+                id='casos-diarios'
+              >
                 <BarPlot data={daily_cases} caption='' />
               </div>
-              <div className={openTab === 2 ? 'block' : 'hidden'} id='link2'>
+              <div
+                className={openTab === 2 ? 'block' : 'hidden'}
+                id='casos-semanales'
+              >
                 <BarPlot data={weekly_cases} caption='' />
               </div>
-              <div className={openTab === 3 ? 'block' : 'hidden'} id='link3'>
+              <div
+                className={openTab === 3 ? 'block' : 'hidden'}
+                id='casos-14dias'
+              >
                 <BarPlot data={twoweeks_cases} caption='' />
               </div>
-              <div className={openTab === 4 ? 'block' : 'hidden'} id='link4'>
+              <div
+                className={openTab === 4 ? 'block' : 'hidden'}
+                id='casos-mensuales'
+              >
                 <BarPlot data={monthly_cases} caption='' />
               </div>
             </div>

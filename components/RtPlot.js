@@ -87,9 +87,9 @@ export default function RtPlot({ data, caption }) {
             <ReferenceArea
               x1={minusFiveDaysInterval}
               x2={lastPCRDay}
-              fill='red'
-              fillOpacity={0.12}
-              alwaysShow='true'
+              fill='hotpink'
+              fillOpacity={0.2}
+              alwaysShow={true}
             />
           </ComposedChart>
         </ResponsiveContainer>

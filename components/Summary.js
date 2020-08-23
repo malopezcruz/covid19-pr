@@ -26,8 +26,8 @@ export default function Summary() {
           {formatDateLabel(reportDate)}
         </span>
       </h2>
-      <div className='grid grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8'>
-        <div className='shadow-md p-4 border-t-8 border-blue-800'>
+      <div className='grid grid-cols-2 sm:grid-cols-3 gap-5 md:gap-8'>
+        <div className='col-span-2 sm:col-span-1 shadow-md p-4 border-t-8 border-blue-800'>
           <h3 className='font-semibold text-center text-blue-900 mb-2'>
             <em>R</em>
             <sub>t</sub>
@@ -46,7 +46,7 @@ export default function Summary() {
             <strong>{r_conf[1] * 100}%</strong>
           </p>
         </div> */}
-        <div className='shadow-md p-4 border-t-8 border-blue-800'>
+        <div className='col-span-1 shadow-md p-4 border-t-8 border-blue-800'>
           <h3 className='font-semibold text-center uppercase text-blue-900 mb-2'>
             Casos
           </h3>
@@ -54,7 +54,7 @@ export default function Summary() {
             <strong>{formatNumber(totalCases)}</strong>
           </p>
         </div>
-        <div className='shadow-md p-4 border-t-8 border-blue-800'>
+        <div className='col-span-1 shadow-md p-4 border-t-8 border-blue-800'>
           <h3 className='uppercase font-semibold text-center text-blue-900 mb-2'>
             Muertes
           </h3>

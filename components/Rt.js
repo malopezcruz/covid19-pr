@@ -26,8 +26,8 @@ export default function Rt() {
         caption={
           <>
             Número reproductivo de casos confirmados, promedio de 14 días. El
-            área roja señala días en los que pudieran faltar por reportarse más
-            casos. Fuente: Departamento de Salud de Puerto Rico,{' '}
+            área ensombrecida señala días en los que pudieran faltar por
+            reportarse más casos. Fuente: Departamento de Salud de Puerto Rico,{' '}
             <em>
               <BodyLink
                 link='http://www.salud.gov.pr/Estadisticas-Registros-y-Publicaciones/Pages/COVID-19.aspx'

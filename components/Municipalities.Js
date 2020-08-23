@@ -4,19 +4,29 @@ import municipalities from '../data/municipalities.json';
 import BarPlot from './BarPlot';
 
 export default function Municipalities() {
-  const [municipality, setMunicipality] = useState(municipality_list);
+  const [municipality, setMunicipality] = useState('');
 
-  const mun = municipalities.filter(
-    ({ name }) => name == 'Otro lugar fuera de PR'
+  // const selectMun = () => municipality_list.map(({ name }) => (
+  //   <option>{name}</option>
+  // ))}
+
+  const municipalityFiltered = municipalities.filter(
+    ({ name }) => name == 'San Juan'
   );
 
-  const { name, counts, dates } = mun[mun.length - 1];
+  const { name, counts, dates } = municipalityFiltered[
+    municipalityFiltered.length - 1
+  ];
 
   return (
     <section className='mb-12 md:mb-24'>
       <h2 className='text-xl mb-8 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
         Casos acumulados por municipio
       </h2>
+      <label className='block mt-4'>
+        <span className='text-gray-700'>Escoja un municipio</span>
+        <select className='form-select mt-1 block w-full'></select>
+      </label>
       <div className='mb-8 grid grid-cols-3 gap-4 md:gap-8 md:w-4/6 md:mx-auto'>
         <div className='shadow-md p-4 border-t-8 border-blue-800'>
           <h3 className='text-sm font-semibold uppercase text-center text-blue-900 mb-2'>
@@ -43,7 +53,7 @@ export default function Municipalities() {
           </p>
         </div>
       </div>
-      <BarPlot data={mun} capton='' />{' '}
+      <BarPlot data={municipalityFiltered} capton='' />{' '}
     </section>
   );
 }

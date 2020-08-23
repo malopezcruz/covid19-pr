@@ -19,7 +19,6 @@ export default function Fatalities() {
         <h2 className='text-xl mb-2 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
           Muertes
           <span className='ml-2 text-lg md:text-2xl font-bold text-subtitle'>
-            {' '}
             (<span className='lowercase'>n </span>={' '}
             {formatNumber(totalFatalities)})
           </span>
@@ -45,7 +44,7 @@ export default function Fatalities() {
                   setOpenTab(1);
                 }}
                 data-toggle='tab'
-                href='#link1'
+                href='#muertes-diarias'
                 role='tablist'
               >
                 Diaria
@@ -63,7 +62,7 @@ export default function Fatalities() {
                   setOpenTab(2);
                 }}
                 data-toggle='tab'
-                href='#link2'
+                href='#muertes-semanales'
                 role='tablist'
               >
                 Semanal
@@ -81,7 +80,7 @@ export default function Fatalities() {
                   setOpenTab(3);
                 }}
                 data-toggle='tab'
-                href='#link3'
+                href='#muertes-14dias'
                 role='tablist'
               >
                 14 días
@@ -99,7 +98,7 @@ export default function Fatalities() {
                   setOpenTab(4);
                 }}
                 data-toggle='tab'
-                href='#link4'
+                href='#muertes-mensuales'
                 role='tablist'
               >
                 Mensual
@@ -109,16 +108,28 @@ export default function Fatalities() {
           {/* tabPanel */}
           <div className='relative flex flex-col min-w-0 break-words w-full'>
             <div className='pt-4 flex-auto'>
-              <div className={openTab === 1 ? 'block' : 'hidden'} id='link1'>
+              <div
+                className={openTab === 1 ? 'block' : 'hidden'}
+                id='muertes-diarias'
+              >
                 <BarPlot data={daily_deaths} caption='' />
               </div>
-              <div className={openTab === 2 ? 'block' : 'hidden'} id='link2'>
+              <div
+                className={openTab === 2 ? 'block' : 'hidden'}
+                id='muertes-semanales'
+              >
                 <BarPlot data={weekly_deaths} caption='' />
               </div>
-              <div className={openTab === 3 ? 'block' : 'hidden'} id='link3'>
+              <div
+                className={openTab === 3 ? 'block' : 'hidden'}
+                id='muertes-14dias'
+              >
                 <BarPlot data={twoweeks_deaths} caption='' />
               </div>
-              <div className={openTab === 4 ? 'block' : 'hidden'} id='link4'>
+              <div
+                className={openTab === 4 ? 'block' : 'hidden'}
+                id='muertes-mensuales'
+              >
                 <BarPlot data={monthly_deaths} caption='' />
               </div>
             </div>

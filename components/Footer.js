@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className='bg-gray-900 tracking-wide py-8 font-light'>
       <div className='w-full max-w-screen-lg px-4 lg:px-0 mx-auto grid gri-cols-1 md:grid-cols-3 md:gap-6 text-gray-200 pt-6'>
         <div className='mb-6'>
-          <h4 className='text-xl mb-2 font-medium'>En Puerto Rico...</h4>
+          <h3 className='text-xl mb-2 font-medium'>En Puerto Rico...</h3>
           <ul className='flex flex-col'>
             <li className='ml-4 mb-2'>
               <ExtLink
@@ -48,7 +48,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className='mb-6'>
-          <h4 className='text-xl mb-2 font-medium'>En el mundo...</h4>
+          <h3 className='text-xl mb-2 font-medium'>En el mundo...</h3>
           <ul className='flex flex-col'>
             <li className='ml-4 mb-2'>
               <ExtLink
@@ -65,7 +65,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className='mb-6'>
-          <h4 className='text-xl mb-2 font-medium'>Nota técnica</h4>
+          <h3 className='text-xl mb-2 font-medium'>Nota técnica</h3>
           <p>
             <em>R</em>
             <sub>t</sub> se calcula utilizando los paquetes{' '}

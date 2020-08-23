@@ -46,7 +46,7 @@ module.exports = {
   variants: {
     margin: ['responsive', 'first', 'last'],
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/custom-forms')],
   future: {
     removeDeprecatedGapUtilities: true,
   },
