@@ -18,11 +18,12 @@ export default function Fatalities() {
       <header className='mb-4 sm:mb-6'>
         <h2 className='text-xl mb-2 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
           Muertes
+          <span className='ml-2 text-lg md:text-2xl font-bold text-subtitle'>
+            {' '}
+            (<span className='lowercase'>n </span>={' '}
+            {formatNumber(totalFatalities)})
+          </span>
         </h2>
-        <p className='text-lg md:text-2xl font-bold text-subtitle'>
-          {' '}
-          (n = {formatNumber(totalFatalities)})
-        </p>
       </header>
 
       {/* Tab */}

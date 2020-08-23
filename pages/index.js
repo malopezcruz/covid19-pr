@@ -11,8 +11,9 @@ import '../utils/addFontAwesome.js';
 import Rt from '../components/Rt';
 import Cases from '../components/Cases';
 import Fatalities from '../components/Fatalities';
-import Growth from '../components/Growth';
+// import Growth from '../components/Growth';
 import Summary from '../components/Summary';
+// import Municipalities from '../components/Municipalities';
 
 const IndexPage = () => {
   useEffect(() => {
@@ -92,6 +93,8 @@ const IndexPage = () => {
           <Cases />
           <hr className='mb-12 md:mb-20 boerder-hr' />
           <Fatalities />
+          {/* <hr className='mb-12 md:mb-20 boerder-hr' />
+          <Municipalities /> */}
         </div>
         <Footer />
       </div>

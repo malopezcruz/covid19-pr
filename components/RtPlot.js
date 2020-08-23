@@ -10,6 +10,7 @@ import {
   Tooltip,
   ReferenceLine,
   ResponsiveContainer,
+  ReferenceArea,
 } from 'recharts';
 
 export default function RtPlot({ data, caption }) {
@@ -28,6 +29,7 @@ export default function RtPlot({ data, caption }) {
               interval={6}
               height={60}
               stroke='#999'
+              type='category'
               tickFormatter={(date) => formatDateTimeSeries(date)}
               tick={{
                 angle: -60,
@@ -68,6 +70,14 @@ export default function RtPlot({ data, caption }) {
               stroke='#2c5282'
               strokeWidth={1.5}
               dot={false}
+            />
+            <ReferenceArea
+              x1={'2020-08-20'}
+              x2={'2020-08-15'}
+              y1={0}
+              y2={5}
+              fill='red'
+              fillOpacity={0.12}
             />
           </ComposedChart>
         </ResponsiveContainer>
