@@ -13,7 +13,7 @@ import Cases from '../components/Cases';
 import Fatalities from '../components/Fatalities';
 // import Growth from '../components/Growth';
 import Summary from '../components/Summary';
-import Municipalities from '../components/Municipalities';
+// import Municipalities from '../components/Municipalities';
 
 const IndexPage = () => {
   useEffect(() => {
