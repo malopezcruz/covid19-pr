@@ -11,9 +11,13 @@ import {
   ReferenceLine,
   ResponsiveContainer,
   ReferenceArea,
+  Brush,
 } from 'recharts';
 
 export default function RtPlot({ data, caption }) {
+  const { Fecha: lastPCRDay } = data[data.length - 1];
+  const { Fecha: minusFiveDaysInterval } = data[data.length - 6];
+
   return (
     <figure className='mb-8 md:mb-12' role='figure' aria-label={caption}>
       <div className='relative pb-5/6 sm:pb-4/6'>
@@ -57,6 +61,15 @@ export default function RtPlot({ data, caption }) {
             />
             {/* d9e8f2 */}
             <ReferenceLine y={1} stroke='hotpink' strokeDasharray='3 3' />
+            <Brush
+              dataKey='Fecha'
+              data={data}
+              height={25}
+              stroke='#2c5282'
+              fill='#f7fafc'
+              tickFormatter={(date) => formatDateTimeSeries(date)}
+              travellerWidth={25}
+            />
             <Area
               name='Intervalo'
               type='basis'
@@ -72,17 +85,16 @@ export default function RtPlot({ data, caption }) {
               dot={false}
             />
             <ReferenceArea
-              x1={'2020-08-20'}
-              x2={'2020-08-15'}
-              y1={0}
-              y2={5}
+              x1={minusFiveDaysInterval}
+              x2={lastPCRDay}
               fill='red'
               fillOpacity={0.12}
+              alwaysShow='true'
             />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
-      <figcaption className='pl-10 pr-8 text-xs md:text-sm text-subtitle'>
+      <figcaption className='mt-4 pl-10 pr-8 text-xs md:text-sm text-subtitle'>
         {caption}
       </figcaption>
     </figure>

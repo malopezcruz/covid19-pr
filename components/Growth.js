@@ -1,6 +1,6 @@
 import React from 'react';
 import fos_fit from '../data/fos_fit.json';
-import RgPlot from './RgPLot';
+import RgPlot from './RgPlot';
 import rg from '../data/rg.json';
 
 const {
