@@ -37,7 +37,7 @@ export default function BarPlotMun({ data, caption }) {
             <XAxis
               name='Fecha'
               dataKey='dates'
-              interval={0}
+              interval={1}
               height={60}
               stroke='#999'
               tickFormatter={(date) => formatDateTimeSeries(date)}
