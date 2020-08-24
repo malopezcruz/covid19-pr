@@ -1,9 +1,9 @@
-import App from 'next/app';
-class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props;
-    return (
-      <div>
+import React from 'react';
+
+const MyApp = ({ Component, pageProps }) => {
+  return (
+    <div>
+      <>
         <Component {...pageProps} />
         <style jsx global>{`
           @font-face {
@@ -27,8 +27,9 @@ class MyApp extends App {
               url('/fonts/lato-v16-latin-900.woff') format('woff');
           }
         `}</style>
-      </div>
-    );
-  }
-}
+      </>
+    </div>
+  );
+};
+
 export default MyApp;

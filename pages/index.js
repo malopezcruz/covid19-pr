@@ -1,11 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import {
-  initializeGoogleAnalytics,
-  registerPageView,
-} from '../utils/googleAnalytics';
 import '../styles/index.css';
 import '../utils/addFontAwesome.js';
 import Rt from '../components/Rt';
@@ -16,14 +12,6 @@ import Summary from '../components/Summary';
 import Municipalities from '../components/Municipalities';
 
 const IndexPage = () => {
-  useEffect(() => {
-    if (!window.GA_INITIALIZED) {
-      initializeGoogleAnalytics();
-      window.GA_INITIALIZED = true;
-    }
-    registerPageView();
-  });
-
   return (
     <>
       <Head>

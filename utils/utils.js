@@ -52,6 +52,8 @@ export const movingAvg = (array, countBefore, countAfter) => {
   return result;
 };
 
+export const cumulativeSum = ((sum) => (value) => (sum += value))(0);
+
 export const municipality_list = [
   'Adjuntas',
   'Aguada',

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { formatNumber, movingAvg } from '../utils/utils';
+import { formatNumber } from '../utils/utils';
 import BarPlot from '../components/BarPlot';
 import daily_cases from '../data/daily_cases.json';
 import weekly_cases from '../data/weekly_cases.json';

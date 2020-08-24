@@ -7,7 +7,26 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang='es'>
-        <Head />
+        <Head>
+          {/* Global site tag (gtag.js) - Google Analytics */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id="UA-2126086-12"`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-2126086-12', {
+    page_path: window.location.pathname,
+    cookie_flags: 'SameSite=None;Secure',
+  })`,
+            }}
+          />
+        </Head>
         <body className='h-full'>
           <Main />
           <NextScript />

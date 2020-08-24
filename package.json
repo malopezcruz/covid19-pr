@@ -24,7 +24,6 @@
     "rc-tabs": "^11.6.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-ga": "^3.1.0",
     "react-tooltip": "^4.2.8",
     "recharts": "^1.8.5"
   },
