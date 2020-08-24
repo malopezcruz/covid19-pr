@@ -33,6 +33,25 @@ export const formatDateLabel = (date) => {
   );
 };
 
+// Use
+//movingAvg(myArr, 6); //6 before and the current
+// movingAvg(myArr, 3, 3); //3 before, 3 after, plus the current
+// movingAvg(myArr, 0, 6); //6 after plus the current
+export const movingAvg = (array, countBefore, countAfter) => {
+  if (countAfter == undefined) countAfter = 0;
+  const result = [];
+  for (let i = 0; i < array.length; i++) {
+    const subArr = array.slice(
+      Math.max(i - countBefore, 0),
+      Math.min(i + countAfter + 1, array.length)
+    );
+    const avg =
+      subArr.reduce((a, b) => a + (isNaN(b) ? 0 : b), 0) / subArr.length;
+    result.push(avg);
+  }
+  return result;
+};
+
 export const municipality_list = [
   'Adjuntas',
   'Aguada',

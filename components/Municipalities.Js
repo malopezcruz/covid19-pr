@@ -1,59 +1,58 @@
 import React, { useState } from 'react';
-import { formatNumber, municipality_list } from '../utils/utils';
+import { formatNumber, municipality_list, movingAvg } from '../utils/utils';
 import municipalities from '../data/municipalities.json';
-import BarPlot from './BarPlot';
+import BarPlotMun from './BarPlotMun';
 
 export default function Municipalities() {
-  const [municipality, setMunicipality] = useState('');
-
-  // const selectMun = () => municipality_list.map(({ name }) => (
-  //   <option>{name}</option>
-  // ))}
+  const [selectedMunicipality, setSelectedMunicipality] = useState('Adjuntas');
 
   const municipalityFiltered = municipalities.filter(
-    ({ name }) => name == 'San Juan'
+    ({ name }) => name == selectedMunicipality
   );
 
-  const { name, counts, dates } = municipalityFiltered[
+  const { name, counts } = municipalityFiltered[
     municipalityFiltered.length - 1
   ];
 
   return (
     <section className='mb-12 md:mb-24'>
-      <h2 className='text-xl mb-8 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
+      <h2 className='text-xl mb-6 sm:mb-8 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
         Casos acumulados por municipio
       </h2>
-      <label className='block mt-4'>
-        <span className='text-gray-700'>Escoja un municipio</span>
-        <select className='form-select mt-1 block w-full'></select>
+      <label className='block mb-6 sm:mb-8 md:w-64'>
+        <span className='text-subtitle'>Selecciona un municipio:</span>
+        <select
+          className='form-select mt-1 block w-full text-subtitle bg-white'
+          onChange={(e) => {
+            setSelectedMunicipality(e.target.value);
+          }}
+        >
+          {municipality_list.map((name) => (
+            <option className='text-gray-700 bg-white' key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
       </label>
-      <div className='mb-8 grid grid-cols-3 gap-4 md:gap-8 md:w-4/6 md:mx-auto'>
-        <div className='shadow-md p-4 border-t-8 border-blue-800'>
+      <div className='mb-4 sm:mb-8 grid grid-cols-2 gap-2 mx-auto w-4/6 md:gap-8 '>
+        <div className=''>
           <h3 className='text-sm font-semibold uppercase text-center text-blue-900 mb-2'>
             Municipio
           </h3>
-          <p className='text-2xl sm:text-3xl text-subtitle text-center mb-2'>
+          <p className='text-2xl sm:text-3xl  text-blue-900 opacity-75 text-center mb-2'>
             <strong>{name}</strong>
           </p>
         </div>
-        <div className='shadow-md p-4 border-t-8 border-blue-800'>
+        <div className=''>
           <h3 className='text-sm font-semibold uppercase text-center text-blue-900 mb-2'>
-            Municipio
-          </h3>
-          <p className='text-2xl sm:text-3xl text-subtitle text-center mb-2'>
-            <strong>{name}</strong>
-          </p>
-        </div>
-        <div className='shadow-md p-4 uppercase border-t-8 border-blue-800'>
-          <h3 className='text-sm font-semibold text-center text-blue-900 mb-2'>
             Casos
           </h3>
-          <p className='text-2xl sm:text-3xl text-subtitle text-center mb-2'>
+          <p className='text-2xl sm:text-3xl text-blue-900 opacity-75 text-center mb-2'>
             <strong>{formatNumber(counts)}</strong>
           </p>
         </div>
       </div>
-      <BarPlot data={municipalityFiltered} capton='' />{' '}
+      <BarPlotMun data={municipalityFiltered} capton='' />{' '}
     </section>
   );
 }

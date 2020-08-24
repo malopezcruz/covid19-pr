@@ -89,7 +89,6 @@ export default function RtPlot({ data, caption }) {
               x2={lastPCRDay}
               fill='hotpink'
               fillOpacity={0.2}
-              alwaysShow={true}
             />
           </ComposedChart>
         </ResponsiveContainer>

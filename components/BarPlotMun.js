@@ -74,11 +74,12 @@ export default function BarPlotMun({ data, caption }) {
               tickFormatter={(date) => formatDateTimeSeries(date)}
               travellerWidth={25}
             />
-            <Bar name='Casos' dataKey='counts' fill='#2c5282' barSize={50} />
+            <Bar name='Casos' dataKey='counts' fill='#2c5282' barSize={100} />
             <Line
               type='basis'
               dataKey='counts'
-              stroke='hotpink'
+              stroke='#2c5282'
+              strokeOpacity={0.7}
               strokeWidth={4}
               dot={false}
             />

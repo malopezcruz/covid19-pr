@@ -18,7 +18,7 @@ export default function Fatalities() {
       <header className='mb-4 sm:mb-6'>
         <h2 className='text-xl mb-2 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
           Muertes
-          <span className='ml-2 text-lg md:text-2xl font-bold text-subtitle'>
+          <span className='ml-2 text-lg md:text-2xl font-bold text-blue-900 opacity-75'>
             (<span className='lowercase'>n </span>={' '}
             {formatNumber(totalFatalities)})
           </span>
@@ -37,7 +37,7 @@ export default function Fatalities() {
                 className={`text-sm uppercase sm:tracking-widest ${
                   openTab === 1
                     ? 'text-blue-900 font-semibold'
-                    : 'text-tabs font-medium hover:text-subtitle'
+                    : 'text-tabs font-medium  hover:text-blue-900 hover:opacity-75'
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -55,7 +55,7 @@ export default function Fatalities() {
                 className={`text-sm uppercase sm:tracking-widest ${
                   openTab === 2
                     ? 'text-blue-900 font-semibold'
-                    : 'text-tabs font-medium hover:text-subtitle'
+                    : 'text-tabs font-medium  hover:text-blue-900 hover:opacity-75'
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -73,7 +73,7 @@ export default function Fatalities() {
                 className={`text-sm uppercase sm:tracking-widest ${
                   openTab === 3
                     ? 'text-blue-900 font-semibold'
-                    : 'text-tabs font-medium hover:text-subtitle'
+                    : 'text-tabs font-medium  hover:text-blue-900 hover:opacity-75'
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -91,7 +91,7 @@ export default function Fatalities() {
                 className={`text-sm uppercase sm:tracking-widest ${
                   openTab === 4
                     ? 'text-blue-900 font-semibold'
-                    : 'text-tabs font-medium hover:text-subtitle'
+                    : 'text-tabs font-medium  hover:text-blue-900 hover:opacity-75'
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
