@@ -52,7 +52,7 @@ export default function Municipalities() {
           </p>
         </div>
       </div>
-      <BarPlotMun data={municipalityFiltered} capton='' />{' '}
+      <BarPlotMun data={municipalityFiltered} caption='' />{' '}
     </section>
   );
 }
