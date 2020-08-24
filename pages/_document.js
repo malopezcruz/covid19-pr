@@ -22,7 +22,7 @@ class MyDocument extends Document {
 
   gtag('config', 'UA-2126086-12', {
     page_path: window.location.pathname,
-    cookie_flags: 'SameSite=None;Secure',
+    cookieFlags: 'SameSite=None;Secure',
   })`,
             }}
           />
