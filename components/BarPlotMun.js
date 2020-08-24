@@ -9,12 +9,10 @@ import {
   Bar,
   Brush,
   Line,
-  ReferenceLine,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   ComposedChart,
 } from 'recharts';
@@ -63,8 +61,6 @@ export default function BarPlotMun({ data, caption }) {
               formatter={(value) => formatNumber(value)}
               cursor={{ fill: '#e8f3f9' }}
             />
-            {/* <Legend verticalAlign='top' wrapperStyle={{ lineHeight: '40px' }} /> */}
-            {/* <ReferenceLine y={0} stroke='#000' /> */}
             <Brush
               dataKey='dates'
               data={data}

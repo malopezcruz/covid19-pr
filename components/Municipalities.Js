@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { formatNumber, municipality_list, movingAvg } from '../utils/utils';
+import { formatNumber, municipality_list } from '../utils/utils';
 import municipalities from '../data/municipalities.json';
 import BarPlotMun from './BarPlotMun';
 

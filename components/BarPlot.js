@@ -9,12 +9,10 @@ import {
   BarChart,
   Bar,
   Brush,
-  ReferenceLine,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from 'recharts';
 
@@ -62,8 +60,6 @@ export default function BarPlot({ data, caption }) {
               formatter={(value) => formatNumber(value)}
               cursor={{ fill: '#f2f2f2' }}
             />
-            {/* <Legend verticalAlign='top' wrapperStyle={{ lineHeight: '40px' }} /> */}
-            {/* <ReferenceLine y={0} stroke='#000' /> */}
             <Bar name='Casos' dataKey='counts' fill='#2c5282' barSize={100} />
             <Brush
               dataKey='dates'
