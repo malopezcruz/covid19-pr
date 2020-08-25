@@ -1,7 +1,7 @@
 import React from 'react';
 // import { reportDate, formatDateTimeSeries } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import Modal from './Modal';
+import Modal from './Modal';
 
 export default function Header() {
   return (
@@ -23,10 +23,10 @@ export default function Header() {
       {/* <div className='text-gray-200 mt-1 mr-1 uppercase text-sm'>
         {formatDateTimeSeries(reportDate)}
       </div> */}
-      {/* <Modal title='Sobre esto'>
-        {' '}
-        fañsdlk sñdlkf asñdlfk asdñflkasj dfñlkasdjfñlaskdjf añsldfj asñlf{' '}
-      </Modal> */}
+      <Modal title='¿Cuándo se actualiza?'>
+        Esta aplicación web se actualiza todos los días alrededor de las 10:00
+        AM.
+      </Modal>
     </header>
   );
 }

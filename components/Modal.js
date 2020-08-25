@@ -1,18 +1,40 @@
-import React, { useState, Children } from 'react';
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Modal({ title, children }) {
   const [showModal, setShowModal] = useState(false);
 
+  const handleEsc = (e) => {
+    if (e.key === 'Esc' || e.key === 'Escape') {
+      setShowModal(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEsc);
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+    };
+  });
+
+  const handleOpenModal = () => setShowModal(true);
+
   return (
     <>
       <button
-        className='bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1'
+        className='text-gray-200 hover:text-blue-200 hover:opacity-90 md:mr-4'
         type='button'
-        style={{ transition: 'all .15s ease' }}
-        onClick={() => setShowModal(true)}
+        onClick={handleOpenModal}
+        aria-label='Open modal'
       >
-        INFO
+        <FontAwesomeIcon
+          icon={['fa', 'question-circle']}
+          fixedWidth
+          width='20'
+          className='inline'
+        />{' '}
       </button>
+
       {showModal ? (
         <>
           <div
@@ -21,40 +43,35 @@ export default function Modal({ title, children }) {
           >
             <div className='relative w-auto my-6 mx-auto max-w-sm'>
               {/*content*/}
-              <div className='border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none'>
+              <div className='border-0 rounded-md shadow-lg relative flex flex-col w-full border-blue-800 border-t-8 bg-white outline-none focus:outline-none'>
                 {/*header*/}
                 <div className='flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t'>
-                  <h3 className='text-3xl font-semibold'>{title}</h3>
+                  <h3 className='text-2xl text-blue-900 font-semibold'>
+                    {title}
+                  </h3>
                   <button
                     className='p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none'
                     onClick={() => setShowModal(false)}
+                    aria-label='Close modal'
                   >
-                    <span className='bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none'>
+                    <span className='bg-transparent text-blue-900 opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none'>
                       ×
                     </span>
                   </button>
                 </div>
-
-                {children}
+                <div className='px-6 py-4'>{children}</div>
 
                 {/*footer*/}
-                <div className='flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b'>
+                <div className='flex items-center justify-end p-4 border-t border-solid border-gray-300 rounded-b'>
                   <button
-                    className='text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1'
+                    className='text-pink-500 opacity-90 background-transparent font-bold uppercase py-2 text-sm outline-none focus:outline-none mr-1 mb-1'
                     type='button'
                     style={{ transition: 'all .15s ease' }}
                     onClick={() => setShowModal(false)}
+                    arial-label='Close modal'
                   >
-                    Close
+                    Cerrar
                   </button>
-                  {/* <button
-                    className='bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1'
-                    type='button'
-                    style={{ transition: 'all .15s ease' }}
-                    onClick={() => setShowModal(false)}
-                  >
-                    Save Changes
-                  </button> */}
                 </div>
               </div>
             </div>

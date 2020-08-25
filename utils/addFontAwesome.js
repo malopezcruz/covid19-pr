@@ -6,6 +6,7 @@ import {
   faVirus,
   faLongArrowAltUp,
   faInfoCircle,
+  faQuestionCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
@@ -18,5 +19,6 @@ library.add(
   faTwitter,
   faVirus,
   faLongArrowAltUp,
-  faInfoCircle
+  faInfoCircle,
+  faQuestionCircle
 );

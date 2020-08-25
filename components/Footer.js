@@ -84,7 +84,7 @@ export default function Footer() {
         <div className='md:col-span-3 text-center'>
           <a
             href='https://github.com/malopezcruz/covid19-pr'
-            className='text-gray-400 text-2xl mr-4'
+            className='text-gray-400 text-2xl mr-8'
             rel='noreferrer noopenner'
             target='_blank'
             aria-label='Github'
@@ -92,7 +92,7 @@ export default function Footer() {
             <FontAwesomeIcon
               icon={['fab', 'github']}
               fixedWidth
-              width='32'
+              width='24'
               className='inline'
             />
           </a>
@@ -106,7 +106,7 @@ export default function Footer() {
             <FontAwesomeIcon
               icon={['fab', 'twitter']}
               fixedWidth
-              width='32'
+              width='24'
               className='inline'
             />
           </a>
