@@ -30,7 +30,10 @@ export default function Cases() {
             className='flex px-6 sm:px-0 mb-0 list-none flex-wrap pt-3 pb-6 flex-row justify-between sm:justify-start'
             role='tablist'
           >
-            <li className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'>
+            <li
+              className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'
+              role='presentation'
+            >
               <a
                 className={`text-sm uppercase sm:tracking-widest ${
                   openTab === 1
@@ -43,12 +46,15 @@ export default function Cases() {
                 }}
                 data-toggle='tab'
                 href='#casos-diarios'
-                role='tablist'
+                role='tab'
               >
                 Diaria
               </a>
             </li>
-            <li className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'>
+            <li
+              className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'
+              role='presentation'
+            >
               <a
                 className={`text-sm uppercase sm:tracking-widest ${
                   openTab === 2
@@ -61,12 +67,15 @@ export default function Cases() {
                 }}
                 data-toggle='tab'
                 href='#casos-semanales'
-                role='tablist'
+                role='tab'
               >
                 Semanal
               </a>
             </li>
-            <li className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'>
+            <li
+              className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'
+              role='presentation'
+            >
               <a
                 className={`text-sm uppercase sm:tracking-widest ${
                   openTab === 3
@@ -79,12 +88,15 @@ export default function Cases() {
                 }}
                 data-toggle='tab'
                 href='#casos-14dias'
-                role='tablist'
+                role='tab'
               >
                 14 días
               </a>
             </li>
-            <li className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'>
+            <li
+              className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'
+              role='presentation'
+            >
               <a
                 className={`text-sm uppercase sm:tracking-widest ${
                   openTab === 4
@@ -97,14 +109,17 @@ export default function Cases() {
                 }}
                 data-toggle='tab'
                 href='#casos-mensuales'
-                role='tablist'
+                role='tab'
               >
                 Mensual
               </a>
             </li>
           </ul>
           {/* tabPanel */}
-          <div className='relative flex flex-col min-w-0 break-words w-full'>
+          <div
+            className='relative flex flex-col min-w-0 break-words w-full'
+            role='tabpanel'
+          >
             <div className='pt-4 flex-auto'>
               <div
                 className={openTab === 1 ? 'block' : 'hidden'}

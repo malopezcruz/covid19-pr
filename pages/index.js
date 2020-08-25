@@ -2,7 +2,6 @@ import React from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import '../styles/index.css';
 import '../utils/addFontAwesome.js';
 import Rt from '../components/Rt';
 import Cases from '../components/Cases';
@@ -35,6 +34,21 @@ const IndexPage = () => {
       </Head>
       <Head>
         <link rel='shortcut icon' href='favicon.ico' key='favicon' />
+        <link rel='manifest' href='dunplab-manifest-10125.json'></link>
+        <link
+          href='/favicon-16x16.png'
+          rel='icon'
+          type='image/png'
+          sizes='16x16'
+        />
+        <link
+          href='/favicon-32x32.png'
+          rel='icon'
+          type='image/png'
+          sizes='32x32'
+        />
+        <link rel='apple-touch-icon' href='/apple-icon.png'></link>
+        <meta name='theme-color' content='#2a4365' />
         <link
           rel='preload'
           as='font'

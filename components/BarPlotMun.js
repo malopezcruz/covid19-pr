@@ -15,6 +15,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   ComposedChart,
+  ReferenceLine,
 } from 'recharts';
 
 export default function BarPlotMun({ data, caption }) {
@@ -72,7 +73,7 @@ export default function BarPlotMun({ data, caption }) {
             />
             <Bar name='Casos' dataKey='counts' fill='#2c5282' barSize={100} />
             <Line
-              type='basis'
+              type='monotone'
               dataKey='counts'
               stroke='#2c5282'
               strokeOpacity={0.7}

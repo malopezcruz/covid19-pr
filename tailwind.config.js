@@ -19,9 +19,19 @@ module.exports = {
         lightgreen: '#e6f5c9',
       }),
       textColor: {
-        subtitle: '#777777',
+        subtitle: '#666666',
         bodytext: '#222222',
-        tabs: '#999999',
+        tabs: '#666666',
+      },
+      opacity: {
+        '10': '0.1',
+        '20': '0.2',
+        '30': '0.3',
+        '40': '0.4',
+        '60': '0.6',
+        '70': '0.7',
+        '80': '0.8',
+        '90': '0.9',
       },
       borderColor: {
         hr: '#e2e2e2',

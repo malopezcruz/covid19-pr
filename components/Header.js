@@ -15,7 +15,9 @@ export default function Header() {
             className='inline -mt-1 mr-2'
           />
           COVID-19{' '}
-          <span className='text-blue-200 font-medium text-base'>PR</span>
+          <span className='text-blue-200 opacity-90 font-medium text-base'>
+            PR
+          </span>
         </h1>
       </div>
       {/* <div className='text-gray-200 mt-1 mr-1 uppercase text-sm'>

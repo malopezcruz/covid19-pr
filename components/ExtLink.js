@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function ExtLink({ link, label }) {
   return (
     <a
-      className='text-blue-200 text-base'
+      className='text-blue-200 opacity-90 text-base'
       href={link}
       rel='noreferrer noopenner'
       target='_blank'

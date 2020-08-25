@@ -84,13 +84,27 @@ export default function Footer() {
         <div className='md:col-span-3 text-center'>
           <a
             href='https://github.com/malopezcruz/covid19-pr'
-            className='text-gray-400 text-2xl'
+            className='text-gray-400 text-2xl mr-4'
             rel='noreferrer noopenner'
             target='_blank'
             aria-label='Github'
           >
             <FontAwesomeIcon
               icon={['fab', 'github']}
+              fixedWidth
+              width='32'
+              className='inline'
+            />
+          </a>
+          <a
+            href='https://twitter.com/malopezcruz/'
+            className='text-gray-400 text-2xl'
+            rel='noreferrer noopenner'
+            target='_blank'
+            aria-label='Twitter'
+          >
+            <FontAwesomeIcon
+              icon={['fab', 'twitter']}
               fixedWidth
               width='32'
               className='inline'
