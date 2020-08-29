@@ -84,7 +84,7 @@ export default function Footer() {
         <div className='md:col-span-3 text-center'>
           <a
             href='https://github.com/malopezcruz/covid19-pr'
-            className='text-gray-400 text-2xl mr-8'
+            className='text-gray-400 text-2xl mr-6 sm:mr-8'
             rel='noreferrer noopenner'
             target='_blank'
             aria-label='Github'

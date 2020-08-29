@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactTooltip from 'react-tooltip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function ToolTipComp({ children, dataFor, uniqueID }) {
+export default function ToolTipComp({ content, dataFor, uniqueID }) {
   const [uniqueId] = useState(uniqueID);
 
   return (
@@ -20,7 +20,7 @@ export default function ToolTipComp({ children, dataFor, uniqueID }) {
         />
       </a>
       <ReactTooltip id={`${dataFor}-${uniqueId}`} type='light' effect='solid'>
-        <div className='text-left text-base'>{children}</div>
+        <div className='text-left text-base'>{content}</div>
       </ReactTooltip>
     </div>
   );

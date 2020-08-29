@@ -6,7 +6,7 @@ import '../utils/addFontAwesome.js';
 import Rt from '../components/Rt';
 import Cases from '../components/Cases';
 import Fatalities from '../components/Fatalities';
-// import Growth from '../components/Growth';
+import Growth from '../components/Growth';
 import Summary from '../components/Summary';
 import Municipalities from '../components/Municipalities';
 
@@ -34,52 +34,20 @@ const IndexPage = () => {
       </Head>
       <Head>
         <link rel='shortcut icon' href='favicon.ico' key='favicon' />
-        <link rel='manifest' href='manifest.webmanifest' />
+        <link rel='manifest' href='manifest.json' />
         <link
-          rel='apple-touch-icon'
-          sizes='32x32'
-          href='icons/icon-32x32.png'
-        />
-        <link
-          rel='apple-touch-icon'
-          sizes='48x48'
-          href='icons/icon-48x48.png'
-        />
-        <link
-          rel='apple-touch-icon'
-          sizes='72x72'
-          href='icons/icon-72x72.png'
-        />
-        <link
-          rel='apple-touch-icon'
-          sizes='96x96'
-          href='icons/icon-96x96.png'
-        />
-        <link
-          rel='apple-touch-icon'
-          sizes='144x144'
-          href='icons/icon-144x144.png'
-        />
-        <link
-          rel='apple-touch-icon'
-          sizes='192x192'
           href='icons/icon-192x192.png'
+          rel='icon'
+          type='image/png'
+          sizes='192x192'
         />
         <link
-          rel='apple-touch-icon'
-          sizes='256x256'
-          href='icons/icon-256x256.png'
-        />
-        <link
-          rel='apple-touch-icon'
-          sizes='384x384'
-          href='icons/icon-384x384.png'
-        />
-        <link
-          rel='apple-touch-icon'
-          sizes='512x512'
           href='icons/icon-512x512.png'
+          rel='icon'
+          type='image/png'
+          sizes='192x192'
         />
+        <link rel='apple-touch-icon' href='/icons/icon-512x512.png'></link>
         <meta name='theme-color' content='#2a4365' />
         <link
           rel='preload'
@@ -119,15 +87,15 @@ const IndexPage = () => {
         <Header />
         <div className='w-full max-w-screen-lg px-4 mx-auto flex-grow mt-6'>
           <Summary />
-          <hr className='mb-12 md:mb-20 border-hr' />
+          <hr className='mb-12 md:mb-16 lg:mb-20 border-hr' />
           <Rt />
-          <hr className='mb-12 md:mb-20 border-hr' />
-          {/* <Growth />
-          <hr className='mb-12 md:mb-20 border-hr' /> */}
+          <hr className='mb-12 md:mb-16 lg:mb-20 border-hr' />
+          <Growth />
+          <hr className='mb-12 md:mb-16 lg:mb-20 border-hr' />
           <Cases />
-          <hr className='mb-12 md:mb-20 boerder-hr' />
+          <hr className='mb-12 md:mb-16 lg:mb-20 border-hr' />
           <Fatalities />
-          <hr className='mb-12 md:mb-20 boerder-hr' />
+          <hr className='mb-12 md:mb-16 lg:mb-20 border-hr' />
           <Municipalities />
         </div>
         <Footer />

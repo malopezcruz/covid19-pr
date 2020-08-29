@@ -22,7 +22,7 @@ export default function Modal({ title, children }) {
   return (
     <>
       <button
-        className='text-gray-200 hover:text-blue-200 hover:opacity-90 md:mr-4'
+        className='text-gray-200 hover:text-gray-100 md:mr-4'
         type='button'
         onClick={handleOpenModal}
         aria-label='Open modal'
@@ -38,31 +38,36 @@ export default function Modal({ title, children }) {
       {showModal ? (
         <>
           <div
-            className='mx-4 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none'
+            className='fadein mx-4 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none'
             onClick={() => setShowModal(false)}
           >
             <div className='relative w-auto my-6 mx-auto max-w-sm'>
               {/*content*/}
               <div className='border-0 rounded-md shadow-lg relative flex flex-col w-full border-blue-800 border-t-8 bg-white outline-none focus:outline-none'>
                 {/*header*/}
-                <div className='flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t'>
-                  <h3 className='text-2xl text-blue-900 font-semibold'>
-                    {title}
-                  </h3>
+                <div className='flex relative tems-start justify-between p-5 '>
                   <button
-                    className='p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none'
+                    className='absolute top-0 right-0 mr-4 mt-3 text-subtitle opacity-80'
                     onClick={() => setShowModal(false)}
                     aria-label='Close modal'
                   >
-                    <span className='bg-transparent text-blue-900 opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none'>
-                      ×
-                    </span>
+                    <FontAwesomeIcon
+                      icon={['fa', 'times-circle']}
+                      fixedWidth
+                      width='20'
+                      className='inline'
+                      stroke='currentColor'
+                    />
                   </button>
+                  <h3 className='text-2xl mt-4 text-blue-900 font-semibold'>
+                    {title}
+                  </h3>
                 </div>
-                <div className='px-6 py-4'>{children}</div>
+
+                <div className='px-5'>{children}</div>
 
                 {/*footer*/}
-                <div className='flex items-center justify-end p-4 border-t border-solid border-gray-300 rounded-b'>
+                <div className='flex items-center justify-end p-4'>
                   <button
                     className='text-pink-500 opacity-90 background-transparent font-bold uppercase py-2 text-sm outline-none focus:outline-none mr-1 mb-1'
                     type='button'

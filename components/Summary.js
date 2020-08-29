@@ -26,31 +26,31 @@ export default function Summary() {
           {formatDateLabel(reportDate)}
         </span>
       </h2>
-      <div className='grid grid-cols-2 sm:grid-cols-3 gap-5 md:gap-8'>
+      <div className='grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8'>
         <div className='col-span-2 sm:col-span-1 shadow-md rounded p-4 border-t-8 border-blue-800'>
           <div className='font-semibold text-center text-blue-900 mb-2'>
             <em>R</em>
             <sub>t</sub>
           </div>
-          <p className='text-2xl sm:text-3xl  text-blue-900 opacity-75 text-center mb-2'>
+          <p className='text-2xl sm:text-3xl  text-blue-900 opacity-75 text-center mb-2 tracking-wide'>
             <strong>{Intervalo[0]}</strong> &#8211;{' '}
             <strong>{Intervalo[1]}</strong>
           </p>
         </div>
-        {/* <div className='shadow-md p-4 border-t-8 border-blue-800'>
+        <div className='col-span-2 sm:col-span-1 shadow-md rounded p-4 border-t-8 border-blue-800'>
           <div className='uppercase font-semibold text-center text-blue-900 mb-2'>
             Crecimiento
           </div>
-          <p className='text-2xl sm:text-3xl  text-blue-900 opacity-75 text-center mb-2'>
+          <p className='text-2xl sm:text-3xl  text-blue-900 opacity-75 text-center mb-2 tracking-wide'>
             <strong>{r_conf[0] * 100}%</strong> &#8211;{' '}
             <strong>{r_conf[1] * 100}%</strong>
           </p>
-        </div> */}
+        </div>
         <div className='col-span-1 shadow-md rounded p-4 border-t-8 border-blue-800'>
           <div className='font-semibold text-center uppercase text-blue-900 mb-2'>
             Casos
           </div>
-          <p className='text-2xl sm:text-3xl  text-blue-900 opacity-75 text-center mb-2'>
+          <p className='text-2xl sm:text-3xl  text-blue-900 opacity-75 text-center mb-2 tracking-wide'>
             <strong>{formatNumber(totalCases)}</strong>
           </p>
         </div>
@@ -58,7 +58,7 @@ export default function Summary() {
           <div className='uppercase font-semibold text-center text-blue-900 mb-2'>
             Muertes
           </div>
-          <p className='text-2xl sm:text-3xl  text-blue-900 opacity-75 text-center mb-2'>
+          <p className='text-2xl sm:text-3xl  text-blue-900 opacity-75 text-center mb-2 tracking-wide'>
             <strong>{formatNumber(totalFatalities)}</strong>
           </p>
         </div>

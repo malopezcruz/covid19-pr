@@ -7,6 +7,11 @@ import {
   faLongArrowAltUp,
   faInfoCircle,
   faQuestionCircle,
+  faTimesCircle,
+  faCalendarWeek,
+  faCalendarDay,
+  faCalendarAlt,
+  faCalendarTimes,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
@@ -20,5 +25,10 @@ library.add(
   faVirus,
   faLongArrowAltUp,
   faInfoCircle,
-  faQuestionCircle
+  faQuestionCircle,
+  faTimesCircle,
+  faCalendarAlt,
+  faCalendarDay,
+  faCalendarWeek,
+  faCalendarTimes
 );

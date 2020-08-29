@@ -24,8 +24,8 @@ export default function Header() {
         {formatDateTimeSeries(reportDate)}
       </div> */}
       <Modal title='¿Cuándo se actualiza?'>
-        Esta aplicación web se actualiza todos los días alrededor de las 10:00
-        AM.
+        La aplicación se actualiza todos los días alrededor de las{' '}
+        <strong className='text-blue-900'>10:00 AM</strong>.
       </Modal>
     </header>
   );

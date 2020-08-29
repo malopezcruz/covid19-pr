@@ -8,25 +8,29 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  ReferenceLine,
   Brush,
   ResponsiveContainer,
   Bar,
+  ReferenceArea,
 } from 'recharts';
 
-export default function RtPlot({ data, caption }) {
+export default function GrowthPlot({ data, caption }) {
+  const { dates: lastPCRDay } = data[data.length - 1];
+  const { dates: minusFiveDaysInterval } = data[data.length - 5];
+
   return (
     <figure className='mb-8 md:mb-12' role='figure' aria-label={caption}>
-      <div style={{ position: 'relative', paddingBottom: '66%' }}>
+      <div className='relative pb-5/6 sm:pb-4/6'>
         <ResponsiveContainer width='100%' height='100%' className='absolute'>
           <ComposedChart
             data={data}
-            margin={{ top: 5, right: 20, bottom: 0, left: -20 }}
+            margin={{ top: 5, right: 20, bottom: 0, left: -15 }}
           >
             <CartesianGrid stroke='#f2f2f2' vertical={false} />
             <XAxis
               name='Fecha'
               dataKey='dates'
+              type='category'
               interval={1}
               height={60}
               stroke='#999'
@@ -81,6 +85,13 @@ export default function RtPlot({ data, caption }) {
               stroke='#1b85be'
               strokeWidth={1.5}
               dot={false}
+            />
+            <ReferenceArea
+              x1={minusFiveDaysInterval}
+              x2={lastPCRDay}
+              fill='hotpink'
+              fillOpacity={0.2}
+              overflow='auto'
             />
           </ComposedChart>
         </ResponsiveContainer>

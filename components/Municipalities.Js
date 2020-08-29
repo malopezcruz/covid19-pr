@@ -1,58 +1,121 @@
 import React, { useState } from 'react';
-import { formatNumber, municipality_list } from '../utils/utils';
+import {
+  formatNumber,
+  municipality_list,
+  reportDate,
+  formatDateLabel,
+} from '../utils/utils';
+import Source from './Source';
 import municipalities from '../data/municipalities.json';
 import BarPlotMun from './BarPlotMun';
+import VerticalBarPlot from './VerticalBarPlot';
 
 export default function Municipalities() {
   const [selectedMunicipality, setSelectedMunicipality] = useState('Adjuntas');
+  const [selectCounts, setSelectedCounts] = useState('');
 
   const municipalityFiltered = municipalities.filter(
     ({ name }) => name == selectedMunicipality
   );
 
-  const { name, counts } = municipalityFiltered[
+  const { name, counts, dates: lastDate } = municipalityFiltered[
     municipalityFiltered.length - 1
   ];
 
+  // Calculate new cases for the most recent day
+  // There could be a better approach to doing this
+  const { dates: beforeLastDate } = municipalities[municipalities.length - 81];
+  const lastDateFiltered = municipalities.filter(
+    ({ dates }) => dates === lastDate
+  );
+  const beforeLastDateFiltered = municipalities.filter(
+    ({ dates }) => dates === beforeLastDate
+  );
+  const sumObjectsByKey = (...objs) =>
+    Object.values(
+      objs.reduce((a, e) => {
+        a[e.name] = a[e.name] || { name: e.name, dates: e.dates };
+
+        for (const k in e) {
+          if (k !== 'name' && k !== 'dates') {
+            a[e.name][k] = a[e.name][k] ? a[e.name][k] - e[k] : e[k];
+          }
+        }
+
+        return a;
+      }, {})
+    );
+  const newMunicipalityCases = sumObjectsByKey(
+    ...lastDateFiltered,
+    ...beforeLastDateFiltered
+  ).filter(({ counts }) => counts !== 0);
+
   return (
-    <section className='mb-12 md:mb-24'>
-      <h2 className='text-xl mb-6 sm:mb-8 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
-        Casos acumulados por municipio
-      </h2>
-      <label className='block mb-6 sm:mb-8 md:w-64'>
-        <span className='text-subtitle'>Selecciona un municipio:</span>
-        <select
-          className='form-select mt-1 block w-full text-subtitle bg-white'
-          onChange={(e) => {
-            setSelectedMunicipality(e.target.value);
-          }}
-        >
-          {municipality_list.map((name) => (
-            <option className='text-gray-700 bg-white' key={name} value={name}>
-              {name}
-            </option>
-          ))}
-        </select>
-      </label>
-      <div className='mb-4 sm:mb-8 grid grid-cols-2 gap-2 mx-auto w-4/6 md:gap-8 '>
-        <div className=''>
-          <h3 className='text-sm font-semibold uppercase text-center text-blue-900 mb-2'>
-            Municipio
+    <>
+      <section className='mb-12 md:mb-16 lg:mb-24'>
+        {/* total cases pert town */}
+        <h2 className='text-xl mb-6 sm:mb-8 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
+          Municipios
+        </h2>
+        <h3 className='text-lg mb-6 sm:mb-8 md:text-2xl text-blue-900 font-semibold leading-tight'>
+          Casos acumulados por municipio
+        </h3>
+        {/* Start Selection */}
+        <label className='block mb-8 sm:mb-12 md:w-64'>
+          <span className='block text-subtitle mb-2'>
+            Selecciona un municipio:
+          </span>
+          <select
+            className='form-select mt-1 block w-full text-subtitle bg-white'
+            onChange={(e) => {
+              setSelectedMunicipality(e.target.value);
+            }}
+          >
+            {municipality_list.map((name) => (
+              <option
+                className='text-gray-700 bg-white'
+                key={name}
+                value={name}
+              >
+                {name}
+              </option>
+            ))}
+          </select>
+        </label>
+        {/* End Selection */}
+        <div className='mb-8 sm:mb-12 grid grid-cols-2 gap-2 sm:mx-auto w-full md:w-5/6 lg:4/6 md:gap-8 shadow-md rounded p-4 border-t-8 border-blue-800 divide-x divide-text-subtitle'>
+          <div>
+            <h3 className='text-sm font-semibold uppercase text-center text-blue-900 mb-2'>
+              Municipio
+            </h3>
+            <p className='text-2xl sm:text-3xl  text-blue-900 opacity-75 text-center mb-2'>
+              <strong>{name}</strong>
+            </p>
+          </div>
+          <div>
+            <h3 className='text-sm font-semibold uppercase text-center text-blue-900 mb-2'>
+              Casos
+            </h3>
+            <p className='text-2xl sm:text-3xl text-blue-900 opacity-75 text-center mb-2'>
+              <strong>{formatNumber(counts)}</strong>
+            </p>
+          </div>
+        </div>
+        <BarPlotMun data={municipalityFiltered} caption={<Source />} />
+      </section>
+      <hr className='mb-12 md:mb-16 lg:mb-20 border-hr' />
+      <section className='mb-16 md:mb-24'>
+        {/* total cases pert town */}
+        <div className='mb-8 sm:mb-12'>
+          <h3 className='text-lg  md:text-2xl text-blue-900 font-semibold leading-tight'>
+            Casos nuevos reportados por municipio
           </h3>
-          <p className='text-2xl sm:text-3xl  text-blue-900 opacity-75 text-center mb-2'>
-            <strong>{name}</strong>
+          <p className='text-blue-900 opacity-75 font-semibold'>
+            {formatDateLabel(reportDate)}
           </p>
         </div>
-        <div className=''>
-          <h3 className='text-sm font-semibold uppercase text-center text-blue-900 mb-2'>
-            Casos
-          </h3>
-          <p className='text-2xl sm:text-3xl text-blue-900 opacity-75 text-center mb-2'>
-            <strong>{formatNumber(counts)}</strong>
-          </p>
-        </div>
-      </div>
-      <BarPlotMun data={municipalityFiltered} caption='' />{' '}
-    </section>
+        <VerticalBarPlot data={newMunicipalityCases} caption={<Source />} />
+      </section>
+    </>
   );
 }

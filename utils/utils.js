@@ -1,7 +1,7 @@
 import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
 
-export const reportDate = '2020-08-24';
+export const reportDate = '2020-08-28';
 
 export const formatNumber = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -52,6 +52,7 @@ export const movingAvg = (array, countBefore, countAfter) => {
   return result;
 };
 
+// const newArr = arr.map(cumulativeSum)
 export const cumulativeSum = ((sum) => (value) => (sum += value))(0);
 
 export const municipality_list = [
