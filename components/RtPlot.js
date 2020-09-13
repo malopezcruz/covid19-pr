@@ -14,17 +14,18 @@ import {
   Brush,
 } from 'recharts';
 
-export default function RtPlot({ data, caption }) {
-  const { Fecha: lastPCRDay } = data[data.length - 1];
-  const { Fecha: minusFiveDaysInterval } = data[data.length - 6];
+const RtPlot = ({ data, caption }) => {
+  const dataLength = data.length;
+  const { Fecha: lastPCRDay } = data[dataLength - 1];
+  const { Fecha: minusFiveDaysInterval } = data[dataLength - 6];
 
   return (
     <figure className='mb-8 md:mb-12' role='figure' aria-label={caption}>
-      <div className='relative pb-5/6 sm:pb-4/6'>
+      <div className='relative pb-5/6 sm:pb-golden'>
         <ResponsiveContainer width='100%' height='100%' className='absolute'>
           <ComposedChart
             data={data}
-            margin={{ top: 5, right: 20, bottom: 0, left: -20 }}
+            margin={{ top: 5, right: 10, bottom: 0, left: -20 }}
           >
             <CartesianGrid stroke='#f2f2f2' />
             <XAxis
@@ -72,13 +73,13 @@ export default function RtPlot({ data, caption }) {
             />
             <Area
               name='Intervalo'
-              type='basis'
+              type='monotone'
               dataKey='Intervalo'
               stroke='#d9e8f2'
               fill='#d9e8f2'
             />
             <Line
-              type='basis'
+              type='monotone'
               dataKey='Promedio'
               stroke='#2c5282'
               strokeWidth={1.5}
@@ -95,9 +96,11 @@ export default function RtPlot({ data, caption }) {
           </ComposedChart>
         </ResponsiveContainer>
       </div>
-      <figcaption className='mt-4 pl-10 pr-8 text-xs md:text-sm text-subtitle'>
+      <figcaption className='mt-4 pl-10 pr-8 text-sm text-subtitle'>
         {caption}
       </figcaption>
     </figure>
   );
-}
+};
+
+export default RtPlot;

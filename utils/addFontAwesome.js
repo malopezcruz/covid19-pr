@@ -2,7 +2,6 @@ import { config, library } from '@fortawesome/fontawesome-svg-core';
 
 import {
   faLink,
-  faSpinner,
   faVirus,
   faLongArrowAltUp,
   faInfoCircle,
@@ -12,14 +11,23 @@ import {
   faCalendarDay,
   faCalendarAlt,
   faCalendarTimes,
+  faArrowAltCircleUp,
+  faShareAlt,
+  faFileCsv,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import {
+  faGithub,
+  faTwitter,
+  faRProject,
+  faApple,
+  faFacebook,
+  faWhatsapp,
+} from '@fortawesome/free-brands-svg-icons';
 
 config.autoAddCss = false;
 library.add(
   faLink,
-  faSpinner,
   faGithub,
   faTwitter,
   faVirus,
@@ -30,5 +38,12 @@ library.add(
   faCalendarAlt,
   faCalendarDay,
   faCalendarWeek,
-  faCalendarTimes
+  faCalendarTimes,
+  faRProject,
+  faApple,
+  faArrowAltCircleUp,
+  faShareAlt,
+  faFacebook,
+  faWhatsapp,
+  faFileCsv
 );

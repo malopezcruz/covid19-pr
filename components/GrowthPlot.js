@@ -14,17 +14,17 @@ import {
   ReferenceArea,
 } from 'recharts';
 
-export default function GrowthPlot({ data, caption }) {
+const GrowthPlot = ({ data, caption }) => {
   const { dates: lastPCRDay } = data[data.length - 1];
   const { dates: minusFiveDaysInterval } = data[data.length - 5];
 
   return (
     <figure className='mb-8 md:mb-12' role='figure' aria-label={caption}>
-      <div className='relative pb-5/6 sm:pb-4/6'>
+      <div className='relative pb-5/6 sm:pb-golden'>
         <ResponsiveContainer width='100%' height='100%' className='absolute'>
           <ComposedChart
             data={data}
-            margin={{ top: 5, right: 20, bottom: 0, left: -15 }}
+            margin={{ top: 5, right: 10, bottom: 0, left: -16 }}
           >
             <CartesianGrid stroke='#f2f2f2' vertical={false} />
             <XAxis
@@ -96,9 +96,11 @@ export default function GrowthPlot({ data, caption }) {
           </ComposedChart>
         </ResponsiveContainer>
       </div>
-      <figcaption className='mt-4 pl-10 pr-8 text-xs md:text-sm text-subtitle'>
+      <figcaption className='mt-4 pl-10 pr-8 text-sm text-subtitle'>
         {caption}
       </figcaption>
     </figure>
   );
-}
+};
+
+export default GrowthPlot;

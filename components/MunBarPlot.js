@@ -4,32 +4,29 @@ import {
   formatDateLabel,
   formatNumber,
 } from '../utils/utils';
-
 import {
   Bar,
   Brush,
-  Line,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
   ComposedChart,
-  ReferenceLine,
 } from 'recharts';
 
-export default function BarPlotMun({ data, caption }) {
+const MunBarPlot = ({ data, caption }) => {
   const ariaLabelCaption = () => caption && `aria-label=${caption}`;
 
   return (
     <figure role='figure' {...ariaLabelCaption}>
-      <div className='relative pb-5/6 sm:pb-4/6'>
+      <div className='relative pb-5/6 sm:pb-golden'>
         <ResponsiveContainer width='100%' height='100%' className='absolute'>
           <ComposedChart
             data={data}
             margin={{
               top: 5,
-              right: 20,
+              right: 10,
               left: -10,
               bottom: 5,
             }}
@@ -72,22 +69,16 @@ export default function BarPlotMun({ data, caption }) {
               travellerWidth={25}
             />
             <Bar name='Casos' dataKey='counts' fill='#2c5282' barSize={100} />
-            <Line
-              type='monotone'
-              dataKey='counts'
-              stroke='#2c5282'
-              strokeOpacity={0.7}
-              strokeWidth={4}
-              dot={false}
-            />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
       {caption && (
-        <figcaption className='mt-4 pl-10 pr-8 text-xs md:text-sm text-subtitle'>
+        <figcaption className='mt-4 pl-10 pr-8 text-sm text-subtitle'>
           {caption}
         </figcaption>
       )}
     </figure>
   );
-}
+};
+
+export default MunBarPlot;

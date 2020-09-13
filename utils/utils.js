@@ -1,7 +1,7 @@
 import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
 
-export const reportDate = '2020-08-28';
+export const reportDate = '2020-09-12';
 
 export const formatNumber = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -32,28 +32,6 @@ export const formatDateLabel = (date) => {
     { locale: es }
   );
 };
-
-// Use
-//movingAvg(myArr, 6); //6 before and the current
-// movingAvg(myArr, 3, 3); //3 before, 3 after, plus the current
-// movingAvg(myArr, 0, 6); //6 after plus the current
-export const movingAvg = (array, countBefore, countAfter) => {
-  if (countAfter == undefined) countAfter = 0;
-  const result = [];
-  for (let i = 0; i < array.length; i++) {
-    const subArr = array.slice(
-      Math.max(i - countBefore, 0),
-      Math.min(i + countAfter + 1, array.length)
-    );
-    const avg =
-      subArr.reduce((a, b) => a + (isNaN(b) ? 0 : b), 0) / subArr.length;
-    result.push(avg);
-  }
-  return result;
-};
-
-// const newArr = arr.map(cumulativeSum)
-export const cumulativeSum = ((sum) => (value) => (sum += value))(0);
 
 export const municipality_list = [
   'Adjuntas',
@@ -134,6 +112,6 @@ export const municipality_list = [
   'Villalba',
   'Yabucoa',
   'Yauco',
-  'Otro lugar fuera de PR',
+  'Fuera de PR',
   'No disponible',
 ];

@@ -4,6 +4,7 @@
 	"lang": "es",
 	"description": "Información sobre el número reproductivo efectivo de COVID-19 en Puerto Rico.",
   "start_url": "https://covid19pr.now.sh",
+  "scope:": "/",
 	"background_color": "#ffffff",
 	"theme_color": "#2a4365",
 	"dir": "ltr",
@@ -19,7 +20,14 @@
       "src": "icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "icons/maskable_icon.png",
+      "sizes": "341x341",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
+
   ],
   "prefer_related_applications": "false"
 }

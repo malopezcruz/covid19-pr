@@ -8,17 +8,17 @@ import weekly_cases from '../data/weekly_cases.json';
 import twoweeks_cases from '../data/twoweeks_cases.json';
 import monthly_cases from '../data/monthly_cases.json';
 
-const totalCases = monthly_cases
-  .map((item) => item.counts)
-  .reduce((prev, next) => prev + next);
-
-export default function Cases() {
+const Cases = () => {
+  const totalCases = daily_cases
+    .map(({ counts }) => counts)
+    .reduce((prev, next) => prev + next);
   const [openTab, setOpenTab] = useState(1);
+
   return (
     <section className='mb-12 md:mb-16 lg:mb-24'>
       <header className='mb-4 sm:mb-6'>
         <h2 className='text-xl mb-2 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
-          Incidencia de casos
+          Casos confirmados
           <span className='ml-2 text-lg md:text-2xl font-bold text-blue-900 opacity-75'>
             (<span className='lowercase'>n </span>= {formatNumber(totalCases)})
           </span>
@@ -33,7 +33,7 @@ export default function Cases() {
             role='tablist'
           >
             <li
-              className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'
+              className='-mb-px xsm:mr-2 sm:mr-12 last:mr-0 text-center'
               role='tab'
             >
               <a
@@ -56,11 +56,11 @@ export default function Cases() {
                   width='12'
                   className='self-center mr-1 sm:mr-2'
                 />
-                Diaria
+                Diario
               </a>
             </li>
             <li
-              className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'
+              className='-mb-px xsm:mr-2 sm:mr-12 last:mr-0 text-center'
               role='tab'
             >
               <a
@@ -87,7 +87,7 @@ export default function Cases() {
               </a>
             </li>
             <li
-              className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'
+              className='-mb-px xsm:mr-2 sm:mr-12 last:mr-0 text-center'
               role='tab'
             >
               <a
@@ -114,7 +114,7 @@ export default function Cases() {
               </a>
             </li>
             <li
-              className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'
+              className='-mb-px xsm:mr-2 sm:mr-12 last:mr-0 text-center'
               role='tab'
             >
               <a
@@ -177,4 +177,6 @@ export default function Cases() {
       </div>
     </section>
   );
-}
+};
+
+export default Cases;

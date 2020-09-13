@@ -4,7 +4,6 @@ import {
   formatDateLabel,
   formatNumber,
 } from '../utils/utils';
-
 import {
   BarChart,
   Bar,
@@ -16,18 +15,18 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-export default function BarPlot({ data, caption }) {
+const BarPlot = ({ data, caption }) => {
   const ariaLabelCaption = () => caption && `aria-label=${caption}`;
 
   return (
     <figure role='figure' {...ariaLabelCaption}>
-      <div className='relative pb-5/6 sm:pb-4/6'>
+      <div className='relative pb-5/6 sm:pb-golden'>
         <ResponsiveContainer width='100%' height='100%' className='absolute'>
           <BarChart
             data={data}
             margin={{
               top: 5,
-              right: 20,
+              right: 10,
               left: -10,
               bottom: 5,
             }}
@@ -46,6 +45,7 @@ export default function BarPlot({ data, caption }) {
                 fontSize: '12',
                 fill: '#999',
               }}
+              domain={['auto', 'auto']}
             />
             <YAxis
               type='number'
@@ -75,10 +75,12 @@ export default function BarPlot({ data, caption }) {
       </div>
 
       {caption && (
-        <figcaption className='mt-4 pl-10 pr-8 text-xs md:text-sm text-subtitle'>
+        <figcaption className='mt-6 pl-10 pr-8 text-sm text-subtitle'>
           {caption}
         </figcaption>
       )}
     </figure>
   );
-}
+};
+
+export default React.memo(BarPlot);

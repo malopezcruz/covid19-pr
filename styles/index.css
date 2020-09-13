@@ -4,8 +4,6 @@
 /* purgecss end ignore */
 @tailwind utilities;
 
-/* system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif, */
-
 .fadein {
   animation: fadein 0.2s ease-in;
 }

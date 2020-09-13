@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function Modal({ title, children }) {
+const Modal = ({ title, children }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleEsc = (e) => {
@@ -38,10 +38,10 @@ export default function Modal({ title, children }) {
       {showModal ? (
         <>
           <div
-            className='fadein mx-4 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none'
+            className='fadein mx-6 my-6 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none'
             onClick={() => setShowModal(false)}
           >
-            <div className='relative w-auto my-6 mx-auto max-w-sm'>
+            <div className='relative w-auto my-6 mx-auto max-w-sm sm:max-w-md'>
               {/*content*/}
               <div className='border-0 rounded-md shadow-lg relative flex flex-col w-full border-blue-800 border-t-8 bg-white outline-none focus:outline-none'>
                 {/*header*/}
@@ -59,9 +59,9 @@ export default function Modal({ title, children }) {
                       stroke='currentColor'
                     />
                   </button>
-                  <h3 className='text-2xl mt-4 text-blue-900 font-semibold'>
+                  <h2 className='text-2xl mt-4 text-blue-900 font-semibold'>
                     {title}
-                  </h3>
+                  </h2>
                 </div>
 
                 <div className='px-5'>{children}</div>
@@ -69,7 +69,7 @@ export default function Modal({ title, children }) {
                 {/*footer*/}
                 <div className='flex items-center justify-end p-4'>
                   <button
-                    className='text-pink-500 opacity-90 background-transparent font-bold uppercase py-2 text-sm outline-none focus:outline-none mr-1 mb-1'
+                    className='text-pink-700 opacity-80 background-transparent font-bold uppercase py-2 text-sm outline-none focus:outline-none mr-1 mb-1 tracking-loose'
                     type='button'
                     style={{ transition: 'all .15s ease' }}
                     onClick={() => setShowModal(false)}
@@ -86,4 +86,6 @@ export default function Modal({ title, children }) {
       ) : null}
     </>
   );
-}
+};
+
+export default Modal;

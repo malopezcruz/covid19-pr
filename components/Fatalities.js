@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
-import BarPlot from './BarPlot';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatNumber } from '../utils/utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import BarPlot from './BarPlot';
 import Source from './Source';
 import daily_deaths from '../data/daily_deaths.json';
 import weekly_deaths from '../data/weekly_deaths.json';
 import twoweeks_deaths from '../data/twoweeks_deaths.json';
 import monthly_deaths from '../data/monthly_deaths.json';
 
-const totalFatalities = monthly_deaths
-  .map((item) => item.counts)
-  .reduce((prev, next) => prev + next);
-
-export default function Fatalities() {
+const Fatalities = () => {
   const [openTab, setOpenTab] = useState(1);
+
+  const totalFatalities = daily_deaths
+    .map((item) => item.counts)
+    .reduce((prev, next) => prev + next);
 
   return (
     <section className='mb-12 md:mb-16 lg:mb-24'>
       <header className='mb-4 sm:mb-6'>
         <h2 className='text-xl mb-2 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
-          Muertes
+          Muertes totales
           <span className='ml-2 text-lg md:text-2xl font-bold text-blue-900 opacity-75'>
             (<span className='lowercase'>n </span>={' '}
             {formatNumber(totalFatalities)})
@@ -35,7 +35,7 @@ export default function Fatalities() {
             role='tablist'
           >
             <li
-              className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'
+              className='-mb-px xsm:mr-2 sm:mr-12 last:mr-0 text-center'
               role='tab'
             >
               <a
@@ -62,7 +62,7 @@ export default function Fatalities() {
               </a>
             </li>
             <li
-              className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'
+              className='-mb-px xsm:mr-2 sm:mr-12 last:mr-0 text-center'
               role='tab'
             >
               <a
@@ -89,7 +89,7 @@ export default function Fatalities() {
               </a>
             </li>
             <li
-              className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'
+              className='-mb-px xsm:mr-2 sm:mr-12 last:mr-0 text-center'
               role='tab'
             >
               <a
@@ -116,7 +116,7 @@ export default function Fatalities() {
               </a>
             </li>
             <li
-              className='-mb-px mr-4 sm:mr-12 last:mr-0 text-center'
+              className='-mb-px xsm:mr-2 sm:mr-12 last:mr-0 text-center'
               role='tab'
             >
               <a
@@ -176,4 +176,6 @@ export default function Fatalities() {
       </div>
     </section>
   );
-}
+};
+
+export default Fatalities;

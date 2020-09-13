@@ -1,10 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function ExtLink({ link, label }) {
+const ExtLink = ({ link, label }) => {
   return (
     <a
-      className='text-blue-200 opacity-90 text-base'
+      className='text-blue-200 text-base subpixel-antialiased'
       href={link}
       rel='noreferrer noopenner'
       target='_blank'
@@ -20,3 +20,5 @@ export default function ExtLink({ link, label }) {
     </a>
   );
 }
+
+export default ExtLink

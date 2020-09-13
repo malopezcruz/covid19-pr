@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function BodyLink({ link, label }) {
+const BodyLink = ({ link, label }) => {
   return (
     <a
       className='border-b-2 border-pink-400 hover:border-pink-600 hover:transition-colors duration-500 ease-in-out'
@@ -11,4 +11,6 @@ export default function BodyLink({ link, label }) {
       {label}
     </a>
   );
-}
+};
+
+export default BodyLink;

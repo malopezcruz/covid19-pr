@@ -1,13 +1,13 @@
 import React from 'react';
-import ExtLink from './ExtLink';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ExtLink from './ExtLink';
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <footer className='bg-gray-900 tracking-wide py-8 font-light'>
-      <div className='w-full max-w-screen-lg px-4 lg:px-0 mx-auto grid gri-cols-1 md:grid-cols-3 md:gap-6 text-gray-200 pt-6'>
+    <footer className='bg-gray-900 tracking-wide py-8'>
+      <div className='w-full max-w-screen-lg px-6 lg:px-0 mx-auto grid gri-cols-1 md:grid-cols-3 md:gap-6 text-gray-200 pt-6'>
         <div className='mb-6'>
-          <h3 className='text-xl mb-2 font-medium'>En Puerto Rico...</h3>
+          <h3 className='text-xl mb-2'>En Puerto Rico...</h3>
           <ul className='flex flex-col'>
             <li className='ml-4 mb-2'>
               <ExtLink
@@ -48,7 +48,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className='mb-6'>
-          <h3 className='text-xl mb-2 font-medium'>En el mundo...</h3>
+          <h3 className='text-xl mb-2'>En el mundo...</h3>
           <ul className='flex flex-col'>
             <li className='ml-4 mb-2'>
               <ExtLink
@@ -65,8 +65,8 @@ export default function Footer() {
           </ul>
         </div>
         <div className='mb-6'>
-          <h3 className='text-xl mb-2 font-medium'>Nota técnica</h3>
-          <p>
+          <h3 className='text-xl mb-2'>Nota técnica</h3>
+          <p className='mb-4'>
             <em>R</em>
             <sub>t</sub> se calcula utilizando los paquetes{' '}
             <ExtLink
@@ -78,7 +78,15 @@ export default function Footer() {
               link='https://cran.r-project.org/web/packages/incidence/index.html'
               label='Incidence'
             />{' '}
-            para el lenguaje R.
+            para el lenguaje{' '}
+            <span>
+              <FontAwesomeIcon
+                icon={['fab', 'r-project']}
+                fixedWidth
+                width='20'
+                className='inline'
+              />
+            </span>
           </p>
         </div>
         <div className='md:col-span-3 text-center'>
@@ -114,4 +122,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

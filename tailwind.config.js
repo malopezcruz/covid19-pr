@@ -8,16 +8,12 @@ module.exports = {
       padding: '1rem',
     },
     extend: {
+      screens: {
+        xsm: { min: '365px', max: '639px' },
+      },
       fontFamily: {
         sans: ['Lato', ...defaultTheme.fontFamily.sans],
       },
-      backgroundColor: (theme) => ({
-        ...theme('colors'),
-        green: '#b3e2cd',
-        pink: '#f4cae4',
-        yellow: '#fdcdac',
-        lightgreen: '#e6f5c9',
-      }),
       textColor: {
         subtitle: '#666666',
         bodytext: '#222222',
@@ -51,6 +47,7 @@ module.exports = {
       spacing: {
         '4/6': '66.666667%',
         '5/6': '83.333333%',
+        golden: '61.803399%',
         100: '99.999999%',
         '21/22': '95.5555555',
       },
@@ -58,9 +55,11 @@ module.exports = {
   },
   variants: {
     margin: ['responsive', 'first', 'last'],
+    outline: ['responsive', 'focus'],
   },
   plugins: [require('@tailwindcss/custom-forms')],
   future: {
     removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
   },
 };

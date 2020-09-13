@@ -1,23 +1,27 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
 import GrowthPlot from './GrowthPlot';
+import BodyLink from './BodyLink';
 import Source from './Source';
 import fos_fit from '../data/fos_fit.json';
 import rg from '../data/rg.json';
 
-const {
-  r_conf,
-  r,
-  halving,
-  halving_conf,
-  r_before,
-  r_conf_before,
-  doubling,
-  doubling_conf,
-} = rg[0];
+const InfoAccordion = dynamic(import('./InfoAccordion'));
 
-export default function Rt() {
+const Growth = () => {
+  const {
+    r_conf,
+    r,
+    halving,
+    halving_conf,
+    r_before,
+    r_conf_before,
+    doubling,
+    doubling_conf,
+  } = rg[0];
+
   return (
-    <section className='mb-12 md:mb-16 lg:mb-24'>
+    <section className='mb-4 md:mb-8 lg:mb-12'>
       <h2 className='uppercase text-xl md:text-3xl text-blue-900 font-semibold mb-6 md:mb-12 leading-tight'>
         Crecimiento de la curva epidémica
       </h2>
@@ -60,13 +64,12 @@ export default function Rt() {
             </span>
             :{' '}
             <span className='text-blue-900 opacity-80 font-medium'>
-              {parseInt(halving)} días (entre {parseInt(halving_conf[0])} días
+              {parseInt(halving)} días (entre {parseInt(halving_conf[0])} días a{' '}
               {parseInt(halving_conf[1])} días)
             </span>{' '}
           </p>
         </div>
       </div>
-      {/* <div className='mb-8 md:mb-12 '></div> */}
 
       <GrowthPlot
         data={fos_fit}
@@ -75,11 +78,35 @@ export default function Rt() {
             Gráfica de crecimiento. La curva epidémica de la segunda etapa de la
             epidemia se divide en un antes de crecimiento y un después de
             decrecimiento tomando como punto de corte el pico (hasta el momento)
-            del 4 de agosto de 2020. El área ensombrecida de color rosado señala
-            días en los que puediran faltar casos por reportarse. <Source />
+            del 4 de agosto de 2020. El área de color rosado señala días en los
+            que pudieran faltar casos por reportarse. <Source />
           </>
         }
       />
+
+      <InfoAccordion label='Nota sobre el crecimiento'>
+        <p className='mb-4'>
+          Si el número reproductivo instantáneo (<em>R</em>
+          <sub>t</sub>) provee información sobre la dirección de los contagios
+          en la propagación de la epidemia (en términos de transmisibilidad), la
+          tasa de crecimiento provee información sobre el tamaño y la velocidad
+          del cambio de nuevos casos, es decir, qué tan rápido crece (o se
+          contrae) la curva epidémica. Números positivos indican que los casos
+          están creciendo, mientras que números negativos indican que los casos
+          se reducen. A mayor el número, mayor la aceleración tanto de
+          crecimiento como de contracción. Algo para tener en cuenta es que la
+          incertidumbre aumenta cuando hay pocos casos reportados. Para más
+          información sobre cómo valorar la relación entre <em>R</em> y el
+          indicador de crecimiento visita la página de{' '}
+          <BodyLink
+            label='Reino Unido'
+            link='https://www.gov.uk/guidance/the-r-number-in-the-uk'
+          />{' '}
+          que tomo como referencia.
+        </p>
+      </InfoAccordion>
     </section>
   );
-}
+};
+
+export default Growth;
