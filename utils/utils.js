@@ -1,7 +1,7 @@
 import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
 
-export const reportDate = '2020-09-12';
+export const reportDate = '2020-09-13';
 
 export const formatNumber = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
