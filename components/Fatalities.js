@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { DataContext } from '../context/DataContext';
 import { formatNumber } from '../utils/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BarPlot from './BarPlot';
 import Source from './Source';
-import daily_deaths from '../data/daily_deaths.json';
-import weekly_deaths from '../data/weekly_deaths.json';
-import twoweeks_deaths from '../data/twoweeks_deaths.json';
-import monthly_deaths from '../data/monthly_deaths.json';
 
 const Fatalities = () => {
-  const [openTab, setOpenTab] = useState(1);
+  const {
+    dailydeaths,
+    weeklydeaths,
+    twoweeksdeaths,
+    monthlydeaths,
+    totaldeaths,
+  } = useContext(DataContext);
 
-  const totalFatalities = daily_deaths
-    .map((item) => item.counts)
-    .reduce((prev, next) => prev + next);
+  const [openTab, setOpenTab] = useState(1);
 
   return (
     <section className='mb-12 md:mb-16 lg:mb-24'>
@@ -21,8 +22,7 @@ const Fatalities = () => {
         <h2 className='text-xl mb-2 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
           Muertes totales
           <span className='ml-2 text-lg md:text-2xl font-bold text-blue-900 opacity-75'>
-            (<span className='lowercase'>n </span>={' '}
-            {formatNumber(totalFatalities)})
+            (<span className='lowercase'>n </span>= {formatNumber(totaldeaths)})
           </span>
         </h2>
       </header>
@@ -150,25 +150,25 @@ const Fatalities = () => {
                 className={openTab === 1 ? 'block' : 'hidden'}
                 id='muertes-diarias'
               >
-                <BarPlot data={daily_deaths} caption={<Source />} />
+                <BarPlot data={dailydeaths} caption={<Source />} />
               </div>
               <div
                 className={openTab === 2 ? 'block' : 'hidden'}
                 id='muertes-semanales'
               >
-                <BarPlot data={weekly_deaths} caption={<Source />} />
+                <BarPlot data={weeklydeaths} caption={<Source />} />
               </div>
               <div
                 className={openTab === 3 ? 'block' : 'hidden'}
                 id='muertes-14dias'
               >
-                <BarPlot data={twoweeks_deaths} caption={<Source />} />
+                <BarPlot data={twoweeksdeaths} caption={<Source />} />
               </div>
               <div
                 className={openTab === 4 ? 'block' : 'hidden'}
                 id='muertes-mensuales'
               >
-                <BarPlot data={monthly_deaths} caption={<Source />} />
+                <BarPlot data={monthlydeaths} caption={<Source />} />
               </div>
             </div>
           </div>

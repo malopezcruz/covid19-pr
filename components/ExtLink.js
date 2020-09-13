@@ -19,6 +19,6 @@ const ExtLink = ({ link, label }) => {
       />
     </a>
   );
-}
+};
 
-export default ExtLink
+export default ExtLink;
