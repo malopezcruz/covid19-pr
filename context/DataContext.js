@@ -10,23 +10,23 @@ import daily_deaths from '../data/daily_deaths.json';
 import weekly_deaths from '../data/weekly_deaths.json';
 import twoweeks_deaths from '../data/twoweeks_deaths.json';
 import monthly_deaths from '../data/monthly_deaths.json';
-// import municipalities from '../data/municipalities.json';
+import municipalities from '../data/municipalities.json';
 
 const DataContext = createContext(null);
 
 const Provider = ({ children }) => {
-  const [rNumber, setrNumber] = useState(rt);
-  const [growthNumber, setrowthNumber] = useState(rg);
-  const [fosFit, setfosFit] = useState(fos_fit);
-  const [dailyCases, setdailyCases] = useState(daily_cases);
-  const [weeklyCases, setweeklyCases] = useState(weekly_cases);
-  const [twoweeksCases, settwoweeksCases] = useState(twoweeks_cases);
-  const [monthlyCases, setmonthlyCases] = useState(monthly_cases);
-  const [dailyDeaths, setdailyDeaths] = useState(daily_deaths);
-  const [weeklyDeaths, setweeklyDeaths] = useState(weekly_deaths);
-  const [twoweeksDeaths, settwoweeksDeaths] = useState(twoweeks_deaths);
-  const [monthlyDeaths, setmonthlyDeaths] = useState(monthly_deaths);
-  // const [municipalityList, setMunicipalityList] = useState(municipalities);
+  const [rNumber] = useState(rt);
+  const [growthNumber] = useState(rg);
+  const [fosFit] = useState(fos_fit);
+  const [dailyCases] = useState(daily_cases);
+  const [weeklyCases] = useState(weekly_cases);
+  const [twoweeksCases] = useState(twoweeks_cases);
+  const [monthlyCases] = useState(monthly_cases);
+  const [dailyDeaths] = useState(daily_deaths);
+  const [weeklyDeaths] = useState(weekly_deaths);
+  const [twoweeksDeaths] = useState(twoweeks_deaths);
+  const [monthlyDeaths] = useState(monthly_deaths);
+  const [municipalityList] = useState(municipalities);
 
   const { Intervalo } = rNumber[rNumber.length - 1];
 
@@ -68,7 +68,7 @@ const Provider = ({ children }) => {
     totaldeaths: monthlyDeaths
       .map((item) => item.counts)
       .reduce((prev, next) => prev + next),
-    // municipalitylist: municipalityList,
+    municipalitylist: municipalityList,
   };
 
   return <DataContext.Provider value={store}>{children}</DataContext.Provider>;

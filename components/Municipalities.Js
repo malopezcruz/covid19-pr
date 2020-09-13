@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { DataContext } from '../context/DataContext';
 import {
   formatNumber,
   municipality_list,
@@ -8,12 +9,12 @@ import {
 import Source from './Source';
 import MunBarPlot from './MunBarPlot';
 import MunVerticalBarPlot from './MunVerticalBarPlot';
-import municipalities from '../data/municipalities.json';
 
 const Municipalities = () => {
+  const { municipalitylist } = useContext(DataContext);
   const [selectedMunicipality, setSelectedMunicipality] = useState('Adjuntas');
 
-  const municipalityFiltered = municipalities.filter(
+  const municipalityFiltered = municipalitylist.filter(
     ({ name }) => name == selectedMunicipality
   );
 
@@ -22,11 +23,13 @@ const Municipalities = () => {
   ];
 
   // Calculate new cases for the most recent day
-  const { dates: beforeLastDate } = municipalities[municipalities.length - 81];
-  const lastDateFiltered = municipalities.filter(
+  const { dates: beforeLastDate } = municipalitylist[
+    municipalitylist.length - 81
+  ];
+  const lastDateFiltered = municipalitylist.filter(
     ({ dates }) => dates === lastDate
   );
-  const beforeLastDateFiltered = municipalities.filter(
+  const beforeLastDateFiltered = municipalitylist.filter(
     ({ dates }) => dates === beforeLastDate
   );
   const sumObjectsByKey = (...objs) =>
@@ -66,7 +69,7 @@ const Municipalities = () => {
           Casos confirmados acumulados por municipio
         </h3>
 
-        <div className='mb-8 sm:mb-12 grid grid-cols-2 gap-2 sm:mx-auto w-full md:w-5/6 lg:4/6 md:gap-8 shadow-md rounded p-4 border-t-8 border-blue-800 divide-x divide-text-subtitle'>
+        <div className='mb-8 sm:mb-12 grid grid-cols-2 gap-2 w-full sm:mx-auto  md:w-5/6 lg:4/6 md:gap-8 shadow-md rounded p-4 border-t-8 border-blue-800 divide-x divide-text-subtitle'>
           <div>
             <h3 className='text-sm font-semibold uppercase text-center text-blue-900 mb-2'>
               Municipio
