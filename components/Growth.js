@@ -1,15 +1,15 @@
 import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { useContext } from 'react';
+import { DataContext } from '../context/DataContext';
 import GrowthPlot from './GrowthPlot';
 import BodyLink from './BodyLink';
 import Source from './Source';
-import fos_fit from '../data/fos_fit.json';
-import rg from '../data/rg.json';
 
 const InfoAccordion = dynamic(import('./InfoAccordion'));
 
 const Growth = () => {
   const {
+    fosfit,
     r_conf,
     r,
     halving,
@@ -18,7 +18,7 @@ const Growth = () => {
     r_conf_before,
     doubling,
     doubling_conf,
-  } = rg[0];
+  } = useContext(DataContext);
 
   return (
     <section className='mb-4 md:mb-8 lg:mb-12'>
@@ -72,7 +72,7 @@ const Growth = () => {
       </div>
 
       <GrowthPlot
-        data={fos_fit}
+        data={fosfit}
         caption={
           <>
             Gráfica de crecimiento. La curva epidémica de la segunda etapa de la

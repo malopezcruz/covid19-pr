@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { DataContext } from '../context/DataContext';
 import { formatNumber } from '../utils/utils';
 import BarPlot from '../components/BarPlot';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Source from './Source';
-import daily_cases from '../data/daily_cases.json';
-import weekly_cases from '../data/weekly_cases.json';
-import twoweeks_cases from '../data/twoweeks_cases.json';
-import monthly_cases from '../data/monthly_cases.json';
 
 const Cases = () => {
-  const totalCases = daily_cases
-    .map(({ counts }) => counts)
-    .reduce((prev, next) => prev + next);
+  const {
+    dailycases,
+    weeklycases,
+    twoweekscases,
+    monthlycases,
+    totalcases,
+  } = useContext(DataContext);
+
   const [openTab, setOpenTab] = useState(1);
 
   return (
@@ -20,7 +22,7 @@ const Cases = () => {
         <h2 className='text-xl mb-2 md:text-3xl text-blue-900 font-semibold leading-tight uppercase'>
           Casos confirmados
           <span className='ml-2 text-lg md:text-2xl font-bold text-blue-900 opacity-75'>
-            (<span className='lowercase'>n </span>= {formatNumber(totalCases)})
+            (<span className='lowercase'>n </span>= {formatNumber(totalcases)})
           </span>
         </h2>
       </header>
@@ -151,25 +153,25 @@ const Cases = () => {
                 className={openTab === 1 ? 'block' : 'hidden'}
                 id='casos-diarios'
               >
-                <BarPlot data={daily_cases} caption={<Source />} />
+                <BarPlot data={dailycases} caption={<Source />} />
               </div>
               <div
                 className={openTab === 2 ? 'block' : 'hidden'}
                 id='casos-semanales'
               >
-                <BarPlot data={weekly_cases} caption={<Source />} />
+                <BarPlot data={weeklycases} caption={<Source />} />
               </div>
               <div
                 className={openTab === 3 ? 'block' : 'hidden'}
                 id='casos-14dias'
               >
-                <BarPlot data={twoweeks_cases} caption={<Source />} />
+                <BarPlot data={twoweekscases} caption={<Source />} />
               </div>
               <div
                 className={openTab === 4 ? 'block' : 'hidden'}
                 id='casos-mensuales'
               >
-                <BarPlot data={monthly_cases} caption={<Source />} />
+                <BarPlot data={monthlycases} caption={<Source />} />
               </div>
             </div>
           </div>

@@ -22,7 +22,7 @@ const InfoAccordion = ({ label, children }) => {
             {label}
           </AccordionButton>
         </h3>
-        <AccordionPanel className='mb-12 md:mb-24 leading-relaxed'>
+        <AccordionPanel className='fadein mb-12 md:mb-24 leading-relaxed'>
           {children}
         </AccordionPanel>
       </AccordionItem>
