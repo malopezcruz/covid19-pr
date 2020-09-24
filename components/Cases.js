@@ -153,25 +153,41 @@ const Cases = () => {
                 className={openTab === 1 ? 'block' : 'hidden'}
                 id='casos-diarios'
               >
-                <BarPlot data={dailycases} caption={<Source />} />
+                <BarPlot
+                  data={dailycases}
+                  caption={<Source />}
+                  daysInterval={6}
+                />
               </div>
               <div
                 className={openTab === 2 ? 'block' : 'hidden'}
                 id='casos-semanales'
               >
-                <BarPlot data={weeklycases} caption={<Source />} />
+                <BarPlot
+                  data={weeklycases}
+                  caption={<Source />}
+                  daysInterval={0}
+                />
               </div>
               <div
                 className={openTab === 3 ? 'block' : 'hidden'}
                 id='casos-14dias'
               >
-                <BarPlot data={twoweekscases} caption={<Source />} />
+                <BarPlot
+                  data={twoweekscases}
+                  caption={<Source />}
+                  daysInterval={0}
+                />
               </div>
               <div
                 className={openTab === 4 ? 'block' : 'hidden'}
                 id='casos-mensuales'
               >
-                <BarPlot data={monthlycases} caption={<Source />} />
+                <BarPlot
+                  data={monthlycases}
+                  caption={<Source />}
+                  daysInterval={0}
+                />
               </div>
             </div>
           </div>

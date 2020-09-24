@@ -12,11 +12,12 @@ import {
 
 const MunVerticalBarPlot = ({ data, caption }) => {
   const ariaLabelCaption = () => caption && `aria-label=${caption}`;
+  const containerHeight = data.length < 40 ? 800 : 1200;
 
   return (
     <figure role='figure' {...ariaLabelCaption}>
       <div className=''>
-        <ResponsiveContainer width='100%' height={1000}>
+        <ResponsiveContainer width='100%' height={containerHeight}>
           <BarChart
             layout='vertical'
             data={data}

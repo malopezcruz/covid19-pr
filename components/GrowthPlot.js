@@ -16,7 +16,7 @@ import {
 
 const GrowthPlot = ({ data, caption }) => {
   const { dates: lastPCRDay } = data[data.length - 1];
-  const { dates: minusFiveDaysInterval } = data[data.length - 5];
+  const { dates: minusFiveDaysInterval } = data[data.length - 6];
 
   return (
     <figure className='mb-8 md:mb-12' role='figure' aria-label={caption}>
@@ -31,7 +31,7 @@ const GrowthPlot = ({ data, caption }) => {
               name='Fecha'
               dataKey='dates'
               type='category'
-              interval={1}
+              interval={2}
               height={60}
               stroke='#999'
               tickFormatter={(date) => formatDateTimeSeries(date)}

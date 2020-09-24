@@ -150,25 +150,41 @@ const Fatalities = () => {
                 className={openTab === 1 ? 'block' : 'hidden'}
                 id='muertes-diarias'
               >
-                <BarPlot data={dailydeaths} caption={<Source />} />
+                <BarPlot
+                  data={dailydeaths}
+                  caption={<Source />}
+                  daysInterval={6}
+                />
               </div>
               <div
                 className={openTab === 2 ? 'block' : 'hidden'}
                 id='muertes-semanales'
               >
-                <BarPlot data={weeklydeaths} caption={<Source />} />
+                <BarPlot
+                  data={weeklydeaths}
+                  caption={<Source />}
+                  daysInterval={0}
+                />
               </div>
               <div
                 className={openTab === 3 ? 'block' : 'hidden'}
                 id='muertes-14dias'
               >
-                <BarPlot data={twoweeksdeaths} caption={<Source />} />
+                <BarPlot
+                  data={twoweeksdeaths}
+                  caption={<Source />}
+                  daysInterval={0}
+                />
               </div>
               <div
                 className={openTab === 4 ? 'block' : 'hidden'}
                 id='muertes-mensuales'
               >
-                <BarPlot data={monthlydeaths} caption={<Source />} />
+                <BarPlot
+                  data={monthlydeaths}
+                  caption={<Source />}
+                  daysInterval={0}
+                />
               </div>
             </div>
           </div>

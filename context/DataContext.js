@@ -1,5 +1,7 @@
 import React, { useState, createContext } from 'react';
+import { calcReportDate, formatDate } from '../utils/utils';
 import rt from '../data/rt.json';
+import rt_7 from '../data/rt_7.json';
 import rg from '../data/rg.json';
 import fos_fit from '../data/fos_fit.json';
 import daily_cases from '../data/daily_cases.json';
@@ -16,6 +18,7 @@ const DataContext = createContext(null);
 
 const Provider = ({ children }) => {
   const [rNumber] = useState(rt);
+  const [rNumber_7] = useState(rt_7);
   const [growthNumber] = useState(rg);
   const [fosFit] = useState(fos_fit);
   const [dailyCases] = useState(daily_cases);
@@ -41,8 +44,13 @@ const Provider = ({ children }) => {
     doubling_conf,
   } = growthNumber[0];
 
+  const { dates: lastDate } = municipalityList[municipalityList.length - 1];
+
+  const reportDate = formatDate(calcReportDate(lastDate));
+
   const store = {
     r_number: rNumber,
+    r_number_7: rNumber_7,
     interval: Intervalo,
     growth: growthNumber,
     fosfit: fosFit,
@@ -69,6 +77,7 @@ const Provider = ({ children }) => {
       .map((item) => item.counts)
       .reduce((prev, next) => prev + next),
     municipalitylist: municipalityList,
+    reportDate,
   };
 
   return <DataContext.Provider value={store}>{children}</DataContext.Provider>;

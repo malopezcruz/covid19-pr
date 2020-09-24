@@ -1,15 +1,17 @@
-import { format, parseISO } from 'date-fns';
+import { format, parseISO, addDays } from 'date-fns';
 import { es } from 'date-fns/locale';
 
-export const reportDate = '2020-09-13';
+export const calcReportDate = (date) => {
+  return addDays(parseISO(date), 1);
+};
 
-export const formatNumber = (x) => {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+export const formatNumber = (number) => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
 export const formatDate = (date) => {
   /* eslint-disable no-alert, no-console */
-  return format(new Date(date), eeee, "eeee, d 'de' MMMM 'de' yyyy, h:mm aa", {
+  return format(new Date(date), "d 'de' MMMM 'de' yyyy", {
     locale: es,
   });
 };
@@ -28,7 +30,6 @@ export const formatDateLabel = (date) => {
     new Date(parseISO(date)),
     /* eslint-disable no-alert, no-console */
     "d 'de' MMMM 'de' yyyy",
-    // {timeZone: 'America/Puerto_Rico'}
     { locale: es }
   );
 };

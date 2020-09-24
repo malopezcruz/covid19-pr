@@ -35,7 +35,7 @@ const MunBarPlot = ({ data, caption }) => {
             <XAxis
               name='Fecha'
               dataKey='dates'
-              interval={1}
+              interval={6}
               height={60}
               stroke='#999'
               tickFormatter={(date) => formatDateTimeSeries(date)}

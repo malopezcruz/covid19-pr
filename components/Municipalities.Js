@@ -1,17 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { DataContext } from '../context/DataContext';
-import {
-  formatNumber,
-  municipality_list,
-  reportDate,
-  formatDateLabel,
-} from '../utils/utils';
+import { formatNumber, municipality_list } from '../utils/utils';
 import Source from './Source';
 import MunBarPlot from './MunBarPlot';
 import MunVerticalBarPlot from './MunVerticalBarPlot';
 
 const Municipalities = () => {
-  const { municipalitylist } = useContext(DataContext);
+  const { municipalitylist, reportDate } = useContext(DataContext);
   const [selectedMunicipality, setSelectedMunicipality] = useState('Adjuntas');
 
   const municipalityFiltered = municipalitylist.filter(
@@ -124,9 +119,7 @@ const Municipalities = () => {
               <sup className='text-pink-500'>*</sup>
             </span>
           </h3>
-          <p className='text-blue-900 opacity-75 font-semibold'>
-            {formatDateLabel(reportDate)}
-          </p>
+          <p className='text-blue-900 opacity-75 font-semibold'>{reportDate}</p>
         </div>
         <MunVerticalBarPlot
           data={newMunicipalityCases}

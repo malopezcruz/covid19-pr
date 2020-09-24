@@ -1,16 +1,18 @@
 import React, { useContext } from 'react';
 import { DataContext } from '../context/DataContext';
-import { formatNumber, reportDate, formatDateLabel } from '../utils/utils';
+import { formatNumber } from '../utils/utils';
 
 const Summary = () => {
-  const { totalcases, totaldeaths, r_conf, interval } = useContext(DataContext);
+  const { totalcases, totaldeaths, r_conf, interval, reportDate } = useContext(
+    DataContext
+  );
 
   return (
     <section className='mt-6 md:mt-8 mb-16 md:mb-20'>
       <h2 className='text-xl md:text-3xl text-blue-900 font-semibold mb-8 md:mb-12 leading-tight uppercase'>
         RESUMEN{' '}
         <span className='ml-1  text-blue-900 opacity-75 text-base md:text-lg'>
-          {formatDateLabel(reportDate)}
+          {reportDate}
         </span>
       </h2>
       <div className='grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8'>

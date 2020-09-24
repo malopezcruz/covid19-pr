@@ -1,33 +1,127 @@
 import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { DataContext } from '../context/DataContext';
 import RtPlot from './RtPlot';
 import BodyLink from './BodyLink';
 import Source from './Source';
-import rt from '../data/rt.json';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const InfoAccordion = dynamic(import('./InfoAccordion'));
 
 const Rt = () => {
+  const { r_number, r_number_7 } = useContext(DataContext);
+  const [openTab, setOpenTab] = useState(1);
+
   return (
     <section className='mb-4 md:mb-8 lg:mb-12'>
-      <h2 className='text-xl md:text-3xl text-blue-900 font-semibold mb-8 md:mb-12 leading-tight'>
+      <h2 className='text-xl md:text-3xl text-blue-900 font-semibold mb-4 md:mb-6 leading-tight'>
         <span className='uppercase'>número reproductivo instantáneo</span> (
         <em>R</em>
         <sub>t</sub>)
       </h2>
 
-      <RtPlot
-        data={rt}
-        caption={
-          <>
-            Número reproductivo de casos confirmados, promedio de 14 días. El
-            área azul celeste representa el{' '}
-            <em>95% de intervalo de credibilidad</em>. El área de color rosado
-            señala días en los que pudieran faltar por reportarse más casos.{' '}
-            <Source />
-          </>
-        }
-      />
+      {/* Tab */}
+      <div className='flex flex-wrap'>
+        <div className='w-full'>
+          <ul
+            className='flex mb-0 list-none flex-wrap pt-3 pb-6 flex-row justify-start'
+            role='tablist'
+          >
+            <li
+              className='-mb-px xsm:mr-8 sm:mr-12 last:mr-0 text-center'
+              role='tab'
+            >
+              <a
+                className={`text-sm flex items-center content-center uppercase sm:tracking-widest ${
+                  openTab === 1
+                    ? 'text-blue-900 font-semibold'
+                    : 'text-tabs font-medium hover:text-blue-900 hover:opacity-75'
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenTab(1);
+                }}
+                data-toggle='tab'
+                href='#rt-14'
+                role='tab'
+              >
+                <FontAwesomeIcon
+                  icon={['fa', 'calendar-times']}
+                  fixedWidth
+                  width='12'
+                  className='self-center mr-1 sm:mr-2'
+                />
+                14 días
+              </a>
+            </li>
+            <li
+              className='-mb-px xsm:mr-2 sm:mr-12 last:mr-0 text-center'
+              role='tab'
+            >
+              <a
+                className={`text-sm flex items-center content-center uppercase sm:tracking-widest ${
+                  openTab === 2
+                    ? 'text-blue-900 font-semibold'
+                    : 'text-tabs font-medium hover:text-blue-900 hover:opacity-75'
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenTab(2);
+                }}
+                data-toggle='tab'
+                href='#rt-7'
+                role='tab'
+              >
+                <FontAwesomeIcon
+                  icon={['fa', 'calendar-week']}
+                  fixedWidth
+                  width='12'
+                  className='self-center mr-1 sm:mr-2'
+                />
+                7 días
+              </a>
+            </li>
+          </ul>
+          {/* tabPanel */}
+          <div
+            className='relative flex flex-col min-w-0 break-words w-full'
+            role='tabpanel'
+          >
+            <div className='pt-4 flex-auto'>
+              <div className={openTab === 1 ? 'block' : 'hidden'} id='rt-14'>
+                <RtPlot
+                  data={r_number}
+                  caption={
+                    <>
+                      Número reproductivo de casos confirmados, promedio de{' '}
+                      <strong className='text-blue-900'>14 días</strong>. El
+                      área azul celeste representa el{' '}
+                      <em>95% de intervalo de credibilidad</em>. El área de
+                      color rosado señala días en los que pudieran faltar por
+                      reportarse más casos. <Source />
+                    </>
+                  }
+                />
+              </div>
+              <div className={openTab === 2 ? 'block' : 'hidden'} id='rt-7'>
+                <RtPlot
+                  data={r_number_7}
+                  caption={
+                    <>
+                      Número reproductivo de casos confirmados, promedio de{' '}
+                      <strong className='text-blue-900'>7 días</strong>. El área
+                      azul celeste representa el{' '}
+                      <em>95% de intervalo de credibilidad</em>. El área de
+                      color rosado señala días en los que pudieran faltar por
+                      reportarse más casos. <Source />
+                    </>
+                  }
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <InfoAccordion label='Nota sobre el número reproductivo'>
         <p className='mb-4'>

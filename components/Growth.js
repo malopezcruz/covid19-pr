@@ -33,7 +33,8 @@ const Growth = () => {
           <p className='md:text-lg text-subtitle mb-2'>
             <span className='text-blue-900 font-semibold'>Crecimiento</span>:{' '}
             <span className='text-blue-900 opacity-80 font-medium'>
-              {r_before * 100}% ({Math.round(r_conf_before[0] * 100)}% &#8211;{' '}
+              {Math.round(r_before * 100)}% (
+              {Math.round(r_conf_before[0] * 100)}% &#8211;{' '}
               {Math.round(r_conf_before[1] * 100)}
               %, 95% CI)
             </span>
@@ -75,11 +76,11 @@ const Growth = () => {
         data={fosfit}
         caption={
           <>
-            Gráfica de crecimiento. La curva epidémica de la segunda etapa de la
-            epidemia se divide en un antes de crecimiento y un después de
-            decrecimiento tomando como punto de corte el pico (hasta el momento)
-            del 4 de agosto de 2020. El área de color rosado señala días en los
-            que pudieran faltar casos por reportarse. <Source />
+            La curva epidémica de la segunda etapa de la epidemia se divide en
+            un antes de crecimiento y un después de decrecimiento tomando como
+            punto de corte el pico (hasta el momento) del 4 de agosto de 2020.
+            El área de color rosado señala días en los que pudieran faltar casos
+            por reportarse. <Source />
           </>
         }
       />

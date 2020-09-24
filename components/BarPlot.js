@@ -15,7 +15,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const BarPlot = ({ data, caption }) => {
+const BarPlot = ({ data, caption, daysInterval }) => {
   const ariaLabelCaption = () => caption && `aria-label=${caption}`;
 
   return (
@@ -35,7 +35,7 @@ const BarPlot = ({ data, caption }) => {
             <XAxis
               name='Fecha'
               dataKey='dates'
-              interval={0}
+              interval={daysInterval}
               height={60}
               stroke='#999'
               tickFormatter={(date) => formatDateTimeSeries(date)}
