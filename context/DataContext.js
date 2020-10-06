@@ -13,12 +13,14 @@ import weekly_deaths from '../data/weekly_deaths.json';
 import twoweeks_deaths from '../data/twoweeks_deaths.json';
 import monthly_deaths from '../data/monthly_deaths.json';
 import municipalities from '../data/municipalities.json';
+import rt_bioportal from '../data/rt_bioportal.json';
 
 const DataContext = createContext(null);
 
 const Provider = ({ children }) => {
   const [rNumber] = useState(rt);
   const [rNumber_7] = useState(rt_7);
+  const [rNumber_bioportal] = useState(rt_bioportal);
   const [growthNumber] = useState(rg);
   const [fosFit] = useState(fos_fit);
   const [dailyCases] = useState(daily_cases);
@@ -51,6 +53,7 @@ const Provider = ({ children }) => {
   const store = {
     r_number: rNumber,
     r_number_7: rNumber_7,
+    r_number_bioportal: rNumber_bioportal,
     interval: Intervalo,
     growth: growthNumber,
     fosfit: fosFit,

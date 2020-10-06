@@ -17,7 +17,7 @@ import {
 const RtPlot = ({ data, caption }) => {
   const dataLength = data.length;
   const { Fecha: lastPCRDay } = data[dataLength - 1];
-  const { Fecha: minusFiveDaysInterval } = data[dataLength - 6];
+  const { Fecha: minusFiveDaysInterval } = data[dataLength - 7];
 
   return (
     <figure className='mb-8 md:mb-12' role='figure' aria-label={caption}>

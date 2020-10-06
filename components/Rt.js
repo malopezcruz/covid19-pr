@@ -9,7 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const InfoAccordion = dynamic(import('./InfoAccordion'));
 
 const Rt = () => {
-  const { r_number, r_number_7 } = useContext(DataContext);
+  const { r_number, r_number_7, r_number_bioportal, reportDate } = useContext(
+    DataContext
+  );
   const [openTab, setOpenTab] = useState(1);
 
   return (
@@ -55,7 +57,7 @@ const Rt = () => {
               </a>
             </li>
             <li
-              className='-mb-px xsm:mr-2 sm:mr-12 last:mr-0 text-center'
+              className='-mb-px xsm:mr-8 sm:mr-12 last:mr-0 text-center'
               role='tab'
             >
               <a
@@ -79,6 +81,33 @@ const Rt = () => {
                   className='self-center mr-1 sm:mr-2'
                 />
                 7 días
+              </a>
+            </li>
+            <li
+              className='-mb-px xsm:mr-2 sm:mr-12 last:mr-0 text-center'
+              role='tab'
+            >
+              <a
+                className={`text-sm flex items-center content-center uppercase sm:tracking-widest ${
+                  openTab === 3
+                    ? 'text-blue-900 font-semibold'
+                    : 'text-tabs font-medium hover:text-blue-900 hover:opacity-75'
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenTab(3);
+                }}
+                data-toggle='tab'
+                href='#bioportal'
+                role='tab'
+              >
+                <FontAwesomeIcon
+                  icon={['fa', 'calendar-times']}
+                  fixedWidth
+                  width='12'
+                  className='self-center mr-1 sm:mr-2'
+                />
+                Bioportal
               </a>
             </li>
           </ul>
@@ -114,6 +143,33 @@ const Rt = () => {
                       <em>95% de intervalo de credibilidad</em>. El área de
                       color rosado señala días en los que pudieran faltar por
                       reportarse más casos. <Source />
+                    </>
+                  }
+                />
+              </div>
+              <div
+                className={openTab === 3 ? 'block' : 'hidden'}
+                id='bioportal'
+              >
+                <RtPlot
+                  data={r_number_bioportal}
+                  caption={
+                    <>
+                      Número reproductivo de casos de prueba positiva molecular,
+                      promedio de{' '}
+                      <strong className='text-blue-900'>14 días</strong>. El
+                      área azul celeste representa el{' '}
+                      <em>95% de intervalo de credibilidad</em>. El área de
+                      color rosado señala días en los que pudieran faltar por
+                      reportarse más casos. Fuente:{' '}
+                      <em>
+                        <BodyLink
+                          link='https://rconnect.dfci.harvard.edu/covidpr/'
+                          label='Monitoreo de COVID-19 en
+                          Puerto Rico'
+                        />
+                      </em>
+                      , {reportDate}.
                     </>
                   }
                 />

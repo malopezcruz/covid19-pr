@@ -8,6 +8,7 @@ import MunVerticalBarPlot from './MunVerticalBarPlot';
 const Municipalities = () => {
   const { municipalitylist, reportDate } = useContext(DataContext);
   const [selectedMunicipality, setSelectedMunicipality] = useState('Adjuntas');
+  const [selectOrder, setSelectOrder] = useState('Descendente');
 
   const municipalityFiltered = municipalitylist.filter(
     ({ name }) => name == selectedMunicipality
@@ -52,6 +53,8 @@ const Municipalities = () => {
   const totalMunCases = newMunicipalityCases
     .map(({ counts }) => counts)
     .reduce((prev, next) => prev + next, 0);
+
+  // const ordering_list = ['Ascendente', 'Descendente', 'Alfabético'];
 
   return (
     <>
@@ -121,6 +124,28 @@ const Municipalities = () => {
           </h3>
           <p className='text-blue-900 opacity-75 font-semibold'>{reportDate}</p>
         </div>
+        {/* Start Selection */}
+        {/* <label className='block mb-6 sm:mb-10 md:w-64'>
+          <span className='block text-subtitle mb-2'>
+            Selecciona modo de ordenamiento:
+          </span>
+          <select
+            className='form-select mt-1 block w-full text-subtitle bg-white'
+            onChange={(e) => {
+              setSelectOrder(e.target.value);
+            }}
+          >
+            {ordering_list.map((item) => (
+              <option
+                className='text-gray-700 bg-white'
+                key={item}
+                value={item}
+              >
+                {item}
+              </option>
+            ))}
+          </select>
+        </label> */}
         <MunVerticalBarPlot
           data={newMunicipalityCases}
           caption={

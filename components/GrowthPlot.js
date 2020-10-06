@@ -16,7 +16,7 @@ import {
 
 const GrowthPlot = ({ data, caption }) => {
   const { dates: lastPCRDay } = data[data.length - 1];
-  const { dates: minusFiveDaysInterval } = data[data.length - 6];
+  const { dates: minusFiveDaysInterval } = data[data.length - 7];
 
   return (
     <figure className='mb-8 md:mb-12' role='figure' aria-label={caption}>
