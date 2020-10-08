@@ -12,8 +12,7 @@ import {
   faCalendarAlt,
   faCalendarTimes,
   faArrowAltCircleUp,
-  faShareAlt,
-  faFileCsv,
+  faExclamationCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -21,8 +20,6 @@ import {
   faTwitter,
   faRProject,
   faApple,
-  faFacebook,
-  faWhatsapp,
 } from '@fortawesome/free-brands-svg-icons';
 
 config.autoAddCss = false;
@@ -42,8 +39,5 @@ library.add(
   faRProject,
   faApple,
   faArrowAltCircleUp,
-  faShareAlt,
-  faFacebook,
-  faWhatsapp,
-  faFileCsv
+  faExclamationCircle
 );
