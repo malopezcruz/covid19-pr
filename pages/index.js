@@ -9,6 +9,7 @@ import Fatalities from '../components/Fatalities';
 import Growth from '../components/Growth';
 import Summary from '../components/Summary';
 import Municipalities from '../components/Municipalities';
+// import AlertMessage from '../components/AlertMessage';
 
 const IndexPage = () => {
   return (
@@ -24,6 +25,7 @@ const IndexPage = () => {
       <div className='flex flex-col min-h-screen'>
         <Header />
         <div className='w-full max-w-screen-lg px-6 mx-auto flex-grow mt-6'>
+          {/* <AlertMessage /> */}
           <Summary />
           <hr className='mb-12 md:mb-16 lg:mb-20 border-hr' />
           <Rt />
